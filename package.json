@@ -1,0 +1,27 @@
+{
+  "name": "fullstack_web_app_splittrip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoVukasovic/fullstack_web_app_splittrip.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrunoVukasovic/fullstack_web_app_splittrip/issues"
+  },
+  "homepage": "https://github.com/BrunoVukasovic/fullstack_web_app_splittrip#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.12.1"
+  }
+}
