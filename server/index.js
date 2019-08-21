@@ -11,13 +11,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.get("/", (req, res) => res.send("INDEX")); // bez ove linije izbaci error
+app.use("/api/trips", require("./api/trips"));
+
 app.listen(PORT, () => {
   console.log(`Server listening on the port ${PORT}...`);
-});
-
-db.query("SELECT NOW()", (err, res) => {
-  if (err.error) return console.log(error);
-  console.log(`PostgreSQL connected: ${res[0].now}`);
 });
 
 /*
