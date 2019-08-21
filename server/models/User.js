@@ -25,5 +25,13 @@ module.exports = sequelize.define("User", {
   },
   Phone: {
     type: Sequelize.STRING
+  },
+  createdAt: {
+    type: Sequelize.DATE,
+    field: "CreatedAt"
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    field: "UpdatedAt"
   }
 });

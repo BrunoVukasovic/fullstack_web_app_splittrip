@@ -1,27 +1,18 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
-import { LandingPage } from "./pages";
+import { LandingPage, Register, Login } from "./pages";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      trips: []
-    };
-  }
-
-  getTrips = () => {
-    axios.get("/api/trips").then(res => {
-      console.log(res);
-      this.setState({ trips: res.data });
-    });
-  };
-
   render() {
     return (
       <Router>
-        <LandingPage />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+        </Switch>
       </Router>
     );
   }
