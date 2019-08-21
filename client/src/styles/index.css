@@ -1,0 +1,12 @@
+:root {
+  --color-primary: #494949;
+  --color-grey: #eeeeee;
+  --color-dark-grey: #776666;
+  --color-logo-blue: rgb(32, 0, 255);
+  --color-light: rgb(240, 249, 252);
+  --color-button-blue: #008cba;
+}
+
+a {
+  text-decoration: none;
+}

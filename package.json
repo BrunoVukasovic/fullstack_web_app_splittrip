@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm start --prefix client",
     "server": "nodemon server"
   },
   "repository": {
@@ -21,6 +23,7 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "express": "^4.17.1",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",

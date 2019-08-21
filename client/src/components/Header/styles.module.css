@@ -1,0 +1,208 @@
+.Header {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid var(--color-grey, #000);
+}
+
+.Container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.MobileDropdown {
+  display: none;
+}
+
+.Logo {
+  color: var(--color-logo-blue, blue);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+.Home {
+  grid-column: 5/6;
+  grid-row: 1/2;
+}
+
+.TravelStories {
+  grid-column: 6/7;
+  grid-row: 1/2;
+}
+
+.logIn {
+  grid-column: 7/8;
+  grid-row: 1/2;
+}
+
+.LandToursDropDown {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.SeaToursDropDown {
+  grid-column: 4/5;
+  grid-row: 2/3;
+}
+
+.AdventuresDropDown {
+  grid-column: 5/6;
+  grid-row: 2/3;
+}
+
+.searchBar {
+  grid-column: 7/9;
+  grid-row: 2/3;
+  text-decoration: none;
+  color: var(--color-logo-blue, blue);
+}
+
+.NavLink {
+  margin-left: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--color-logo-blue, blue);
+}
+
+.NavLink:first-child {
+  margin-left: 10px;
+}
+
+.NavLink__active,
+.NavLink:hover {
+  color: var(--color-logo-blue, blue);
+  font-weight: bold;
+}
+
+.DropDown {
+  color: var(--color-logo-blue, blue);
+}
+
+.DropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.Dropdown:hover .DropdownContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-content: space-around;
+  background-color: var(--color-light);
+}
+
+.DropImage {
+  width: 200px;
+  margin: 5px;
+}
+
+.Image1 {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.Image2 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.Image3 {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.Image4 {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.Image5 {
+  grid-column: 1/2;
+  grid-row: 3/4;
+}
+
+.Image6 {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+@media screen and (max-width: 850px) {
+  .Home,
+  .TravelStories,
+  .logIn,
+  .LandToursDropDown,
+  .Dropdown:hover .DropdownContent,
+  .SeaToursDropDown,
+  .AdventuresDropDown,
+  .searchBar {
+    display: none;
+  }
+
+  .Container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .MobileDropdown {
+    display: block;
+  }
+
+  .MenuArrow {
+    margin-left: 1rem;
+  }
+
+  .MobileDropbtn {
+    background-color: var(--color-logo-blue, blue);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+
+  .MobileDropdownContent {
+    display: none;
+    right: 0;
+    position: absolute;
+    background-color: var(--color-light);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .MobileLink {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .MobileLink:hover {
+    background-color: #f1f1f1;
+  }
+
+  .MobileDropdown:hover .MobileDropdownContent {
+    display: block;
+  }
+
+  .MobileDropdown:hover .MobileDropbtn {
+    background-color: white;
+    color: var(--color-logo-blue, blue);
+    color: var(--color-logo-blue, blue);
+    /* border: 2px solid var(--color-gold); */
+  }
+}
