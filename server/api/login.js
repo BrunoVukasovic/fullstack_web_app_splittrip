@@ -5,19 +5,16 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const router = express.Router();
 
-// Login
-router.post("/", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/fail",
-    failureFlash: false
-  })(req, res, next);
+router.post("/", passport.authenticate("local"), function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  res.send(req.user.Email);
 });
 
 // Logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/login");
+  res.send({ message: "Log out!" });
 });
 
 module.exports = router;

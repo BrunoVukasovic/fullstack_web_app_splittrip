@@ -1,26 +1,42 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
+import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import styles from "./styles.module.css";
 import Container from "../Container";
 
 class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-    message: "Enter your credentials",
-    invalid: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      message: "Enter your credentials",
+      success: false,
+      invalid: false
+    };
+  }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  LogOut = () => {
+    axios.get("/api/login/logout").then(res => {
+      console.log(res);
+    });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
 
-    axios
-      .post("/api/login", { email, password })
-      .then(res => console.log(res.data));
+    axios.post("/api/login", { email, password }).then(res => {
+      console.log(res.data);
+      if (res.data == email) {
+        console.log("KURAC RADI");
+        console.log(this.props);
+        this.props.history.push("/register");
+      }
+    });
   };
 
   render() {
@@ -53,13 +69,14 @@ class Login extends Component {
 
         <div className={styles.Register}>
           <label className={styles.Label}>Dont't have an account?</label>
-          <Link to="/register">
-            <button className={styles.Button}>Register</button>
-          </Link>
+
+          <button className={styles.Button} onClick={() => this.LogOut()}>
+            Logout
+          </button>
         </div>
       </Container>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);
