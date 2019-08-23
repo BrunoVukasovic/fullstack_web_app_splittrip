@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 // import cn from "classnames";
 import Container from "../Container";
 import Logo from "../Logo";
@@ -28,13 +29,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends Component {
-  state = {
+  /*  state = {
     isAuthenticated: false
   };
-
+*/
   render() {
-    const { isAuthenticated } = this.state;
-
+    const { isAuthenticated } = this.props;
+    console.log(isAuthenticated);
     library.add(faAngleDoubleDown);
 
     return (
@@ -255,4 +256,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProp = state => {
+  return {
+    isAuthenticated: state.isLoggedReducer.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProp)(Header);

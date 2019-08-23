@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/", passport.authenticate("local"), function(req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-  res.send(req.user.Email);
+  res.send(req.user);
 });
 
 // Logout

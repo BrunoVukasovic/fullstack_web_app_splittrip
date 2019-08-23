@@ -1,5 +1,5 @@
 const initState = {
-  loggedIn: false,
+  isAuthenticated: false,
   user: {}
 };
 
@@ -8,8 +8,14 @@ const isLoggedReducer = (state = initState, action) => {
     case "LOGIN":
       return {
         ...state,
-        loggedIn: true
-        // user: action.payload
+        isAuthenticated: true,
+        user: action.user
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {}
       };
     default:
       return {

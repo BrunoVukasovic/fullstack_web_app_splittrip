@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 import Container from "../Container";
 import Layout from "../Layout";
 import { loginAction } from "../../actions/loginAction";
+import { logoutAction } from "../../actions/logoutAction";
 
 class Login extends Component {
   constructor(props) {
@@ -25,6 +26,8 @@ class Login extends Component {
   LogOut = () => {
     axios.get("/api/login/logout").then(res => {
       console.log(res);
+      this.props.removeUserFromStore();
+      localStorage.clear();
     });
   };
 
@@ -34,9 +37,11 @@ class Login extends Component {
 
     axios.post("/api/login", { email, password }).then(res => {
       console.log(res.data);
-      if (res.data == email) {
+      if (res.data.Email == email) {
         console.log("KURAC RADI");
         console.log(this.props);
+        this.props.saveUserToStore(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
         this.props.history.push("/register");
       }
     });
@@ -100,6 +105,12 @@ const mapDispatchToProps = dispatch => {
   return {
     changeBoolean: () => {
       dispatch(loginAction());
+    },
+    saveUserToStore: user => {
+      dispatch(loginAction(user));
+    },
+    removeUserFromStore: () => {
+      dispatch(logoutAction());
     }
   };
 };

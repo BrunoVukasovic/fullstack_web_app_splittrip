@@ -1,11 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import axios from "axios";
 import { LandingPage, Register } from "./pages";
 import { Login } from "./components";
+import { connect } from "react-redux";
+import { loginAction } from "./actions/loginAction";
 
 class App extends Component {
+  componentWillMount() {
+    console.log("evo gaaaaa");
+    console.log(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+    if (user) {
+      this.props.saveUserToStore(user);
+    }
+  }
   render() {
     return (
       <Router>
@@ -19,4 +28,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUserToStore: user => {
+      dispatch(loginAction(user));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
