@@ -1,18 +1,35 @@
 const path = require("path");
 const express = require("express");
-
-const db = require("./database");
-const Trip = require("./models/Trip");
-
+const session = require("express-session");
+const flash = require("express-flash");
 const ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 5000;
+const passport = require("passport");
+const initializePassport = require("./config/passport");
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // Bodyparser
 
-app.get("/", (req, res) => res.send("INDEX")); // bez ove linije izbaci error
+// Passport
+initializePassport(passport);
+// app.use(flash());
+// app.use(express.static("public"));
+app.use(
+  session({
+    secret: "veryGoodSecret",
+    resave: false,
+    saveUninitialized: false
+  })
+);
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/", (req, res) => res.send("INDEX"));
 app.use("/api/trips", require("./api/trips"));
+app.use("/api/register", require("./api/register"));
+app.use("/api/login", require("./api/login"));
 
 app.listen(PORT, () => {
   console.log(`Server listening on the port ${PORT}...`);
@@ -25,11 +42,5 @@ Trip.create({
   price: 100
 });
 */
-
-Trip.findAll()
-  .then(trips => {
-    console.log("All trips: ", JSON.stringify(trips));
-  })
-  .catch(err => console.log(err));
 
 module.exports = app;
