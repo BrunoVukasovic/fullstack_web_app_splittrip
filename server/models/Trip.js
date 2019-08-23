@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
+const Category = require("./Category");
 
 module.exports = sequelize.define("Trip", {
   TripID: {
@@ -24,5 +25,12 @@ module.exports = sequelize.define("Trip", {
   updatedAt: {
     type: Sequelize.DATE,
     field: "UpdatedAt"
+  },
+  CategoryID: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Category,
+      key: "CategoryID"
+    }
   }
 });

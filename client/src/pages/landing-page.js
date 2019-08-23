@@ -25,6 +25,7 @@ class LandingPage extends Component {
 
   getTrips = () => {
     axios.get("/api/trips").then(res => {
+      console.log(res.data);
       this.setState({ trips: res.data });
     });
   };

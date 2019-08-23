@@ -6,6 +6,7 @@ const ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 5000;
 const passport = require("passport");
 const initializePassport = require("./config/passport");
+const Trip = require("./models/Trip");
 
 const app = express();
 app.use(express.json());
@@ -35,12 +36,10 @@ app.listen(PORT, () => {
   console.log(`Server listening on the port ${PORT}...`);
 });
 
-/*
 Trip.create({
-  heading: "Prvi trip",
-  description: "prvi opis",
-  price: 100
+  Heading: "novi trip",
+  Description: "novi opis",
+  Price: 20
 });
-*/
 
 module.exports = app;
