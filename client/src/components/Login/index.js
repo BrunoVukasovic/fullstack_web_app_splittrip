@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
 import styles from "./styles.module.css";
 import Container from "../Container";
+import Layout from "../Layout";
+import { loginAction } from "../../actions/loginAction";
 
 class Login extends Component {
   constructor(props) {
@@ -39,44 +42,69 @@ class Login extends Component {
     });
   };
 
+  handleClick = () => {
+    this.props.changeBoolean();
+  };
+
   render() {
     return (
-      <Container>
-        <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
-          <label className={styles.Label}>{this.state.message}</label>
+      <Layout>
+        <Container>
+          {this.props.isLogged ? <h2>Ulogiran</h2> : <h2>Nije logiran</h2>}
+          <button onClick={this.handleClick}>REDUX</button>
+          <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
+            <label className={styles.Label}>{this.state.message}</label>
 
-          <input
-            autoFocus
-            type="text"
-            name="email"
-            className={styles.Input}
-            placeholder="Your email address"
-            onChange={this.onChange}
-            value={this.state.email}
-          />
+            <input
+              autoFocus
+              type="text"
+              name="email"
+              className={styles.Input}
+              placeholder="Your email address"
+              onChange={this.onChange}
+              value={this.state.email}
+            />
 
-          <input
-            type="password"
-            name="password"
-            className={styles.Input}
-            placeholder="Your password"
-            onChange={this.onChange}
-            value={this.state.password}
-          />
+            <input
+              type="password"
+              name="password"
+              className={styles.Input}
+              placeholder="Your password"
+              onChange={this.onChange}
+              value={this.state.password}
+            />
 
-          <input type="submit" className={styles.Button} value={"Login"} />
-        </form>
+            <input type="submit" className={styles.Button} value={"Login"} />
+          </form>
 
-        <div className={styles.Register}>
-          <label className={styles.Label}>Dont't have an account?</label>
+          <div className={styles.Register}>
+            <label className={styles.Label}>Dont't have an account?</label>
 
-          <button className={styles.Button} onClick={() => this.LogOut()}>
-            Logout
-          </button>
-        </div>
-      </Container>
+            <button className={styles.Button} onClick={() => this.LogOut()}>
+              Logout
+            </button>
+          </div>
+        </Container>
+      </Layout>
     );
   }
 }
 
-export default withRouter(Login);
+const mapStateToProp = state => {
+  return {
+    isLogged: state.isLoggedReducer
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeBoolean: () => {
+      dispatch(loginAction());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProp,
+  mapDispatchToProps
+)(Login);

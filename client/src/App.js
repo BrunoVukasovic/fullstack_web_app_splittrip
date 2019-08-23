@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
-import { LandingPage, Register, Login } from "./pages";
+import { LandingPage, Register } from "./pages";
+import { Login } from "./components";
 
 class App extends Component {
   render() {
