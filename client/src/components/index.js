@@ -8,3 +8,4 @@ export { default as Trip } from "./Trip";
 export { default as TripItem } from "./TripItem";
 export { default as TripItemHeading } from "./TripItemHeading";
 export { default as TripItemDescription } from "./TripItemDescription";
+export { default as ButtonContainer } from "./ButtonContainer";

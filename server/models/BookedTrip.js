@@ -16,6 +16,9 @@ module.exports = sequelize.define("BookedTrip", {
   NumberOfPeople: {
     type: Sequelize.INTEGER
   },
+  Message: {
+    type: Sequelize.STRING
+  },
   Canceled: {
     type: Sequelize.BOOLEAN
   },
