@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { LandingPage, Register } from "./pages";
-import { Login } from "./components";
+import { Login, Trip } from "./components";
 import { connect } from "react-redux";
 import { loginAction } from "./actions/loginAction";
 
 class App extends Component {
   componentWillMount() {
-    console.log("evo gaaaaa");
-    console.log(localStorage.getItem("user"));
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
     if (user) {
       this.props.saveUserToStore(user);
     }
@@ -22,6 +19,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/krka" component={Trip} />
         </Switch>
       </Router>
     );

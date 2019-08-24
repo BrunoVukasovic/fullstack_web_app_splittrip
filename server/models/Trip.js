@@ -18,6 +18,9 @@ module.exports = sequelize.define("Trip", {
   Price: {
     type: Sequelize.INTEGER
   },
+  Slug: {
+    type: Sequelize.STRING
+  },
   createdAt: {
     type: Sequelize.DATE,
     field: "CreatedAt"

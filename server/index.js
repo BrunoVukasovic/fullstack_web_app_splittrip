@@ -32,14 +32,18 @@ app.use("/api/trips", require("./api/trips"));
 app.use("/api/register", require("./api/register"));
 app.use("/api/login", require("./api/login"));
 
+app.use(express.static("public"));
+
 app.listen(PORT, () => {
   console.log(`Server listening on the port ${PORT}...`);
 });
 
+/*
 Trip.create({
   Heading: "novi trip",
   Description: "novi opis",
   Price: 20
 });
+*/
 
 module.exports = app;

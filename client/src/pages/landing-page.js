@@ -24,7 +24,7 @@ class LandingPage extends Component {
   }
 
   getTrips = () => {
-    axios.get("/api/trips").then(res => {
+    axios.get("/api/trips/all").then(res => {
       console.log(res.data);
       this.setState({ trips: res.data });
     });
@@ -41,6 +41,31 @@ class LandingPage extends Component {
             <li key={trip.TripID}>{trip.Heading}</li>
           ))}
         </ul>
+
+        <Link to="/krka">
+          <TripItem>
+            <img src={krkaPhoto} alt="Krka" width="100%" />
+            <TripItemHeading>Krka Waterfalls</TripItemHeading>
+            <TripItemDescription>
+              Our program includes a fascinating tour of an authentically
+              restored ensemble of stone small houses, experience the rich
+              diversity of flora and fauna there.
+            </TripItemDescription>
+          </TripItem>
+        </Link>
+
+        <Link to="/zip">
+          <TripItem>
+            <img src={zipPhoto} alt="Zip line" width="100%" />
+            <TripItemHeading>Zip line</TripItemHeading>
+            <TripItemDescription>
+              Zipline is an adrenaline entertainment where guests descend
+              through the canyon down the steel wire rope, secured with a belt.
+              Adventure also includes training and a short walk in nature.
+            </TripItemDescription>
+          </TripItem>
+        </Link>
+
         <Container />
       </Layout>
     );

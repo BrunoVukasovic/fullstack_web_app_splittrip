@@ -1,0 +1,38 @@
+.TripItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 4fr;
+  grid-gap: 10px;
+  color: black;
+  background-color: var(--color-light);
+  width: 90%;
+  margin: 30px auto;
+  cursor: pointer;
+  box-shadow: rgba(46, 83, 164, 0.5) 0px 4px 10px;
+}
+
+.TripItem:hover {
+  transform: translateY(-3px);
+  box-shadow: rgba(46, 83, 164, 0.5) 0px 8px 20px;
+}
+
+.TripItem > img {
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+@media screen and (max-width: 800px) {
+  .TripItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 1fr;
+  }
+
+  .TripItem > p {
+    display: none;
+  }
+
+  .TripItem > h2 {
+    text-align: center;
+  }
+}

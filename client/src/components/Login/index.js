@@ -38,11 +38,9 @@ class Login extends Component {
     axios.post("/api/login", { email, password }).then(res => {
       console.log(res.data);
       if (res.data.Email == email) {
-        console.log("KURAC RADI");
-        console.log(this.props);
         this.props.saveUserToStore(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
-        this.props.history.push("/register");
+        this.props.push("/register");
       }
     });
   };

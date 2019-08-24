@@ -3,7 +3,19 @@ const Trip = require("../models/Trip");
 
 const router = express.Router();
 
-router.get("/", (req, res) =>
+router.post("/one", (req, res) =>
+  Trip.findOne({
+    where: { Slug: req.body.pathname },
+    attributes: ["Heading", "Description", "Slug"]
+  })
+    .then(trip => {
+      res.send(trip);
+      console.log(trip);
+    })
+    .catch(err => console.log(err))
+);
+
+router.get("/all", (req, res) =>
   Trip.findAll()
     .then(trips => {
       res.send(trips);
