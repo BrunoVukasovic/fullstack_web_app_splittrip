@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import UpcomingTrips from "./UpcomingTrips";
 import PastTrips from "./PastTrips";
-// import CanceledTrips from "./UpcomingTrips";
+import CanceledTrips from "./CanceledTrips";
 import { Spinner, LoginRedirect, Container } from "../../components";
 import { Layout } from "../../components";
 
@@ -23,7 +23,7 @@ class MyTrips extends Component {
     const { BookedTripID } = bookedTrip;
     axios.patch("api/bookedTrips/cancel", { BookedTripID }).then(res => {
       console.log(res.data);
-      // this.props.history.push("/my-trips");
+      this.props.history.push("/my-trips");
     });
   };
 
@@ -36,33 +36,12 @@ class MyTrips extends Component {
     this.setState({ [e.target.value]: true });
   };
 
-  componentDidMount = () => {
-    axios.get("/api/bookedTrips").then(res => {
-      console.log(res);
-      const bookedTrips = res.data;
-      const { upcomingTrips, pastTrips, canceledTrips } = this.state;
-      this.setState({ fetched: true });
-      // fill past, canceled and upcomning trips
-      bookedTrips.map(bookedTrip => {
-        if (bookedTrip.Past) {
-          pastTrips.push(bookedTrip);
-        }
-        if (bookedTrip.Canceled) {
-          canceledTrips.push(bookedTrip);
-        } else {
-          if (this.isDateInPast(bookedTrip.Date)){ 
-            updatePastInBookedTripTable(bookedTrip);
-            pastTrips.push(bookedTrip)
-          }
-          else upcomingTrips.push(bookedTrip);
-        }
-      });
+  updatePastInBookedTripTable = bookedTrip => {
+    const { BookedTripID } = bookedTrip;
+    axios.patch("api/bookedTrips/past", { BookedTripID }).then(res => {
+      console.log(res.data);
     });
   };
-
-  updatePastInBookedTripTable(bookedTrip){
-    axios.patch("...")
-  }
 
   isDateInPast = tripDate => {
     const date = Date.parse(tripDate);
@@ -71,20 +50,36 @@ class MyTrips extends Component {
     else return false;
   };
 
-  handleClick = upcomingTrips => {
-    console.log(upcomingTrips[2].Date);
-    var d = Date.parse("2019-08-25");
-    console.log("d: " + d);
-    var now = Date.now();
-    console.log("now: " + now);
-    let razlika = d - now;
-    console.log("razlika " + razlika);
+  componentDidMount = () => {
+    axios.get("/api/bookedTrips").then(res => {
+      console.log(res);
+      const bookedTrips = res.data;
+      const { upcomingTrips, pastTrips, canceledTrips } = this.state;
+
+      // fill past, canceled and upcomning trips
+      bookedTrips.map(bookedTrip => {
+        if (bookedTrip.Past) {
+          pastTrips.push(bookedTrip);
+        }
+        if (bookedTrip.Canceled) {
+          canceledTrips.push(bookedTrip);
+        } else {
+          if (this.isDateInPast(bookedTrip.Date)) {
+            this.updatePastInBookedTripTable(bookedTrip);
+            pastTrips.push(bookedTrip);
+          } else upcomingTrips.push(bookedTrip);
+        }
+      });
+      this.setState({ fetched: true });
+    });
   };
+
+  handleClick = () => {};
 
   render() {
     const {
       showUpcoming,
-      showpast,
+      showPast,
       showCanceled,
       upcomingTrips,
       pastTrips,
@@ -92,7 +87,6 @@ class MyTrips extends Component {
       fetched
     } = this.state;
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log("show: " + showUpcoming);
 
     // if logged in
     if (user) {
@@ -134,38 +128,40 @@ class MyTrips extends Component {
               {showUpcoming ? (
                 <Container>
                   <h3>Upcoming Trips: </h3>
-                  {upcomingTrips.map(upcomingTrip => {
+                  {upcomingTrips.map((upcomingTrip, index) => (
                     <UpcomingTrips
                       trip={upcomingTrip}
                       cancelTrip={this.cancelTrip}
                       travelerName={user.FirstName}
-                      key={upcomingTrip.BookedTripID}
-                    ></UpcomingTrips>;
-                  })}
+                      key={index}
+                    ></UpcomingTrips>
+                  ))}
                 </Container>
               ) : null}
 
-              {showpast ? (
+              {showPast ? (
                 <Container>
-                <h3>Upcoming Trips: </h3>
-                {pastTrips.map(pastTrip => {
-                  <PastTrips
-                    trip={pastTrip}
-                    travelerName={user.FirstName}
-                    key={upcomingTrip.BookedTripID}
-                  ></PastTrips>;
-                })}
-              </Container>
+                  <h3>Past Trips: </h3>
+                  {pastTrips.map((pastTrip, index) => (
+                    <PastTrips
+                      trip={pastTrip}
+                      travelerName={user.FirstName}
+                      key={index}
+                    ></PastTrips>
+                  ))}
+                </Container>
               ) : null}
 
               {showCanceled ? (
                 <Container>
                   <h3>Canceled trips:</h3>
-                  {/* canceledTrips.map(canceledTrip => (
-                    <Link to={canceledTrip.slug} key={canceledTrip.id}>
-                      <CanceledTrips canceledTrips={canceledTrip} />
-                    </Link>
-                  )) */}
+                  {canceledTrips.map((canceledTrip, index) => (
+                    <CanceledTrips
+                      trip={canceledTrip}
+                      travelerName={user.FirstName}
+                      key={index}
+                    />
+                  ))}
                 </Container>
               ) : null}
             </div>

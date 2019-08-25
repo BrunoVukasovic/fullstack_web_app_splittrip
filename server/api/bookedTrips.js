@@ -6,9 +6,6 @@ router.get("/", (req, res) =>
   BookedTrip.findAll()
     .then(bookedTrips => {
       res.send(bookedTrips);
-      // console.log(req.user);
-      // const obj = req.user.dataValues;
-      // res.send(obj);
     })
     .catch(err => console.log(err))
 );
@@ -19,6 +16,16 @@ router.patch("/cancel", (req, res) => {
       Canceled: true
     })
       .then(() => {})
+      .catch(err => console.log(err));
+  });
+});
+
+router.patch("/past", (req, res) => {
+  BookedTrip.findByPk(req.body.BookedTripID).then(BookedTrip => {
+    BookedTrip.update({
+      Past: true
+    })
+      .then(res.send("Succesfully updated"))
       .catch(err => console.log(err));
   });
 });

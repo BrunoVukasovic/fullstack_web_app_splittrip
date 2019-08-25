@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { LandingPage, Register } from "./pages";
 import MyTrips from "./pages/MyTrips";
-import { Login, Trip } from "./components";
+import Login from "./pages/Login";
+import { Trip } from "./components";
 import { connect } from "react-redux";
 import { loginAction } from "./actions/loginAction";
 

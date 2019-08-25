@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router";
-import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import styles from "./styles.module.css";
-import Container from "../Container";
-import Layout from "../Layout";
+import { Container, Layout } from "../../components";
 import { loginAction } from "../../actions/loginAction";
 import { logoutAction } from "../../actions/logoutAction";
 
@@ -37,18 +34,22 @@ class Login extends Component {
 
     axios.post("/api/login", { email, password }).then(res => {
       console.log(res);
-      const { FirstName: firstName, LastName: lastName, Phone: phone } = res.data
+      const {
+        FirstName: firstName,
+        LastName: lastName,
+        Phone: phone
+      } = res.data;
       if (res.data.Email == email) {
         const user = {
           firstName,
           lastName,
           phone
-        }
-        this.props.saveUserToStore(res.data);
+        };
+        this.props.saveUserToStore(user);
         localStorage.setItem("user", JSON.stringify(user));
         this.props.history.push("/register");
       } else {
-        this.setState({invalid: true})
+        this.setState({ invalid: true });
         // ispisi poruku o gresci
       }
     });

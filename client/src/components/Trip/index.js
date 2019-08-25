@@ -7,7 +7,7 @@ import Layout from "../Layout";
 import { MainImage } from "..";
 import ContactUs from "./ContactUs";
 
-export default class Trip extends Component {
+class Trip extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,11 +71,21 @@ export default class Trip extends Component {
     });
   };
 
-  handleClick = () => {};
+  handleClick = () => {
+    console.log(this.props.user);
+  };
 
   render() {
     const { heading, description, slug } = this.state;
-    const user = JSON.parse(localStorage.getItem("user"));
+    const { firstName, lastName, phone } = this.props.user;
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      user = {
+        FirstName: "",
+        LastName: "",
+        Phone: ""
+      };
+    }
     return (
       <Layout>
         <button
@@ -134,7 +144,7 @@ export default class Trip extends Component {
                   type="text"
                   placeholder="Your first name.."
                   onChange={this.onChange}
-                  value={user.FirstName}
+                  value={firstName}
                 />
 
                 <input
@@ -142,14 +152,14 @@ export default class Trip extends Component {
                   type="text"
                   placeholder="Your last name.."
                   onChange={this.onChange}
-                  value={user.LastName}
+                  value={lastName}
                 />
                 <input
                   className={styles.InputText}
                   type="number"
                   placeholder="Your phone number.."
                   onChange={this.onChange}
-                  value={user.Phone}
+                  value={phone}
                 />
 
                 <input
@@ -199,3 +209,10 @@ export default class Trip extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.isLoggedReducer.user
+  };
+};
+export default connect(mapStateToProps)(Trip);

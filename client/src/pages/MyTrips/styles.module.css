@@ -1,3 +1,7 @@
+.CanceledNote {
+  color: red;
+}
+
 .Tab {
   display: flex;
   justify-content: space-between;
