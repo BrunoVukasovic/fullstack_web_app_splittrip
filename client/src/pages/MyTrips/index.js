@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UpcomingTrips from "./UpcomingTrips";
+import PastTrips from "./PastTrips";
 // import CanceledTrips from "./UpcomingTrips";
 import { Spinner, LoginRedirect, Container } from "../../components";
 import { Layout } from "../../components";
@@ -49,12 +50,19 @@ class MyTrips extends Component {
         if (bookedTrip.Canceled) {
           canceledTrips.push(bookedTrip);
         } else {
-          if (this.isDateInPast(bookedTrip.Date)) pastTrips.push(bookedTrip);
+          if (this.isDateInPast(bookedTrip.Date)){ 
+            updatePastInBookedTripTable(bookedTrip);
+            pastTrips.push(bookedTrip)
+          }
           else upcomingTrips.push(bookedTrip);
         }
       });
     });
   };
+
+  updatePastInBookedTripTable(bookedTrip){
+    axios.patch("...")
+  }
 
   isDateInPast = tripDate => {
     const date = Date.parse(tripDate);
@@ -138,10 +146,16 @@ class MyTrips extends Component {
               ) : null}
 
               {showpast ? (
-                <div>
-                  <h3>Past trips:</h3>
-                  <p>You did not went on any trip with us yet...</p>
-                </div>
+                <Container>
+                <h3>Upcoming Trips: </h3>
+                {pastTrips.map(pastTrip => {
+                  <PastTrips
+                    trip={pastTrip}
+                    travelerName={user.FirstName}
+                    key={upcomingTrip.BookedTripID}
+                  ></PastTrips>;
+                })}
+              </Container>
               ) : null}
 
               {showCanceled ? (

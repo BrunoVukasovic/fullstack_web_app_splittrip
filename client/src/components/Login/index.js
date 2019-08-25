@@ -37,10 +37,19 @@ class Login extends Component {
 
     axios.post("/api/login", { email, password }).then(res => {
       console.log(res);
+      const { FirstName: firstName, LastName: lastName, Phone: phone } = res.data
       if (res.data.Email == email) {
+        const user = {
+          firstName,
+          lastName,
+          phone
+        }
         this.props.saveUserToStore(res.data);
-        localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("user", JSON.stringify(user));
         this.props.history.push("/register");
+      } else {
+        this.setState({invalid: true})
+        // ispisi poruku o gresci
       }
     });
   };
