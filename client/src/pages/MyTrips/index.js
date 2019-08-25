@@ -41,15 +41,36 @@ class MyTrips extends Component {
       const bookedTrips = res.data;
       const { upcomingTrips, pastTrips, canceledTrips } = this.state;
       this.setState({ fetched: true });
+      // fill past, canceled and upcomning trips
       bookedTrips.map(bookedTrip => {
         if (bookedTrip.Past) {
           pastTrips.push(bookedTrip);
         }
         if (bookedTrip.Canceled) {
           canceledTrips.push(bookedTrip);
-        } else upcomingTrips.push(bookedTrip);
+        } else {
+          if (this.isDateInPast(bookedTrip.Date)) pastTrips.push(bookedTrip);
+          else upcomingTrips.push(bookedTrip);
+        }
       });
     });
+  };
+
+  isDateInPast = tripDate => {
+    const date = Date.parse(tripDate);
+    const now = Date.now();
+    if (date - now < 0) return true;
+    else return false;
+  };
+
+  handleClick = upcomingTrips => {
+    console.log(upcomingTrips[2].Date);
+    var d = Date.parse("2019-08-25");
+    console.log("d: " + d);
+    var now = Date.now();
+    console.log("now: " + now);
+    let razlika = d - now;
+    console.log("razlika " + razlika);
   };
 
   render() {
@@ -71,6 +92,9 @@ class MyTrips extends Component {
       if (fetched) {
         return (
           <Layout>
+            <button onClick={() => this.handleClick(upcomingTrips)}>
+              Datumi
+            </button>
             <div>
               <h2>My Trips: </h2>
 
@@ -102,14 +126,14 @@ class MyTrips extends Component {
               {showUpcoming ? (
                 <Container>
                   <h3>Upcoming Trips: </h3>
-                  {upcomingTrips.map(upcomingTrip => (
+                  {upcomingTrips.map(upcomingTrip => {
                     <UpcomingTrips
                       trip={upcomingTrip}
                       cancelTrip={this.cancelTrip}
                       travelerName={user.FirstName}
                       key={upcomingTrip.BookedTripID}
-                    ></UpcomingTrips>
-                  ))}
+                    ></UpcomingTrips>;
+                  })}
                 </Container>
               ) : null}
 
