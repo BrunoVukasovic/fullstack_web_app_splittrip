@@ -4,6 +4,17 @@ const BookedTrip = require("../models/BookedTrip");
 
 const router = express.Router();
 
+router.post("/one/id", (req, res) =>
+  Trip.findOne({
+    where: { TripID: req.body.TripID },
+    attributes: ["Heading", "Description", "Slug"]
+  })
+    .then(trip => {
+      res.send(trip);
+    })
+    .catch(err => console.log(err))
+);
+
 router.post("/one", (req, res) =>
   Trip.findOne({
     where: { Slug: req.body.pathname },

@@ -1,0 +1,96 @@
+.Tab {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: var(--color-light);
+}
+
+.TabLinks {
+  background-color: white;
+  border: 3px solid #008cba;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.TabLinksActive {
+  background-color: white;
+  border: 3px solid #008cba;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: #008cba;
+  color: white;
+}
+
+.TabLinks:hover,
+.TabLinks:active {
+  background-color: #008cba;
+  color: white;
+}
+
+.myTripsDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.CancelButton {
+  background-color: white;
+  border: 3px solid red;
+  color: black;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.CancelButton:hover {
+  background-color: red;
+  color: white;
+}
+
+@media screen and (max-width: 470px) {
+  .Tab {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: var(--color-light);
+  }
+
+  .TabLinksActive {
+    background-color: white;
+    border: 3px solid #008cba;
+    color: black;
+    padding: 16px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #008cba;
+    color: white;
+  }
+}

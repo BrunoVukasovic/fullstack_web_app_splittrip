@@ -31,6 +31,7 @@ app.get("/", (req, res) => res.send("INDEX"));
 app.use("/api/trips", require("./api/trips"));
 app.use("/api/register", require("./api/register"));
 app.use("/api/login", require("./api/login"));
+app.use("/api/bookedTrips", require("./api/bookedTrips"));
 
 app.use(express.static("public"));
 

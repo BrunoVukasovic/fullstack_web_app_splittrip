@@ -1,8 +1,9 @@
 const express = require("express");
 const User = require("../models/User");
+const validator = require("email-validator");
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const router = express.Router();
 
 router.post("/", (req, res) => {
   let {
@@ -14,14 +15,13 @@ router.post("/", (req, res) => {
     phone
   } = req.body.user;
 
-  // check empty fields
   let errors = [];
-  if (!email) {
-    errors.push({ message: "Please, enter email" });
+
+  // check email
+  if (!validator.validate(email)) {
+    errors.push({ message: "Please, enter valid email address." });
   }
-  if (!password || !password2) {
-    errors.push({ message: "Please, enter password" });
-  }
+
   // check password match
   if (password !== password2) {
     errors.push({ message: "Passwords do not match" });
