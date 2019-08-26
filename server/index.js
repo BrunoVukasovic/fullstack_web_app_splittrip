@@ -15,8 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
 // will overwitre db
-// sequelize.sync({force: true});
-
+// sequelize.sync({ force: true });
 
 // Passport
 initializePassport(passport);
@@ -30,8 +29,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 app.get("/", (req, res) => res.send("INDEX"));
 app.use("/api/trips", require("./api/trips"));

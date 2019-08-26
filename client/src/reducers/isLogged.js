@@ -1,6 +1,10 @@
 const initState = {
   isAuthenticated: false,
-  user: {}
+  user: {
+    firstName: "",
+    lastName: "",
+    phone: ""
+  }
 };
 
 const isLoggedReducer = (state = initState, action) => {

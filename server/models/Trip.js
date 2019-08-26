@@ -13,7 +13,7 @@ const Trip = sequelize.define("Trip", {
     type: Sequelize.STRING
   },
   Description: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   Price: {
     type: Sequelize.INTEGER
@@ -34,6 +34,6 @@ const Trip = sequelize.define("Trip", {
   }
 });
 
-Trip.belongsTo(Category, {foreignKey: "CategoryID"});
+Trip.belongsTo(Category, { foreignKey: "CategoryID" });
 
 module.exports = Trip;

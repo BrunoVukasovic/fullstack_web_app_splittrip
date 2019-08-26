@@ -41,7 +41,7 @@ export default class UpcomingTrips extends Component {
               {travelerName}
               <br />
               <strong>Date: </strong>
-              {trip.Date}
+              {trip.Date.slice(0, 10)}
               <br />
               <strong>Group size: </strong>
               {trip.NumberOfPeople}

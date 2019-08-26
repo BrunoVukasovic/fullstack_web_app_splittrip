@@ -67,6 +67,7 @@ class Trip extends Component {
     axios.post("/api/trips/book", { bookedTrip }).then(res => {
       console.log(res);
     });
+    this.props.history.push("/my-trips");
   };
 
   render() {

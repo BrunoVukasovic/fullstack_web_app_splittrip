@@ -81,11 +81,16 @@ class MyTrips extends Component {
       canceledTrips,
       fetched
     } = this.state;
-    const user = JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      user = {
+        firstName: ""
+      };
+    }
     const { firstName } = user;
 
     // if logged in
-    if (user) {
+    if (firstName) {
       // if bookedTrips are fetched
       if (fetched) {
         return (
