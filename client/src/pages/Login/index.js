@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Container, Layout } from "../../components";
 import { loginAction } from "../../actions/loginAction";
@@ -28,7 +29,7 @@ class Login extends Component {
     });
   };
 
-  handleSubmit = e => {
+  Login = e => {
     e.preventDefault();
     const { email, password } = this.state;
 
@@ -39,7 +40,7 @@ class Login extends Component {
         LastName: lastName,
         Phone: phone
       } = res.data;
-      if (res.data.Email == email) {
+      if (res.data.Email === email) {
         const user = {
           firstName,
           lastName,
@@ -47,7 +48,7 @@ class Login extends Component {
         };
         this.props.saveUserToStore(user);
         localStorage.setItem("user", JSON.stringify(user));
-        this.props.history.push("/register");
+        this.props.history.push("/");
       } else {
         this.setState({ invalid: true });
         // ispisi poruku o gresci
@@ -55,49 +56,50 @@ class Login extends Component {
     });
   };
 
-  handleClick = () => {
-    this.props.changeBoolean();
-  };
-
   render() {
+    const { isAuthenticated } = this.props.isLogged;
+
     return (
       <Layout>
-        <Container>
-          {this.props.isLogged ? <h2>Ulogiran</h2> : <h2>Nije logiran</h2>}
-          <button onClick={this.handleClick}>REDUX</button>
-          <form className={styles.LoginForm} onSubmit={this.handleSubmit}>
-            <label className={styles.Label}>{this.state.message}</label>
+        {isAuthenticated ? (
+          <button className={styles.Button} onClick={() => this.LogOut()}>
+            Logout
+          </button>
+        ) : (
+          <Container>
+            <form className={styles.LoginForm} onSubmit={this.Login}>
+              <label className={styles.Label}>{this.state.message}</label>
 
-            <input
-              autoFocus
-              type="text"
-              name="email"
-              className={styles.Input}
-              placeholder="Your email address"
-              onChange={this.onChange}
-              value={this.state.email}
-            />
+              <input
+                autoFocus
+                type="text"
+                name="email"
+                className={styles.Input}
+                placeholder="Your email address"
+                onChange={this.onChange}
+                value={this.state.email}
+              />
 
-            <input
-              type="password"
-              name="password"
-              className={styles.Input}
-              placeholder="Your password"
-              onChange={this.onChange}
-              value={this.state.password}
-            />
+              <input
+                type="password"
+                name="password"
+                className={styles.Input}
+                placeholder="Your password"
+                onChange={this.onChange}
+                value={this.state.password}
+              />
 
-            <input type="submit" className={styles.Button} value={"Login"} />
-          </form>
+              <input type="submit" className={styles.Button} value={"Login"} />
+            </form>
 
-          <div className={styles.Register}>
-            <label className={styles.Label}>Dont't have an account?</label>
-
-            <button className={styles.Button} onClick={() => this.LogOut()}>
-              Logout
-            </button>
-          </div>
-        </Container>
+            <div className={styles.Register}>
+              <label className={styles.Label}>Dont't have an account?</label>
+              <Link to="/register">
+                <button className={styles.Button}>Register</button>
+              </Link>
+            </div>
+          </Container>
+        )}
       </Layout>
     );
   }
@@ -111,9 +113,6 @@ const mapStateToProp = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeBoolean: () => {
-      dispatch(loginAction());
-    },
     saveUserToStore: user => {
       dispatch(loginAction(user));
     },

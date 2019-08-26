@@ -1,41 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import cn from "classnames";
+import axios from "axios";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
+
 import Container from "../Container";
 import Logo from "../Logo";
 import NavLink from "./NavLink";
 import styles from "./styles.module.css";
 import NavLinkDrpodown from "./NavLinkDrpodown";
 import DropdownContent from "./DropdownContent";
+
 import dropKrka from "./Images/dropKrka.jpg";
 import dropPlitvice from "./Images/dropPlitvice.jpg";
 import dropDubrovnik from "./Images/dropDubrovnik.jpg";
 import dropMostar from "./Images/dropMostar.jpg";
-
 import dropRafting from "./Images/dropRafting.jpg";
 import dropZip from "./Images/dropZip.jpg";
 import dropCanyoning from "./Images/dropCanyoning.jpg";
 import dropDiving from "./Images/dropDiving.jpg";
-
 import dropBlueCave from "./Images/dropBlueCave.jpg";
 import dropBrac from "./Images/dropBrac.jpg";
 import dropHvar from "./Images/dropHvar.jpg";
 import dropSailing from "./Images/dropSailing.jpg";
 
-import classNames from "classnames"; // ne triba i cn i classNames ?????
-import { Link } from "react-router-dom";
+import { logoutAction } from "../../actions/logoutAction";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends Component {
-  /*  state = {
-    isAuthenticated: false
+  onLogoutClick = () => {
+    axios.get("/api/login/logout").then(res => {
+      console.log(res);
+      this.props.removeUserFromStore();
+      localStorage.clear();
+    });
   };
-*/
+
   render() {
     const { isAuthenticated } = this.props;
-    console.log(isAuthenticated);
     library.add(faAngleDoubleDown);
 
     return (
@@ -262,4 +267,15 @@ const mapStateToProp = state => {
   };
 };
 
-export default connect(mapStateToProp)(Header);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeUserFromStore: () => {
+      dispatch(logoutAction());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProp,
+  mapDispatchToProps
+)(Header);

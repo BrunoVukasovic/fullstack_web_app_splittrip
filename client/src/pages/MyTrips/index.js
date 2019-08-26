@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import UpcomingTrips from "./UpcomingTrips";
 import PastTrips from "./PastTrips";
@@ -29,10 +28,8 @@ class MyTrips extends Component {
 
   onTabClick = e => {
     const stateElements = ["showUpcoming", "showPast", "showCanceled"];
-    for (let element of stateElements) {
-      this.setState({ [element]: false });
-    }
-    console.log();
+    stateElements.forEach(element => this.setState({ [element]: false }));
+
     this.setState({ [e.target.value]: true });
   };
 
@@ -57,7 +54,7 @@ class MyTrips extends Component {
       const { upcomingTrips, pastTrips, canceledTrips } = this.state;
 
       // fill past, canceled and upcomning trips
-      bookedTrips.map(bookedTrip => {
+      bookedTrips.forEach(bookedTrip => {
         if (bookedTrip.Past) {
           pastTrips.push(bookedTrip);
         }
@@ -74,8 +71,6 @@ class MyTrips extends Component {
     });
   };
 
-  handleClick = () => {};
-
   render() {
     const {
       showUpcoming,
@@ -87,6 +82,7 @@ class MyTrips extends Component {
       fetched
     } = this.state;
     const user = JSON.parse(localStorage.getItem("user"));
+    const { firstName } = user;
 
     // if logged in
     if (user) {
@@ -94,9 +90,6 @@ class MyTrips extends Component {
       if (fetched) {
         return (
           <Layout>
-            <button onClick={() => this.handleClick(upcomingTrips)}>
-              Datumi
-            </button>
             <div>
               <h2>My Trips: </h2>
 
@@ -132,7 +125,7 @@ class MyTrips extends Component {
                     <UpcomingTrips
                       trip={upcomingTrip}
                       cancelTrip={this.cancelTrip}
-                      travelerName={user.FirstName}
+                      travelerName={firstName}
                       key={index}
                     ></UpcomingTrips>
                   ))}
@@ -145,7 +138,7 @@ class MyTrips extends Component {
                   {pastTrips.map((pastTrip, index) => (
                     <PastTrips
                       trip={pastTrip}
-                      travelerName={user.FirstName}
+                      travelerName={firstName}
                       key={index}
                     ></PastTrips>
                   ))}
@@ -158,7 +151,7 @@ class MyTrips extends Component {
                   {canceledTrips.map((canceledTrip, index) => (
                     <CanceledTrips
                       trip={canceledTrip}
-                      travelerName={user.FirstName}
+                      travelerName={firstName}
                       key={index}
                     />
                   ))}

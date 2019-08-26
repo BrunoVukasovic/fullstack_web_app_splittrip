@@ -34,8 +34,6 @@ class LandingPage extends Component {
     return (
       <Layout>
         <MainImage src={mainImage} />
-        <h1>Trips:</h1>
-        <button onClick={this.getTrips}>Update trip list</button>
         <ul>
           {this.state.trips.map(trip => (
             <li key={trip.TripID}>{trip.Heading}</li>
@@ -62,6 +60,30 @@ class LandingPage extends Component {
               Zipline is an adrenaline entertainment where guests descend
               through the canyon down the steel wire rope, secured with a belt.
               Adventure also includes training and a short walk in nature.
+            </TripItemDescription>
+          </TripItem>
+        </Link>
+
+        <Link to="/blue-cave">
+          <TripItem>
+            <img src={blueCavePhoto} alt="Blue Cave" width="100%" />
+            <TripItemHeading>Blue Cave</TripItemHeading>
+            <TripItemDescription>
+              Our program includes a fascinating tour of an authentically
+              restored ensemble of stone small houses, experience the rich
+              diversity of flora and fauna there.
+            </TripItemDescription>
+          </TripItem>
+        </Link>
+
+        <Link to="/rafting">
+          <TripItem>
+            <img src={raftingPhoto} alt="Rafting" width="100%" />
+            <TripItemHeading>Rafting</TripItemHeading>
+            <TripItemDescription>
+              Our program includes a fascinating tour of an authentically
+              restored ensemble of stone small houses, experience the rich
+              diversity of flora and fauna there.
             </TripItemDescription>
           </TripItem>
         </Link>

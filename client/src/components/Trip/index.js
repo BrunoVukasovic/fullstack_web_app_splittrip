@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
 import { connect } from "react-redux";
-import ButtonContainer from "../ButtonContainer";
 import axios from "axios";
-import Layout from "../Layout";
-import { MainImage } from "..";
+import { Layout, ButtonContainer, MainImage } from "../";
 import ContactUs from "./ContactUs";
 
 class Trip extends Component {
@@ -71,10 +69,6 @@ class Trip extends Component {
     });
   };
 
-  handleClick = () => {
-    console.log(this.props.user);
-  };
-
   render() {
     const { heading, description, slug } = this.state;
     const { firstName, lastName, phone } = this.props.user;
@@ -88,17 +82,22 @@ class Trip extends Component {
     }
     return (
       <Layout>
-        <button
-          onClick={() => {
-            this.handleClick();
-          }}
-        >
-          Click me eto tek tako
-        </button>
         <MainImage src={require("../../images" + slug + ".jpg")}></MainImage>
+        <ButtonContainer>
+          <button
+            onClick={() => this.handleContactClick()}
+            className={"Button"}
+          >
+            Contact us!
+          </button>
+          <button
+            onClick={() => this.handleBookNowClick()}
+            className={"Button"}
+          >
+            Book now!
+          </button>
+        </ButtonContainer>
         <h2>{heading}</h2>
-        <button onClick={() => this.handleContactClick()}>Contact us!</button>
-        <button onClick={() => this.handleBookNowClick()}>Book now!</button>
 
         <div
           className={

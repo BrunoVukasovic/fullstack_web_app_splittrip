@@ -2,9 +2,10 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const flash = require("express-flash");
-const PORT = process.env.PORT || 5000;
 const passport = require("passport");
 const initializePassport = require("./config/passport");
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.json());
@@ -12,8 +13,6 @@ app.use(express.urlencoded({ extended: false })); // Bodyparser
 
 // Passport
 initializePassport(passport);
-// app.use(flash());
-// app.use(express.static("public"));
 app.use(
   session({
     secret: "veryGoodSecret",

@@ -30,4 +30,12 @@ router.patch("/past", (req, res) => {
   });
 });
 
+router.post("/delete", (req, res) => {
+  BookedTrip.destroy({
+    where: {
+      BookedTripID: 14
+    }
+  });
+});
+
 module.exports = router;
