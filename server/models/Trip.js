@@ -30,10 +30,6 @@ module.exports = sequelize.define("Trip", {
     field: "UpdatedAt"
   },
   CategoryID: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Category,
-      key: "CategoryID"
-    }
+    type: Sequelize.INTEGER
   }
 });
