@@ -34,6 +34,6 @@ const Trip = sequelize.define("Trip", {
   }
 });
 
-Trip.hasOne(Category);
+Trip.belongsTo(Category, {foreignKey: "CategoryID"});
 
 module.exports = Trip;

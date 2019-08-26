@@ -8,12 +8,15 @@ const Trip = require("./models/Trip");
 const Category = require("./models/Category");
 const PORT = process.env.PORT || 5000;
 
+const sequelize = require("./database/index");
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
-// Associations
-// Category.hasMany(Trip);
+// will overwitre db
+// sequelize.sync({force: true});
+
 
 // Passport
 initializePassport(passport);
@@ -27,6 +30,8 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 app.get("/", (req, res) => res.send("INDEX"));
 app.use("/api/trips", require("./api/trips"));
