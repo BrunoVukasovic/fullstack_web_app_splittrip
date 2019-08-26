@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
-module.exports = sequelize.define("User", {
+const User = sequelize.define("User", {
   UserID: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -35,3 +35,5 @@ module.exports = sequelize.define("User", {
     field: "UpdatedAt"
   }
 });
+
+module.exports = User;

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
-module.exports = sequelize.define("Category", {
+const Category = sequelize.define("Category", {
   CategoryID: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -21,3 +21,5 @@ module.exports = sequelize.define("Category", {
     field: "UpdatedAt"
   }
 });
+
+module.exports = Category;

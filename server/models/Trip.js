@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 const Category = require("./Category");
 
-module.exports = sequelize.define("Trip", {
+const Trip = sequelize.define("Trip", {
   TripID: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -30,10 +30,10 @@ module.exports = sequelize.define("Trip", {
     field: "UpdatedAt"
   },
   CategoryID: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Category,
-      key: "CategoryID"
-    }
+    type: Sequelize.INTEGER
   }
 });
+
+Trip.belongsTo(Category, {foreignKey: "CategoryID"});
+
+module.exports = Trip;

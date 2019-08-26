@@ -32,18 +32,10 @@ module.exports = {
         field: "UpdatedAt"
       },
       TripID: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: Trip,
-          key: "TripID"
-        }
+        type: Sequelize.INTEGER
       },
       UserID: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: User,
-          key: "UserID"
-        }
+        type: Sequelize.INTEGER
       }
     });
   },
