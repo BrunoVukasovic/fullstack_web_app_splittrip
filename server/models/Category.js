@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
-const Trip = require("./Trip");
 
 const Category = sequelize.define("Category", {
   CategoryID: {
@@ -22,6 +21,5 @@ const Category = sequelize.define("Category", {
     field: "UpdatedAt"
   }
 });
-
 
 module.exports = Category;
