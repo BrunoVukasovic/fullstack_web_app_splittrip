@@ -12,7 +12,9 @@ class Register extends Component {
       password2: "",
       firstName: "",
       lastName: "",
-      phone: ""
+      phone: "",
+      invalid: false,
+      errors: []
     };
   }
 
@@ -38,14 +40,26 @@ class Register extends Component {
       lastName,
       phone
     };
-    axios.post("/api/register", { user }).then(res => console.log(res.data));
+    axios.post("/api/register", { user }).then(res => {
+      let { errors } = res.data;
+      if (errors) {
+        console.log(errors);
+        this.setState({ errors, invalid: true });
+        console.log(this.state.invalid);
+      }
+    });
   };
 
   render() {
+    let { errors, invalid } = this.state;
     return (
       <Layout>
         <h1>Register:</h1>
-        <form onSubmit={this.handleSubmit}>
+
+        <form onSubmit={this.handleSubmit} className={styles.LoginForm}>
+          {invalid ? (
+            <p className={styles.ErrorMessage}>{errors[0].message}</p>
+          ) : null}
           <input
             autoFocus
             type="text"
@@ -87,7 +101,7 @@ class Register extends Component {
             type="text"
             name="lastName"
             className={styles.Input}
-            placeholder="Your lastName"
+            placeholder="Your last name"
             onChange={this.onChange}
             value={this.state.lastName}
           />
@@ -100,7 +114,7 @@ class Register extends Component {
             onChange={this.onChange}
             value={this.state.phone}
           />
-          <input type="submit" className={styles.Button} value={"Register"} />
+          <input type="submit" className={"Button"} value={"Register"} />
         </form>
       </Layout>
     );

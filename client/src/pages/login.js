@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import { Container, Layout } from "../../components";
-import { loginAction } from "../../actions/loginAction";
-import { logoutAction } from "../../actions/logoutAction";
+import { Container, Layout } from "../components";
+import { loginAction } from "../actions/loginAction";
+import { logoutAction } from "../actions/logoutAction";
 
 class Login extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      message: "Enter your credentials",
+      message: "",
       success: false,
       invalid: false
     };
@@ -33,14 +33,15 @@ class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
 
-    axios.post("/api/login", { email, password }).then(res => {
-      console.log(res);
-      const {
-        FirstName: firstName,
-        LastName: lastName,
-        Phone: phone
-      } = res.data;
-      if (res.data.Email === email) {
+    axios
+      .post("/api/login", { email, password })
+      .then(res => {
+        console.log(res.data);
+        const {
+          FirstName: firstName,
+          LastName: lastName,
+          Phone: phone
+        } = res.data;
         const user = {
           firstName,
           lastName,
@@ -49,26 +50,27 @@ class Login extends Component {
         this.props.saveUserToStore(user);
         localStorage.setItem("user", JSON.stringify(user));
         this.props.history.push("/");
-      } else {
-        this.setState({ invalid: true });
-        // ispisi poruku o gresci
-      }
-    });
+      })
+      .catch(error => {
+        this.setState({ message: "Wrong email or password" });
+        console.log(error);
+      });
   };
 
   render() {
     const { isAuthenticated } = this.props.isLogged;
+    const { message } = this.state;
 
     return (
       <Layout>
         {isAuthenticated ? (
-          <button className={styles.Button} onClick={() => this.LogOut()}>
+          <button className={"Button"} onClick={() => this.LogOut()}>
             Logout
           </button>
         ) : (
           <Container>
             <form className={styles.LoginForm} onSubmit={this.Login}>
-              <label className={styles.Label}>{this.state.message}</label>
+              <label className={styles.Label}>{message}</label>
 
               <input
                 autoFocus
@@ -89,13 +91,13 @@ class Login extends Component {
                 value={this.state.password}
               />
 
-              <input type="submit" className={styles.Button} value={"Login"} />
+              <input type="submit" className={"Button"} value={"Login"} />
             </form>
 
             <div className={styles.Register}>
               <label className={styles.Label}>Dont't have an account?</label>
               <Link to="/register">
-                <button className={styles.Button}>Register</button>
+                <button className={"Button"}>Register</button>
               </Link>
             </div>
           </Container>

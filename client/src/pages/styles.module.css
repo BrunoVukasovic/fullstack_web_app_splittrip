@@ -1,0 +1,36 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.Label {
+  font-size: 20px;
+  text-align: center;
+}
+
+.Input {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 20px;
+  padding: 16px 32px;
+  /* border: solid 1px var(--color-light); */
+}
+
+.Input:focus {
+  border: 3px solid var(--color-button-blue);
+}
+
+.Register {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 4rem auto;
+  align-items: center;
+  border-top: 1px solid var(--color-grey);
+}
+
+.ErrorMessage {
+  color: red;
+}
