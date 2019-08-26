@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 const Category = require("./Category");
 
-module.exports = sequelize.define("Trip", {
+const Trip = sequelize.define("Trip", {
   TripID: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -33,3 +33,7 @@ module.exports = sequelize.define("Trip", {
     type: Sequelize.INTEGER
   }
 });
+
+Trip.hasOne(Category);
+
+module.exports = Trip;
