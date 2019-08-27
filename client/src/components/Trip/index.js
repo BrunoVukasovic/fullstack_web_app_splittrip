@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { Layout, ButtonContainer, MainImage } from "../";
 import ContactUs from "./ContactUs";
+import BookNow from "./BookNow";
+import TripDescription from "./TripDescription";
 
 class Trip extends Component {
   constructor(props) {
@@ -36,10 +38,6 @@ class Trip extends Component {
     });
   }
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
   handleContactClick = () => {
     this.setState({ contactUs: true });
   };
@@ -52,38 +50,13 @@ class Trip extends Component {
     this.setState({ contactUs: false, bookNow: false });
   };
 
-  handleBookNowSubmit = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const { email } = user;
-    const { tripID, date, numberOfPeople, message } = this.state;
-    const bookedTrip = {
-      email,
-      tripID,
-      date,
-      numberOfPeople,
-      message
-    };
-    console.log(bookedTrip);
-    axios.post("/api/trips/book", { bookedTrip }).then(res => {
-      console.log(res);
-    });
-    this.props.history.push("/my-trips");
-  };
-
   render() {
-    const { heading, description, slug } = this.state;
-    const { firstName, lastName, phone } = this.props.user;
-    let user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      user = {
-        FirstName: "",
-        LastName: "",
-        Phone: ""
-      };
-    }
+    const { heading, description, slug, tripID } = this.state;
+
     return (
       <Layout>
         <MainImage src={require("../../images" + slug + ".jpg")}></MainImage>
+
         <ButtonContainer>
           <button
             onClick={() => this.handleContactClick()}
@@ -98,6 +71,7 @@ class Trip extends Component {
             Book now!
           </button>
         </ButtonContainer>
+
         <h2>{heading}</h2>
 
         <div
@@ -105,114 +79,26 @@ class Trip extends Component {
             this.state.contactUs ? styles.ModalBlock : styles.ModalNone
           }
         >
-          <div className={styles.ModalContent}>
-            <span onClick={this.handleClose} className={styles.Close}>
-              &times;
-            </span>
-            <h2>Contact us: {heading}</h2>
-            <ContactUs></ContactUs>
-            <div className={styles.SubmitCancleDiv}>
-              <ButtonContainer>
-                <button onClick={this.handleClose} className={styles.Cancle}>
-                  Cancle
-                </button>
-                <button
-                  onClick={this.handleContactSubmit}
-                  className={styles.Submit}
-                >
-                  Submit
-                </button>
-              </ButtonContainer>
-            </div>
-          </div>
+          <ContactUs
+            heading={heading}
+            handleClose={this.handleClose}
+          ></ContactUs>
         </div>
 
         <div
           className={this.state.bookNow ? styles.ModalBlock : styles.ModalNone}
         >
-          <div className={styles.ModalContent}>
-            <span onClick={this.handleClose} className={styles.Close}>
-              &times;
-            </span>
-            <div>
-              <h2>Book now!</h2>
-              <div>
-                <h3>Trip: {heading}</h3>
-
-                <input
-                  className={styles.InputText}
-                  type="text"
-                  placeholder="Your first name.."
-                  onChange={this.onChange}
-                  value={firstName}
-                />
-
-                <input
-                  className={styles.InputText}
-                  type="text"
-                  placeholder="Your last name.."
-                  onChange={this.onChange}
-                  value={lastName}
-                />
-                <input
-                  className={styles.InputText}
-                  type="number"
-                  placeholder="Your phone number.."
-                  onChange={this.onChange}
-                  value={phone}
-                />
-
-                <input
-                  className={styles.InputText}
-                  type="date"
-                  name="date"
-                  onChange={this.onChange}
-                  value={this.state.date}
-                />
-                <input
-                  className={styles.InputText}
-                  type="number"
-                  name="numberOfPeople"
-                  placeholder="Number of people..."
-                  onChange={this.onChange}
-                  value={this.state.numberOfPeople}
-                />
-
-                <input
-                  className={styles.InputText}
-                  type="text"
-                  name="message"
-                  placeholder="Your message.."
-                  onChange={this.onChange}
-                  value={this.state.message}
-                />
-              </div>
-            </div>
-            <ButtonContainer>
-              <button onClick={this.handleClose} className={styles.Cancle}>
-                Cancle
-              </button>
-              <button
-                onClick={this.handleBookNowSubmit}
-                className={styles.Submit}
-              >
-                Submit
-              </button>
-            </ButtonContainer>
-          </div>
+          <BookNow
+            heading={heading}
+            tripID={tripID}
+            handleClose={this.handleClose}
+          ></BookNow>
         </div>
 
-        <div>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-        </div>
+        <TripDescription description={description}></TripDescription>
       </Layout>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.isLoggedReducer.user
-  };
-};
-export default connect(mapStateToProps)(Trip);
+export default Trip;

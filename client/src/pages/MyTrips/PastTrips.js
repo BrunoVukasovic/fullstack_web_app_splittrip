@@ -25,31 +25,29 @@ export default class UpcomingTrips extends Component {
     const { slug, heading } = this.state;
     const tripDescriptionStyle = { fontSize: "larger" };
     return (
-      <Link to={slug} key={trip.Date}>
-        <TripItem>
-          <img
-            src={require("../../images/4x3" + slug + ".jpg")}
-            alt={heading}
-            width="100%"
-          />
+      <TripItem>
+        <img
+          src={require("../../images/4x3" + slug + ".jpg")}
+          alt={heading}
+          width="100%"
+        />
 
-          <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
+        <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
 
-          <div className={styles.myTripsDiv}>
-            <TripDescription style={tripDescriptionStyle}>
-              <strong>Lead Traveler Name: </strong>
-              {travelerName}
-              <br />
-              <strong>Date: </strong>
-              {trip.Date.slice(0, 10)}
-              <br />
-              <strong>Group size: </strong>
-              {trip.NumberOfPeople}
-            </TripDescription>
-            <button className={styles.CancelButton}>Leave a review!</button>
-          </div>
-        </TripItem>
-      </Link>
+        <div className={styles.myTripsDiv}>
+          <TripDescription style={tripDescriptionStyle}>
+            <strong>Lead Traveler Name: </strong>
+            {travelerName}
+            <br />
+            <strong>Date: </strong>
+            {trip.Date.slice(0, 10)}
+            <br />
+            <strong>Group size: </strong>
+            {trip.NumberOfPeople}
+          </TripDescription>
+          <button className={"Button"}>Leave a review!</button>
+        </div>
+      </TripItem>
     );
   }
 }
