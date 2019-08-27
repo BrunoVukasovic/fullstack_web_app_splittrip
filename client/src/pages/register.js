@@ -46,7 +46,7 @@ class Register extends Component {
         console.log(errors);
         this.setState({ errors, invalid: true });
         console.log(this.state.invalid);
-      }
+      } else this.props.history.push("/login");
     });
   };
 

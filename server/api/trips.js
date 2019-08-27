@@ -1,5 +1,6 @@
 const express = require("express");
 const Trip = require("../models/Trip");
+const User = require("../models/User");
 const BookedTrip = require("../models/BookedTrip");
 
 const router = express.Router();
@@ -39,19 +40,25 @@ router.get("/all", (req, res) =>
 );
 
 router.post("/book", (req, res) => {
-  const { userID, tripID, date, numberOfPeople, message } = req.body.bookedTrip;
+  const { email, tripID, date, numberOfPeople, message } = req.body.bookedTrip;
   console.log(req.body.bookedTrip);
-  BookedTrip.create({
-    UserID: userID,
-    TripID: tripID,
-    Date: date,
-    NumberOfPeople: numberOfPeople,
-    Message: message,
-    Canceled: false,
-    Past: false
+  User.findOne({
+    where: { Email: email }
   })
-    .then(res.status(200))
-    .catch(error => console.log(error));
+    .then(user => {
+      BookedTrip.create({
+        UserID: user.UserID,
+        TripID: tripID,
+        Date: date,
+        NumberOfPeople: numberOfPeople,
+        Message: message,
+        Canceled: false,
+        Past: false
+      })
+        .then(res.status(200))
+        .catch(error => console.log(error));
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

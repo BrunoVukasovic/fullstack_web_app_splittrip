@@ -40,12 +40,14 @@ class Login extends Component {
         const {
           FirstName: firstName,
           LastName: lastName,
-          Phone: phone
+          Phone: phone,
+          Email: email
         } = res.data;
         const user = {
           firstName,
           lastName,
-          phone
+          phone,
+          email
         };
         this.props.saveUserToStore(user);
         localStorage.setItem("user", JSON.stringify(user));

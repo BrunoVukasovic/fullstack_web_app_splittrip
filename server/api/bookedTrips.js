@@ -1,14 +1,23 @@
 const express = require("express");
 const BookedTrip = require("../models/BookedTrip");
 const router = express.Router();
+const User = require("../models/User");
 
-router.get("/", (req, res) =>
-  BookedTrip.findAll()
-    .then(bookedTrips => {
-      res.send(bookedTrips);
+router.post("/", (req, res) => {
+  User.findOne({
+    where: { Email: req.body.email }
+  }).then(user => {
+    BookedTrip.findAll({
+      where: {
+        UserID: user.UserID
+      }
     })
-    .catch(err => console.log(err))
-);
+      .then(bookedTrips => {
+        res.send(bookedTrips);
+      })
+      .catch(err => console.log(err));
+  });
+});
 
 router.patch("/cancel", (req, res) => {
   BookedTrip.findByPk(req.body.BookedTripID).then(BookedTrip => {

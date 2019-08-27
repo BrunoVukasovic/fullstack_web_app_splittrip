@@ -54,10 +54,10 @@ class Trip extends Component {
 
   handleBookNowSubmit = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const { UserID: userID } = user;
+    const { email } = user;
     const { tripID, date, numberOfPeople, message } = this.state;
     const bookedTrip = {
-      userID,
+      email,
       tripID,
       date,
       numberOfPeople,

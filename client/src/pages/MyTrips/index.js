@@ -48,27 +48,31 @@ class MyTrips extends Component {
   };
 
   componentDidMount = () => {
-    axios.get("/api/bookedTrips").then(res => {
-      console.log(res);
-      const bookedTrips = res.data;
-      const { upcomingTrips, pastTrips, canceledTrips } = this.state;
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      const { email } = user;
+      axios.post("/api/bookedTrips", { email }).then(res => {
+        console.log(res);
+        const bookedTrips = res.data;
+        const { upcomingTrips, pastTrips, canceledTrips } = this.state;
 
-      // fill past, canceled and upcomning trips
-      bookedTrips.forEach(bookedTrip => {
-        if (bookedTrip.Past) {
-          pastTrips.push(bookedTrip);
-        }
-        if (bookedTrip.Canceled) {
-          canceledTrips.push(bookedTrip);
-        } else {
-          if (this.isDateInPast(bookedTrip.Date)) {
-            this.updatePastInBookedTripTable(bookedTrip);
+        // fill past, canceled and upcomning trips
+        bookedTrips.forEach(bookedTrip => {
+          if (bookedTrip.Past) {
             pastTrips.push(bookedTrip);
-          } else upcomingTrips.push(bookedTrip);
-        }
+          }
+          if (bookedTrip.Canceled) {
+            canceledTrips.push(bookedTrip);
+          } else {
+            if (this.isDateInPast(bookedTrip.Date)) {
+              this.updatePastInBookedTripTable(bookedTrip);
+              pastTrips.push(bookedTrip);
+            } else upcomingTrips.push(bookedTrip);
+          }
+        });
+        this.setState({ fetched: true });
       });
-      this.setState({ fetched: true });
-    });
+    } else this.setState({ fetched: true });
   };
 
   render() {

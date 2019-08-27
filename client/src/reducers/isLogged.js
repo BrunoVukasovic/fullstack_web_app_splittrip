@@ -3,7 +3,8 @@ const initState = {
   user: {
     firstName: "",
     lastName: "",
-    phone: ""
+    phone: "",
+    email: ""
   }
 };
 
