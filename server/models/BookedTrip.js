@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
-const Trip = require("./Trip");
+
 const User = require("./User");
 
 const BookedTrip = sequelize.define("BookedTrip", {
@@ -37,8 +37,5 @@ const BookedTrip = sequelize.define("BookedTrip", {
     type: Sequelize.INTEGER
   }
 });
-
-BookedTrip.belongsTo(Trip, { foreignKey: "TripID" });
-BookedTrip.belongsTo(User, { foreignKey: "UserID" });
 
 module.exports = BookedTrip;

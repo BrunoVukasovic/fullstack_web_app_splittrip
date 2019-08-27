@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
+const Trip = require("./Trip");
 
 const Category = sequelize.define("Category", {
   CategoryID: {
@@ -21,5 +22,7 @@ const Category = sequelize.define("Category", {
     field: "UpdatedAt"
   }
 });
+
+Category.hasMany(Trip, { as: "Trips", foreignKey: "CategoryID" });
 
 module.exports = Category;

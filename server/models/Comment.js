@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
-const BookedTrip = require("./BookedTrip");
+const Review = require("./Review");
 
-const Trip = sequelize.define("Trip", {
-  TripID: {
+const Comment = sequelize.define("Comment", {
+  CommentID: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,
@@ -13,13 +13,7 @@ const Trip = sequelize.define("Trip", {
     type: Sequelize.STRING
   },
   Description: {
-    type: Sequelize.TEXT
-  },
-  Price: {
-    type: Sequelize.INTEGER
-  },
-  Slug: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT("medium")
   },
   createdAt: {
     type: Sequelize.DATE,
@@ -29,12 +23,11 @@ const Trip = sequelize.define("Trip", {
     type: Sequelize.DATE,
     field: "UpdatedAt"
   },
-  CategoryID: {
+  ReviewID: {
     type: Sequelize.INTEGER
   }
 });
 
-Trip.hasMany(BookedTrip, { as: "BookedTrips", foreignKey: "TripID" });
-Trip.hasMany(Comment, { as: "Comments", foreignKey: "TripID" });
+Comment.belongsTo(Review, { foreignKey: "ReviewID" });
 
-module.exports = Trip;
+module.exports = Comment;

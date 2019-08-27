@@ -46,6 +46,7 @@ router.post("/book", (req, res) => {
     where: { Email: email }
   })
     .then(user => {
+      console.log(user);
       BookedTrip.create({
         UserID: user.UserID,
         TripID: tripID,
@@ -55,7 +56,7 @@ router.post("/book", (req, res) => {
         Canceled: false,
         Past: false
       })
-        .then(res.status(200))
+        .then(res.send("Trip Booked!"))
         .catch(error => console.log(error));
     })
     .catch(err => console.log(err));

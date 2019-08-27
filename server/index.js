@@ -14,8 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
-// will overwitre db
-// sequelize.sync({ force: true });
+// will overwitre db sequelize.sync({ force: true });
+sequelize.sync();
 
 // Passport
 initializePassport(passport);

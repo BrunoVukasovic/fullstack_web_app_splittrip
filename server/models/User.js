@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
+const BookedTrip = require("./BookedTrip");
 
 const User = sequelize.define("User", {
   UserID: {
@@ -35,5 +36,7 @@ const User = sequelize.define("User", {
     field: "UpdatedAt"
   }
 });
+
+User.hasMany(BookedTrip, { as: "BookedTrips", foreignKey: "UserID" });
 
 module.exports = User;

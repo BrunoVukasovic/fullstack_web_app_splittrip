@@ -2,24 +2,15 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("BookedTrips", {
-      BookedTripID: {
+    return queryInterface.createTable("Reviews", {
+      ReviewID: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      Date: {
-        type: Sequelize.DATE
-      },
-      NumberOfPeople: {
+      Rating: {
         type: Sequelize.INTEGER
-      },
-      Canceled: {
-        type: Sequelize.BOOLEAN
-      },
-      Past: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -29,16 +20,19 @@ module.exports = {
         type: Sequelize.DATE,
         field: "UpdatedAt"
       },
+      BookedTripID: {
+        type: Sequelize.INTEGER
+      },
       TripID: {
         type: Sequelize.INTEGER
       },
-      UserID: {
+      CommentID: {
         type: Sequelize.INTEGER
       }
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("BookedTrips");
+    return queryInterface.dropTable("Reviews");
   }
 };
