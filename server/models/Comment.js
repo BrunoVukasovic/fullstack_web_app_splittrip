@@ -28,6 +28,6 @@ const Comment = sequelize.define("Comment", {
   }
 });
 
-Comment.belongsTo(Review, { foreignKey: "ReviewID" });
+Comment.hasOne(Review, { foreignKey: "CommentID" });
 
 module.exports = Comment;

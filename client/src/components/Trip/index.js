@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
-import { connect } from "react-redux";
 import axios from "axios";
 import { Layout, ButtonContainer, MainImage } from "../";
 import ContactUs from "./ContactUs";

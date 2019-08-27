@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
 // will overwitre db sequelize.sync({ force: true });
-sequelize.sync();
+sequelize.sync({ force: true });
 
 // Passport
 initializePassport(passport);
