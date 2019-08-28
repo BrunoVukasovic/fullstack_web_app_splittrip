@@ -22,9 +22,6 @@ const Comment = sequelize.define("Comment", {
   updatedAt: {
     type: Sequelize.DATE,
     field: "UpdatedAt"
-  },
-  ReviewID: {
-    type: Sequelize.INTEGER
   }
 });
 

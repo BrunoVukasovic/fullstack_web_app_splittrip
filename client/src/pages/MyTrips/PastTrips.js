@@ -8,7 +8,7 @@ import {
 } from "../../components";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import ContactUs from "../../components/Trip/ContactUs";
+import ReviewForm from "./ReviewForm";
 
 export default class PastTrips extends Component {
   state = {
@@ -20,6 +20,10 @@ export default class PastTrips extends Component {
 
   leaveAReviewClicked = () => {
     this.setState({ reviewClicked: true });
+  };
+
+  handleClose = () => {
+    this.setState({ reviewClicked: false });
   };
 
   componentDidMount = () => {
@@ -64,7 +68,11 @@ export default class PastTrips extends Component {
           </div>
         </TripItem>
         <div className={this.state.reviewClicked ? "ModalBlock" : "ModalNone"}>
-          <p>djaksjasldajskdasjkasd</p>
+          <ReviewForm
+            bookedTrip={bookedTrip}
+            heading={heading}
+            handleClose={this.handleClose}
+          ></ReviewForm>
         </div>
       </Container>
     );

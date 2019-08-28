@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./styles.module.css";
+import styles from "../../styles/form.module.css";
 import { ButtonContainer } from "../";
 
 export default class ContactUs extends Component {
@@ -24,25 +24,25 @@ export default class ContactUs extends Component {
             <h3>Trip: {heading}</h3>
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="text"
               placeholder="Your name.."
             />
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="number"
               placeholder="Your phone number.."
             />
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="text"
               placeholder="Your e-mail.."
             />
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="text"
               placeholder="Your message.."
             />

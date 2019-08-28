@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./styles.module.css";
+import styles from "../../styles/form.module.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { ButtonContainer } from "../";
@@ -60,7 +60,7 @@ class BookNow extends Component {
             <h3>Trip: {heading}</h3>
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="text"
               name="firstName"
               placeholder="Your first name.."
@@ -69,7 +69,7 @@ class BookNow extends Component {
             />
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="text"
               name="lasttName"
               placeholder="Your last name.."
@@ -77,7 +77,7 @@ class BookNow extends Component {
               value={lastName}
             />
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="number"
               name="phone"
               placeholder="Your phone number.."
@@ -86,14 +86,14 @@ class BookNow extends Component {
             />
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="date"
               name="date"
               onChange={this.onChange}
               value={this.state.date}
             />
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="number"
               name="numberOfPeople"
               placeholder="Number of people..."
@@ -102,7 +102,7 @@ class BookNow extends Component {
             />
 
             <input
-              className={styles.InputText}
+              className={styles.Input}
               type="text"
               name="message"
               placeholder="Your message.."

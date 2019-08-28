@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import styles from "./styles.module.css";
+// import styles from "./styles.module.css";
+import styles from "../styles/form.module.css";
 import axios from "axios";
 import { Layout } from "../components";
 
@@ -46,7 +47,10 @@ class Register extends Component {
         console.log(errors);
         this.setState({ errors, invalid: true });
         window.scrollTo(0, 0);
-      } else this.props.history.push("/login");
+      } else {
+        console.log(res.data);
+        this.props.history.push("/login");
+      }
     });
   };
 

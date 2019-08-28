@@ -64,7 +64,7 @@ router.post("/", (req, res) => {
               LastName: lastName,
               Phone: phone
             })
-              .then(res.send("User created successfully"))
+              .then(user => res.send(user))
               .catch(error => console.log(error));
           })
         );

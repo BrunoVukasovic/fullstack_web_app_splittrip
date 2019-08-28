@@ -47,3 +47,43 @@ a {
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+
+.Submit {
+  background-color: white;
+  border: 3px solid #008cba;
+  color: black;
+  padding: 14px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 8px 0;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.Cancle {
+  background-color: white;
+  border: 3px solid red;
+  color: black;
+  padding: 14px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 8px 0;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.Submit:hover {
+  background-color: #008cba;
+  color: white;
+}
+
+.Cancle:hover {
+  background-color: red;
+  color: white;
+}
