@@ -1,5 +1,9 @@
 /* Login */
 
+.Rating {
+  font-size: 4rem;
+}
+
 .LoginForm {
   display: flex;
   flex-direction: column;

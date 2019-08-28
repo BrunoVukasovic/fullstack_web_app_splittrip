@@ -6,7 +6,6 @@ import {
   TripDescription,
   Container
 } from "../../components";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import ReviewForm from "./ReviewForm";
 
@@ -38,7 +37,7 @@ export default class PastTrips extends Component {
   render() {
     const { bookedTrip, travelerName } = this.props;
     const { Date: date, NumberOfPeople: numberOfPeople } = bookedTrip;
-    const { slug, heading, reviewClicked } = this.state;
+    const { slug, heading } = this.state;
     const tripDescriptionStyle = { fontSize: "larger" };
     return (
       <Container>

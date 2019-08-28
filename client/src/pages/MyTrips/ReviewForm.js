@@ -1,23 +1,27 @@
 import React, { Component } from "react";
 import styles from "../../styles/form.module.css";
-import StarsRating from "stars-rating";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { ButtonContainer } from "../../components";
+import StarRatingComponent from "react-star-rating-component";
 
 class ReviewForm extends Component {
   state = {
-    rating: "",
+    rating: 5,
     heading: "",
     description: ""
   };
-
-  componentDidMount() {}
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  ratingChanged = newRating => {
+    this.setState({ rating: newRating });
+  };
+  setRating = () => {
+    console.log();
+  };
   handleReviewSubmit = () => {
     const { rating, heading, description } = this.state;
     const {
@@ -31,11 +35,7 @@ class ReviewForm extends Component {
       heading,
       description
     };
-    console.log(review);
-    axios.post("/api/reviews", { review }).then(res => {
-      console.log(res);
-      this.props.history.push("/my-trips");
-    });
+    axios.post("/api/reviews", { review }).then(res => console.log(res));
   };
 
   render() {
@@ -50,7 +50,14 @@ class ReviewForm extends Component {
           <h2>Thank you for sharing your experience!</h2>
           <div>
             <h3>Trip: {heading}</h3>
-            <StarsRating count={5}></StarsRating>
+            <StarRatingComponent
+              className={styles.Rating}
+              name="rating"
+              starCount={5}
+              onStarClick={this.ratingChanged}
+              starColor={"var(--color-logo-blue)"}
+              emptyStarColor={"var(--color-primary)"}
+            />
             <input
               className={styles.Input}
               type="text"

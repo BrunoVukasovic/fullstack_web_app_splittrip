@@ -5,26 +5,27 @@ const Comment = require("../models/Comment");
 
 router.post("/", (req, res) => {
   const {
+    heading,
+    description,
     bookedTripID,
     tripID,
-    rating,
-    heading,
-    description
+    rating
   } = req.body.review;
 
   Comment.create({
     Heading: heading,
     Description: description
   })
-    .then(
+    .then(comment => {
       Review.create({
         BookedTripID: bookedTripID,
         TripID: tripID,
-        Rating: rating
+        Rating: rating,
+        CommentID: comment.CommentID
       })
-        .then(res.send("Review created!"))
-        .catch(error => console.log(error))
-    )
+        .then(review => res.send(review))
+        .catch(error => console.log(error));
+    })
     .catch(error => console.log(error));
 });
 
