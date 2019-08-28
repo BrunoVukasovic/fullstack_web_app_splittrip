@@ -55,20 +55,17 @@ class MyTrips extends Component {
         console.log(res);
         const bookedTrips = res.data;
         const { upcomingTrips, pastTrips, canceledTrips } = this.state;
-
+        console.log(this.state);
         // fill past, canceled and upcomning trips
         bookedTrips.forEach(bookedTrip => {
           if (bookedTrip.Past) {
             pastTrips.push(bookedTrip);
-          }
-          if (bookedTrip.Canceled) {
+          } else if (!bookedTrip.Past && this.isDateInPast(bookedTrip.Date)) {
+            this.updatePastInBookedTripTable(bookedTrip);
+            pastTrips.push(bookedTrip);
+          } else if (bookedTrip.Canceled) {
             canceledTrips.push(bookedTrip);
-          } else {
-            if (this.isDateInPast(bookedTrip.Date)) {
-              this.updatePastInBookedTripTable(bookedTrip);
-              pastTrips.push(bookedTrip);
-            } else upcomingTrips.push(bookedTrip);
-          }
+          } else upcomingTrips.push(bookedTrip);
         });
         this.setState({ fetched: true });
       });
@@ -146,7 +143,7 @@ class MyTrips extends Component {
                   <h3>Past Trips: </h3>
                   {pastTrips.map((pastTrip, index) => (
                     <PastTrips
-                      trip={pastTrip}
+                      bookedTrip={pastTrip}
                       travelerName={firstName}
                       key={index}
                     ></PastTrips>

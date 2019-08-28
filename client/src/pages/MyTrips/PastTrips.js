@@ -1,18 +1,29 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
-import { TripItem, TripItemHeading, TripDescription } from "../../components";
+import {
+  TripItem,
+  TripItemHeading,
+  TripDescription,
+  Container
+} from "../../components";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ContactUs from "../../components/Trip/ContactUs";
 
-export default class UpcomingTrips extends Component {
+export default class PastTrips extends Component {
   state = {
     heading: "",
     description: "",
-    slug: "/blur"
+    slug: "/blur",
+    reviewClicked: false
+  };
+
+  leaveAReviewClicked = () => {
+    this.setState({ reviewClicked: true });
   };
 
   componentDidMount = () => {
-    const { TripID } = this.props.trip;
+    const { TripID } = this.props.bookedTrip;
 
     axios.post("/api/trips/one/id", { TripID }).then(res => {
       const { Heading, Description, Slug } = res.data;
@@ -21,33 +32,41 @@ export default class UpcomingTrips extends Component {
   };
 
   render() {
-    const { trip, travelerName } = this.props;
-    const { slug, heading } = this.state;
+    const { bookedTrip, travelerName } = this.props;
+    const { Date: date, NumberOfPeople: numberOfPeople } = bookedTrip;
+    const { slug, heading, reviewClicked } = this.state;
     const tripDescriptionStyle = { fontSize: "larger" };
     return (
-      <TripItem>
-        <img
-          src={require("../../images/4x3" + slug + ".jpg")}
-          alt={heading}
-          width="100%"
-        />
+      <Container>
+        <TripItem>
+          <img
+            src={require("../../images/4x3" + slug + ".jpg")}
+            alt={heading}
+            width="100%"
+          />
 
-        <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
+          <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
 
-        <div className={styles.myTripsDiv}>
-          <TripDescription style={tripDescriptionStyle}>
-            <strong>Lead Traveler Name: </strong>
-            {travelerName}
-            <br />
-            <strong>Date: </strong>
-            {trip.Date.slice(0, 10)}
-            <br />
-            <strong>Group size: </strong>
-            {trip.NumberOfPeople}
-          </TripDescription>
-          <button className={"Button"}>Leave a review!</button>
+          <div className={styles.myTripsDiv}>
+            <TripDescription style={tripDescriptionStyle}>
+              <strong>Lead Traveler Name: </strong>
+              {travelerName}
+              <br />
+              <strong>Date: </strong>
+              {date.slice(0, 10)}
+              <br />
+              <strong>Group size: </strong>
+              {numberOfPeople}
+            </TripDescription>
+            <button className={"Button"} onClick={this.leaveAReviewClicked}>
+              Leave a review!
+            </button>
+          </div>
+        </TripItem>
+        <div className={this.state.reviewClicked ? "ModalBlock" : "ModalNone"}>
+          <p>djaksjasldajskdasjkasd</p>
         </div>
-      </TripItem>
+      </Container>
     );
   }
 }

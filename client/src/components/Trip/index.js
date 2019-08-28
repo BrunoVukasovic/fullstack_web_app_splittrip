@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "./styles.module.css";
 import axios from "axios";
 import { Layout, ButtonContainer, MainImage } from "../";
 import ContactUs from "./ContactUs";
@@ -73,20 +72,14 @@ class Trip extends Component {
 
         <h2>{heading}</h2>
 
-        <div
-          className={
-            this.state.contactUs ? styles.ModalBlock : styles.ModalNone
-          }
-        >
+        <div className={this.state.contactUs ? "ModalBlock" : "ModalNone"}>
           <ContactUs
             heading={heading}
             handleClose={this.handleClose}
           ></ContactUs>
         </div>
 
-        <div
-          className={this.state.bookNow ? styles.ModalBlock : styles.ModalNone}
-        >
+        <div className={this.state.bookNow ? "ModalBlock" : "ModalNone"}>
           <BookNow
             heading={heading}
             tripID={tripID}
