@@ -3,6 +3,15 @@ const router = express.Router();
 const Review = require("../models/Review");
 const Comment = require("../models/Comment");
 
+router.post("/trip", (req, res) => {
+  const { tripID } = req.body;
+  Review.findAll({ where: { TripID: tripID } })
+    .then(trips => {
+      res.send(trips);
+    })
+    .catch(error => console.log(error));
+});
+
 router.post("/", (req, res) => {
   const {
     heading,

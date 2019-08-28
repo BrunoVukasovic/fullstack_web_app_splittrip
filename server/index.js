@@ -36,6 +36,8 @@ app.use("/api/register", require("./api/register"));
 app.use("/api/login", require("./api/login"));
 app.use("/api/bookedTrips", require("./api/bookedTrips"));
 app.use("/api/reviews", require("./api/reviews"));
+app.use("/api/users", require("./api/users"));
+app.use("/api/comments", require("./api/comments"));
 
 app.use(express.static("public"));
 

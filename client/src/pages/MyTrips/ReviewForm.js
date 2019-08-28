@@ -18,6 +18,7 @@ class ReviewForm extends Component {
 
   ratingChanged = newRating => {
     this.setState({ rating: newRating });
+    console.log(this.state.rating);
   };
   setRating = () => {
     console.log();
@@ -55,8 +56,8 @@ class ReviewForm extends Component {
               name="rating"
               starCount={5}
               onStarClick={this.ratingChanged}
-              starColor={"var(--color-logo-blue)"}
               emptyStarColor={"var(--color-primary)"}
+              starColor={"var(--color-logo-blue)"}
             />
             <input
               className={styles.Input}

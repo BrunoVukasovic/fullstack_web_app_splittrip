@@ -4,6 +4,7 @@ import { Layout, ButtonContainer, MainImage } from "../";
 import ContactUs from "./ContactUs";
 import BookNow from "./BookNow";
 import TripDescription from "./TripDescription";
+import ShowReviews from "./ShowReviews";
 
 class Trip extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Trip extends Component {
       date: "",
       numberOfPeople: "",
       phone: "",
-      message: ""
+      message: "",
+      fetched: false
     };
   }
 
@@ -31,7 +33,8 @@ class Trip extends Component {
         tripID: TripID,
         heading: Heading,
         description: Description,
-        slug: Slug
+        slug: Slug,
+        fetched: true
       });
     });
   }
@@ -49,7 +52,7 @@ class Trip extends Component {
   };
 
   render() {
-    const { heading, description, slug, tripID } = this.state;
+    const { heading, description, slug, tripID, fetched } = this.state;
 
     return (
       <Layout>
@@ -88,6 +91,7 @@ class Trip extends Component {
         </div>
 
         <TripDescription description={description}></TripDescription>
+        {fetched ? <ShowReviews tripID={tripID}></ShowReviews> : null}
       </Layout>
     );
   }
