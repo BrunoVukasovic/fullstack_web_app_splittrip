@@ -54,7 +54,8 @@ router.post("/book", (req, res) => {
         NumberOfPeople: numberOfPeople,
         Message: message,
         Canceled: false,
-        Past: false
+        Past: false,
+        Reviewed: false
       })
         .then(res.send("Trip Booked!"))
         .catch(error => console.log(error));

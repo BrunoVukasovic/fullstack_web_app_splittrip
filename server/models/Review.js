@@ -9,9 +9,7 @@ const Review = sequelize.define("Review", {
     autoIncrement: true,
     primaryKey: true
   },
-  Rating: {
-    type: Sequelize.INTEGER
-  },
+
   createdAt: {
     type: Sequelize.DATE,
     field: "CreatedAt"
@@ -27,6 +25,9 @@ const Review = sequelize.define("Review", {
     type: Sequelize.INTEGER
   },
   CommentID: {
+    type: Sequelize.INTEGER
+  },
+  RatingID: {
     type: Sequelize.INTEGER
   }
 });

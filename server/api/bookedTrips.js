@@ -62,6 +62,16 @@ router.patch("/past", (req, res) => {
   });
 });
 
+router.patch("/reviewed", (req, res) => {
+  BookedTrip.findByPk(req.body.bookedTripID).then(BookedTrip => {
+    BookedTrip.update({
+      Reviewed: true
+    })
+      .then(res.send("Succesfully updated"))
+      .catch(err => console.log(err));
+  });
+});
+
 router.post("/delete", (req, res) => {
   BookedTrip.destroy({
     where: {

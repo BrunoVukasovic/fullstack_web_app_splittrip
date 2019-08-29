@@ -21,6 +21,9 @@ module.exports = {
       Past: {
         type: Sequelize.BOOLEAN
       },
+      Reviewed: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         type: Sequelize.DATE,
         field: "CreatedAt"

@@ -22,6 +22,9 @@ const BookedTrip = sequelize.define("BookedTrip", {
   Past: {
     type: Sequelize.BOOLEAN
   },
+  Reviewed: {
+    type: Sequelize.BOOLEAN
+  },
   createdAt: {
     type: Sequelize.DATE,
     field: "CreatedAt"
