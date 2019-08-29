@@ -21,8 +21,11 @@ export default class PastTrips extends Component {
     this.setState({ reviewClicked: true });
   };
 
-  handleClose = () => {
+  handleClose = reviewPosted => {
     this.setState({ reviewClicked: false });
+    if (reviewPosted) {
+      window.location.reload();
+    }
   };
 
   componentDidMount = () => {
@@ -36,7 +39,11 @@ export default class PastTrips extends Component {
 
   render() {
     const { bookedTrip, travelerName } = this.props;
-    const { Date: date, NumberOfPeople: numberOfPeople } = bookedTrip;
+    const {
+      Date: date,
+      NumberOfPeople: numberOfPeople,
+      Reviewed: reviewed
+    } = bookedTrip;
     const { slug, heading } = this.state;
     const tripDescriptionStyle = { fontSize: "larger" };
     return (
@@ -61,9 +68,11 @@ export default class PastTrips extends Component {
               <strong>Group size: </strong>
               {numberOfPeople}
             </TripDescription>
-            <button className={"Button"} onClick={this.leaveAReviewClicked}>
-              Leave a review!
-            </button>
+            {reviewed ? null : (
+              <button className={"Button"} onClick={this.leaveAReviewClicked}>
+                Leave a review!
+              </button>
+            )}
           </div>
         </TripItem>
         <div className={this.state.reviewClicked ? "ModalBlock" : "ModalNone"}>

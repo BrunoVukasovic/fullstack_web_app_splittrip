@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import styles from "./styles.module.css";
 import styles from "../styles/form.module.css";
 import axios from "axios";
 import { Layout } from "../components";
@@ -62,7 +61,7 @@ class Register extends Component {
 
         <form onSubmit={this.handleSubmit} className={styles.LoginForm}>
           {invalid ? (
-            <p className={styles.ErrorMessage}>{errors[0].message}</p>
+            <p className={styles.ErrorInput}>{errors[0].message}</p>
           ) : null}
           <input
             autoFocus

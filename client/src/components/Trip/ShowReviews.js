@@ -19,7 +19,7 @@ export default class ShowReviews extends Component {
       const reviews = res.data;
 
       reviews.forEach(review => {
-        const { BookedTripID, CommentID, Rating } = review;
+        const { BookedTripID, CommentID } = review;
 
         axios
           .all([

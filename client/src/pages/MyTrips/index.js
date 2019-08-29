@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import style from "./styles.module.css";
 import styles from "./styles.module.css";
 import axios from "axios";
 import UpcomingTrips from "./UpcomingTrips";
@@ -14,9 +15,44 @@ class MyTrips extends Component {
     showPast: false,
     showCanceled: false,
     upcomingTrips: [],
-    pastTrips: [],
+    notReviewedPastTrips: [],
+    reviewedPastTrips: [],
     canceledTrips: [],
     fetched: false
+  };
+
+  componentDidMount = () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      const { email } = user;
+      axios.post("/api/bookedTrips", { email }).then(res => {
+        console.log(res);
+        const bookedTrips = res.data;
+        const {
+          upcomingTrips,
+          notReviewedPastTrips,
+          reviewedPastTrips,
+          canceledTrips
+        } = this.state;
+        console.log(this.state);
+        // fill past, canceled and upcomning trips
+        bookedTrips.forEach(bookedTrip => {
+          if (bookedTrip.Past) {
+            if (!bookedTrip.Reviewed) {
+              notReviewedPastTrips.push(bookedTrip);
+            } else {
+              reviewedPastTrips.push(bookedTrip);
+            }
+          } else if (!bookedTrip.Past && this.isDateInPast(bookedTrip.Date)) {
+            this.updatePastInBookedTripTable(bookedTrip);
+            notReviewedPastTrips.push(bookedTrip);
+          } else if (bookedTrip.Canceled) {
+            canceledTrips.push(bookedTrip);
+          } else upcomingTrips.push(bookedTrip);
+        });
+        this.setState({ fetched: true });
+      });
+    } else this.setState({ fetched: true });
   };
 
   cancelTrip = bookedTrip => {
@@ -48,38 +84,14 @@ class MyTrips extends Component {
     else return false;
   };
 
-  componentDidMount = () => {
-    let user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      const { email } = user;
-      axios.post("/api/bookedTrips", { email }).then(res => {
-        console.log(res);
-        const bookedTrips = res.data;
-        const { upcomingTrips, pastTrips, canceledTrips } = this.state;
-        console.log(this.state);
-        // fill past, canceled and upcomning trips
-        bookedTrips.forEach(bookedTrip => {
-          if (bookedTrip.Past) {
-            pastTrips.push(bookedTrip);
-          } else if (!bookedTrip.Past && this.isDateInPast(bookedTrip.Date)) {
-            this.updatePastInBookedTripTable(bookedTrip);
-            pastTrips.push(bookedTrip);
-          } else if (bookedTrip.Canceled) {
-            canceledTrips.push(bookedTrip);
-          } else upcomingTrips.push(bookedTrip);
-        });
-        this.setState({ fetched: true });
-      });
-    } else this.setState({ fetched: true });
-  };
-
   render() {
     const {
       showUpcoming,
       showPast,
       showCanceled,
       upcomingTrips,
-      pastTrips,
+      notReviewedPastTrips,
+      reviewedPastTrips,
       canceledTrips,
       fetched
     } = this.state;
@@ -90,7 +102,7 @@ class MyTrips extends Component {
       };
     }
     const { firstName } = user;
-
+    console.log(this.state);
     // if logged in
     if (firstName) {
       // if bookedTrips are fetched
@@ -140,9 +152,16 @@ class MyTrips extends Component {
               ) : null}
 
               {showPast ? (
-                <Container>
+                <Container className={style.PastParent}>
                   <h3>Past Trips: </h3>
-                  {pastTrips.map((pastTrip, index) => (
+                  {notReviewedPastTrips.map((pastTrip, index) => (
+                    <PastTrips
+                      bookedTrip={pastTrip}
+                      travelerName={firstName}
+                      key={index}
+                    ></PastTrips>
+                  ))}
+                  {reviewedPastTrips.map((pastTrip, index) => (
                     <PastTrips
                       bookedTrip={pastTrip}
                       travelerName={firstName}

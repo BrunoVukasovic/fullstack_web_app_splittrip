@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import styles from "./styles.module.css";
 import styles from "../styles/form.module.css";
 import { Container, Layout } from "../components";
 import { loginAction } from "../actions/loginAction";
@@ -14,7 +13,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      message: "",
+      errorMessage: "",
       success: false,
       invalid: false
     };
@@ -55,14 +54,14 @@ class Login extends Component {
         this.props.history.push("/");
       })
       .catch(error => {
-        this.setState({ message: "Wrong email or password" });
+        this.setState({ errorMessage: "Wrong email or password" });
         console.log(error);
       });
   };
 
   render() {
     const { isAuthenticated } = this.props.isLogged;
-    const { message } = this.state;
+    const { errorMessage } = this.state;
 
     return (
       <Layout>
@@ -73,7 +72,7 @@ class Login extends Component {
         ) : (
           <Container>
             <form className={styles.LoginForm} onSubmit={this.Login}>
-              <label className={styles.Label}>{message}</label>
+              <label className={styles.ErrorInput}>{errorMessage}</label>
 
               <input
                 autoFocus

@@ -36,7 +36,13 @@ class ReviewForm extends Component {
       heading,
       description
     };
+
     axios.post("/api/reviews", { review }).then(res => console.log(res));
+    axios
+      .patch("api/bookedTrips/reviewed", { bookedTripID })
+      .then(res => console.log(res));
+    const reviewed = true;
+    this.props.handleClose(reviewed);
   };
 
   render() {

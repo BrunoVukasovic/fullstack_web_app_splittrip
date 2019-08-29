@@ -19,6 +19,29 @@ router.post("/", (req, res) => {
   });
 });
 
+router.post("/book", (req, res) => {
+  const { email, tripID, date, numberOfPeople, message } = req.body.bookedTrip;
+  User.findOne({
+    where: { Email: email }
+  })
+    .then(user => {
+      console.log(user);
+      BookedTrip.create({
+        UserID: user.UserID,
+        TripID: tripID,
+        Date: date,
+        NumberOfPeople: numberOfPeople,
+        Message: message,
+        Canceled: false,
+        Past: false,
+        Reviewed: false
+      })
+        .then(res.send("Trip Booked!"))
+        .catch(error => console.log(error));
+    })
+    .catch(err => console.log(err));
+});
+
 router.post("/UserAndDate", (req, res) => {
   BookedTrip.findOne({
     where: { BookedTripID: req.body.BookedTripID },

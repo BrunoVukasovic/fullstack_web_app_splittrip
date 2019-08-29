@@ -12,7 +12,8 @@ class BookNow extends Component {
     email: "",
     date: "",
     numberOfPeople: "",
-    message: ""
+    message: "",
+    errorMessage: ""
   };
 
   componentDidMount() {
@@ -27,6 +28,25 @@ class BookNow extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  isFormFilled = () => {
+    const { firstName, date, numberOfPeople, phone } = this.state;
+    if (firstName.length === 0) {
+      this.setState({ errorMessage: "Please, enter your first name." });
+      return false;
+    } else if (phone.length === 0) {
+      this.setState({ errorMessage: "Please, enter a contact number." });
+      return false;
+    } else if (date.length === 0) {
+      this.setState({ errorMessage: "Please, pick a date." });
+      return false;
+    } else if (numberOfPeople.length === 0) {
+      this.setState({
+        errorMessage: "Please, enter how many people are coming"
+      });
+      return false;
+    } else return true;
+  };
+
   handleBookNowSubmit = () => {
     const { email } = this.state;
     const { date, numberOfPeople, message } = this.state;
@@ -38,15 +58,17 @@ class BookNow extends Component {
       numberOfPeople,
       message
     };
-    console.log(bookedTrip);
-    axios.post("/api/trips/book", { bookedTrip }).then(res => {
-      console.log(res);
-      this.props.history.push("/my-trips");
-    });
+
+    if (this.isFormFilled()) {
+      axios.post("/api/bookedTrips/book", { bookedTrip }).then(res => {
+        console.log(res);
+        this.props.history.push("/my-trips");
+      });
+    }
   };
 
   render() {
-    const { firstName, lastName, phone } = this.state;
+    const { firstName, lastName, phone, errorMessage } = this.state;
     const { heading, handleClose } = this.props;
 
     return (
@@ -58,7 +80,7 @@ class BookNow extends Component {
           <h2>Book now!</h2>
           <div>
             <h3>Trip: {heading}</h3>
-
+            <label className={styles.ErrorInput}>{errorMessage}</label>
             <input
               className={styles.Input}
               type="text"
@@ -71,7 +93,7 @@ class BookNow extends Component {
             <input
               className={styles.Input}
               type="text"
-              name="lasttName"
+              name="lastName"
               placeholder="Your last name.."
               onChange={this.onChange}
               value={lastName}
