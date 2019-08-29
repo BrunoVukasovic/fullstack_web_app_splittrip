@@ -14,8 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
-// will overwitre db sequelize.sync({ force: true });
-sequelize.sync();
+// will overwitre db
+// sequelize.sync({ force: true });
 
 // Passport
 initializePassport(passport);
@@ -35,9 +35,6 @@ app.use("/api/trips", require("./api/trips"));
 app.use("/api/register", require("./api/register"));
 app.use("/api/login", require("./api/login"));
 app.use("/api/bookedTrips", require("./api/bookedTrips"));
-app.use("/api/reviews", require("./api/reviews"));
-app.use("/api/users", require("./api/users"));
-app.use("/api/comments", require("./api/comments"));
 
 app.use(express.static("public"));
 

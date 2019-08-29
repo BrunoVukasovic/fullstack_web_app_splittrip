@@ -6,6 +6,7 @@ import PastTrips from "./PastTrips";
 import CanceledTrips from "./CanceledTrips";
 import { Spinner, LoginRedirect, Container } from "../../components";
 import { Layout } from "../../components";
+import cn from "classnames";
 
 class MyTrips extends Component {
   state = {
@@ -99,7 +100,7 @@ class MyTrips extends Component {
             <div>
               <h2>My Trips: </h2>
 
-              <div className={styles.Tab}>
+              <div className={cn(styles.Tab, "BackgroundColorLight")}>
                 <button
                   className={styles.TabLinks}
                   onClick={this.onTabClick}

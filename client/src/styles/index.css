@@ -7,6 +7,10 @@
   --color-button-blue: #008cba;
 }
 
+.BackgroundColorLight {
+  background-color: var(--color-light);
+}
+
 a {
   text-decoration: none;
 }

@@ -7,7 +7,6 @@
   justify-content: space-between;
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: var(--color-light);
 }
 
 .TabLinks {
