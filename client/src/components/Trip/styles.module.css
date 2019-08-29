@@ -1,3 +1,7 @@
+.Container {
+  border-top: 1px solid var(--color-grey, #000);
+}
+
 .ModalContent {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */

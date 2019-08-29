@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Container } from "../";
+import style from "./styles.module.css";
 
 export default class ShowReviews extends Component {
   state = {
@@ -57,7 +58,9 @@ export default class ShowReviews extends Component {
   render() {
     return (
       <Container>
-        <div></div>
+        <div className={style.Container}>
+          <h2>Reviews</h2>
+        </div>
         <div></div>
       </Container>
     );
