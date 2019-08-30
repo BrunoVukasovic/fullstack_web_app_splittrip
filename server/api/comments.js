@@ -4,7 +4,7 @@ const Comment = require("../models/Comment");
 
 router.post("/one", (req, res) => {
   Comment.findOne({
-    where: { CommentID: req.body.CommentID },
+    where: { CommentID: req.body.commentID },
     attributes: ["Heading", "Description"]
   })
     .then(comment => res.send(comment))

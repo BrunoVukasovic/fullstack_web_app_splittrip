@@ -13,6 +13,15 @@ router.post("/trip", (req, res) => {
     .catch(error => console.log(error));
 });
 
+router.post("/rating", (req, res) => {
+  const { ratingID } = req.body;
+  Rating.findByPk(ratingID)
+    .then(rating => {
+      res.send({ Value: rating.Value });
+    })
+    .catch(error => console.log(error));
+});
+
 router.post("/", (req, res) => {
   const {
     heading,
@@ -39,33 +48,5 @@ router.post("/", (req, res) => {
     })
     .catch(error => console.log(error));
 });
-
-/*
-router.post("/comment", (res, req) => {
-  console.log("!!!!!!!!" + req.body);
-  const { heading, description } = req.body.review;
-  Comment.create({
-    Heading: heading,
-    Description: description
-  }).then(comment => res.send(comment.CommentID));
-});
-
-router.post("/rating", (res, req) => {
-  const { rating } = req.body;
-  Rating.create({
-    Value: rating
-  }).then(rating => res.send(rating.RatingID));
-});
-
-router.post("/evo", (res, req) => {
-  const { bookedTripID, tripID } = req.body.review;
-  Review.create({
-    BookedTripID: bookedTripID,
-    TripID: tripID,
-    CommentID: commentID,
-    RatingID: ratingID
-  }).then(review => res.send(review));
-});
-*/
 
 module.exports = router;

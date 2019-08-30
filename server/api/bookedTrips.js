@@ -44,7 +44,7 @@ router.post("/book", (req, res) => {
 
 router.post("/UserAndDate", (req, res) => {
   BookedTrip.findOne({
-    where: { BookedTripID: req.body.BookedTripID },
+    where: { BookedTripID: req.body.bookedTripID },
     attributes: ["UserID", "Date"]
   })
     .then(bookedTrip => {
