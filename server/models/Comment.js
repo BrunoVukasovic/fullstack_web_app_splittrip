@@ -25,6 +25,6 @@ const Comment = sequelize.define("Comment", {
   }
 });
 
-Comment.hasOne(Review, { foreignKey: "CommentID" });
+// Comment.hasOne(Review, { foreignKey: "CommentID" });
 
 module.exports = Comment;

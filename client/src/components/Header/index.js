@@ -73,14 +73,20 @@ class Header extends Component {
               <Link to="/my-trips" className={styles.MobileLink}>
                 My Trips
               </Link>
+
               {isAuthenticated ? (
-                <Link
-                  to="/"
-                  className={styles.MobileLink}
-                  onClick={this.onLogoutClick}
-                >
-                  Log Out
-                </Link>
+                <>
+                  <Link to="/my-reviews" className={styles.MobileLink}>
+                    My Reviews
+                  </Link>
+                  <Link
+                    to="/"
+                    className={styles.MobileLink}
+                    onClick={this.onLogoutClick}
+                  >
+                    Log Out
+                  </Link>
+                </>
               ) : (
                 <Link to="/login" className={styles.MobileLink}>
                   Login
@@ -93,15 +99,21 @@ class Header extends Component {
               Home
             </NavLink>
           </div>
-          <div className={styles.TravelStories}>
+          <div className={styles.MyTrips}>
             <NavLink to="/my-trips">My Trips</NavLink>
           </div>
+
           {isAuthenticated ? (
-            <div className={styles.logIn} onClick={this.onLogoutClick}>
-              <NavLink to="/">LOG OUT</NavLink>
-            </div>
+            <>
+              <div className={styles.MyReviews}>
+                <NavLink to="/my-reviews">My Reviews</NavLink>
+              </div>
+              <div className={styles.LogIn} onClick={this.onLogoutClick}>
+                <NavLink to="/">LOG OUT</NavLink>
+              </div>
+            </>
           ) : (
-            <div className={styles.logIn}>
+            <div className={styles.LogIn}>
               <NavLink to="/login">LOG IN</NavLink>
             </div>
           )}
@@ -254,7 +266,6 @@ class Header extends Component {
               </Link>
             </DropdownContent>
           </div>
-          <div className={styles.searchBar} />
         </Container>
       </header>
     );

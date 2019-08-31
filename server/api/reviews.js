@@ -3,6 +3,41 @@ const router = express.Router();
 const Review = require("../models/Review");
 const Comment = require("../models/Comment");
 const Rating = require("../models/Rating");
+const BookedTrip = require("../models/BookedTrip");
+
+router.get("/all", (req, res) => {
+  Review.findAll({
+    include: Comment
+  }).then(review => {
+    res.send(review);
+  });
+});
+
+router.post("/delete", (req, res) => {
+  console.log("!!!!!!!!!!!!!!!!!!!!!!");
+  console.log(req.body);
+  const { reviewID } = req.body;
+  Review.destroy({
+    where: {
+      ReviewID: reviewID
+    }
+  })
+    .then(res.send("Deleted"))
+    .catch(error => console.log(error));
+});
+
+router.post("/one/bookedTripId", (req, res) => {
+  const { bookedTripID } = req.body;
+  Review.findOne({
+    where: {
+      BookedTripID: bookedTripID
+    },
+    include: [Rating, Comment],
+    attributes: ["ReviewID"]
+  }).then(review => {
+    res.send(review);
+  });
+});
 
 router.post("/trip", (req, res) => {
   const { tripID } = req.body;
@@ -22,7 +57,7 @@ router.post("/rating", (req, res) => {
     .catch(error => console.log(error));
 });
 
-router.post("/", (req, res) => {
+router.post("/new", (req, res) => {
   const {
     heading,
     description,

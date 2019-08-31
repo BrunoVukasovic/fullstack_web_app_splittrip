@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
 const BookedTrip = require("./BookedTrip");
+const Comment = require("./Comment");
+const Rating = require("./Rating");
 
 const Review = sequelize.define("Review", {
   ReviewID: {
@@ -33,5 +35,7 @@ const Review = sequelize.define("Review", {
 });
 
 Review.belongsTo(BookedTrip, { foreignKey: "BookedTripID" });
+Review.belongsTo(Comment, { foreignKey: "CommentID" });
+Review.belongsTo(Rating, { foreignKey: "RatingID" });
 
 module.exports = Review;

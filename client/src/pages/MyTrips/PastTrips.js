@@ -29,9 +29,9 @@ export default class PastTrips extends Component {
   };
 
   componentDidMount = () => {
-    const { TripID } = this.props.bookedTrip;
+    const { TripID: tripID } = this.props.bookedTrip;
 
-    axios.post("/api/trips/one/id", { TripID }).then(res => {
+    axios.post("/api/trips/one/id", { tripID }).then(res => {
       const { Heading, Description, Slug } = res.data;
       this.setState({ heading: Heading, description: Description, slug: Slug });
     });

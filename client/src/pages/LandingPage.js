@@ -23,16 +23,16 @@ class LandingPage extends Component {
     };
   }
 
-  getTrips = () => {
-    axios.get("/api/trips/all").then(res => {
+  handleClick = () => {
+    axios.get("api/reviews/all").then(res => {
       console.log(res.data);
-      this.setState({ trips: res.data });
     });
   };
 
   render() {
     return (
       <Layout>
+        <button onClick={this.handleClick}>EVoooo me</button>
         <MainImage src={mainImage} />
         <ul>
           {this.state.trips.map(trip => (

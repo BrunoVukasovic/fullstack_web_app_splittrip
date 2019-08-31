@@ -12,9 +12,9 @@ export default class UpcomingTrips extends Component {
   };
 
   componentDidMount = () => {
-    const { TripID } = this.props.trip;
+    const { TripID: tripID } = this.props.trip;
 
-    axios.post("/api/trips/one/id", { TripID }).then(res => {
+    axios.post("/api/trips/one/id", { tripID }).then(res => {
       const { Heading, Description, Slug } = res.data;
       this.setState({ heading: Heading, description: Description, slug: Slug });
     });

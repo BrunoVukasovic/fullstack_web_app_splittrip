@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container } from "../";
-import ReviewItem from "./ReviewItem";
+import { Container, ReviewItem } from "../";
 import styles from "./styles.module.css";
 
 export default class ShowReviews extends Component {
@@ -15,12 +14,13 @@ export default class ShowReviews extends Component {
     axios.post("api/reviews/trip", { tripID }).then(res => {
       const reviews = res.data;
 
-      for (let review of reviews) {
+      reviews.forEach(review => {
         const {
           BookedTripID: bookedTripID,
           CommentID: commentID,
           RatingID: ratingID
         } = review;
+
         const reviewTemplate = {
           firstName: "",
           date: null,
@@ -32,21 +32,18 @@ export default class ShowReviews extends Component {
         axios
           .all([
             axios
-              .post("api/bookedTrips/UserAndDate", { bookedTripID })
+              .post("api/bookedTrips/userAndDate", { bookedTripID })
               .then(res => {
                 const { Date, FirstName } = res.data;
                 reviewTemplate.date = Date;
                 reviewTemplate.firstName = FirstName;
-                // this.setState({ date: Date, firstName: FirstName });
               }),
             axios.post("api/comments/one", { commentID }).then(res => {
               const { Heading, Description } = res.data;
               reviewTemplate.heading = Heading;
               reviewTemplate.description = Description;
-              // this.setState({ heading: Heading, description: Description });
             }),
             axios.post("api/reviews/rating", { ratingID }).then(res => {
-              // this.setState({ rating: res.data.Value });
               reviewTemplate.rating = res.data.Value;
               console.log(reviewTemplate.rating);
             })
@@ -56,7 +53,7 @@ export default class ShowReviews extends Component {
             reviews.push(reviewTemplate);
             this.setState({ rerender: "yes" });
           });
-      }
+      });
     });
   };
   render() {
@@ -74,7 +71,9 @@ export default class ShowReviews extends Component {
         </div>
         <div className={styles.RightReviewPanel}>
           {reviews.map((review, index) => (
-            <ReviewItem review={review} key={index} />
+            <Container className={"BackgroundColorLight"} key={index}>
+              <ReviewItem review={review} />
+            </Container>
           ))}
         </div>
       </Container>

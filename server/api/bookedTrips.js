@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const BookedTrip = require("../models/BookedTrip");
 const User = require("../models/User");
+const Trip = require("../models/Trip");
 
 router.post("/", (req, res) => {
   User.findOne({
@@ -42,7 +43,7 @@ router.post("/book", (req, res) => {
     .catch(err => console.log(err));
 });
 
-router.post("/UserAndDate", (req, res) => {
+router.post("/userAndDate", (req, res) => {
   BookedTrip.findOne({
     where: { BookedTripID: req.body.bookedTripID },
     attributes: ["UserID", "Date"]
@@ -85,7 +86,17 @@ router.patch("/past", (req, res) => {
   });
 });
 
-router.patch("/reviewed", (req, res) => {
+router.patch("/reviewDeleted", (req, res) => {
+  BookedTrip.findByPk(req.body.bookedTripID).then(BookedTrip => {
+    BookedTrip.update({
+      Reviewed: false
+    })
+      .then(res.send("Succesfully updated"))
+      .catch(err => console.log(err));
+  });
+});
+
+router.patch("/newReview", (req, res) => {
   BookedTrip.findByPk(req.body.bookedTripID).then(BookedTrip => {
     BookedTrip.update({
       Reviewed: true
@@ -95,11 +106,21 @@ router.patch("/reviewed", (req, res) => {
   });
 });
 
-router.post("/delete", (req, res) => {
-  BookedTrip.destroy({
-    where: {
-      BookedTripID: 14
-    }
+router.post("/reviewed", (req, res) => {
+  User.findOne({
+    where: { Email: req.body.email }
+  }).then(user => {
+    BookedTrip.findAll({
+      where: {
+        UserID: user.UserID,
+        Reviewed: true
+      },
+      attributes: ["BookedTripID", "TripID", "Date"]
+    })
+      .then(bookedTrips => {
+        res.send(bookedTrips);
+      })
+      .catch(err => console.log(err));
   });
 });
 

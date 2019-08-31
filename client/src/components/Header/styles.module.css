@@ -25,17 +25,22 @@
 }
 
 .Home {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+
+.MyTrips {
+  grid-column: 4/5;
+  grid-row: 1/2;
+}
+
+.MyReviews {
   grid-column: 5/6;
   grid-row: 1/2;
 }
 
-.TravelStories {
-  grid-column: 6/7;
-  grid-row: 1/2;
-}
-
-.logIn {
-  grid-column: 7/8;
+.LogIn {
+  grid-column: 8/9;
   grid-row: 1/2;
 }
 
@@ -52,13 +57,6 @@
 .AdventuresDropDown {
   grid-column: 5/6;
   grid-row: 2/3;
-}
-
-.searchBar {
-  grid-column: 7/9;
-  grid-row: 2/3;
-  text-decoration: none;
-  color: var(--color-logo-blue, blue);
 }
 
 .NavLink {
@@ -139,13 +137,13 @@
 
 @media screen and (max-width: 850px) {
   .Home,
-  .TravelStories,
-  .logIn,
+  .MyTrips,
+  .LogIn,
   .LandToursDropDown,
   .Dropdown:hover .DropdownContent,
   .SeaToursDropDown,
   .AdventuresDropDown,
-  .searchBar {
+  .MyReviews {
     display: none;
   }
 

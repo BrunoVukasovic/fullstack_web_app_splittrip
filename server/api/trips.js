@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/one/id", (req, res) =>
   Trip.findOne({
-    where: { TripID: req.body.TripID },
+    where: { TripID: req.body.tripID },
     attributes: ["Heading", "Description", "Slug"]
   })
     .then(trip => {
@@ -16,7 +16,7 @@ router.post("/one/id", (req, res) =>
     .catch(err => console.log(err))
 );
 
-router.post("/one", (req, res) =>
+router.post("/one/slug", (req, res) =>
   Trip.findOne({
     where: { Slug: req.body.pathname },
     attributes: ["Heading", "Description", "Slug", "TripID"]
