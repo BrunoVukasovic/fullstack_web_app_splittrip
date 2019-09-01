@@ -3,6 +3,9 @@ const router = express.Router();
 const BookedTrip = require("../models/BookedTrip");
 const User = require("../models/User");
 const Trip = require("../models/Trip");
+const Review = require("../models/Review");
+const Comment = require("../models/Comment");
+const Rating = require("../models/Rating");
 
 router.post("/", (req, res) => {
   User.findOne({
@@ -149,6 +152,7 @@ router.post("/reviewed", (req, res) => {
         UserID: user.UserID,
         Reviewed: true
       },
+      include: [Review, Trip, Comment, Rating],
       attributes: ["BookedTripID", "TripID", "Date"]
     })
       .then(bookedTrips => {

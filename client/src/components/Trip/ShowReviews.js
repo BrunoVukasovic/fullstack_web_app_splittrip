@@ -19,17 +19,30 @@ export default class ShowReviews extends Component {
           BookedTripID: bookedTripID,
           CommentID: commentID,
           RatingID: ratingID,
-          Comment: comment
+          Comment: comment,
+          Rating: rating
         } = review;
-        const { heading, description } = comment;
+        const { Heading: heading, Description: description } = comment;
+        const { Value: value } = rating;
         const reviewTemplate = {
           firstName: "",
           date: null,
-          rating: null,
+          rating: value,
           heading,
           description
         };
+        axios
+          .post("api/bookedTrips/userAndDate", { bookedTripID })
+          .then(res => {
+            const { Date, FirstName } = res.data;
+            reviewTemplate.date = Date;
+            reviewTemplate.firstName = FirstName;
+            const { reviews } = this.state;
+            reviews.push(reviewTemplate);
+            this.setState({ rerender: "yes" });
+          });
 
+        /*
         axios
           .all([
             axios
@@ -38,22 +51,23 @@ export default class ShowReviews extends Component {
                 const { Date, FirstName } = res.data;
                 reviewTemplate.date = Date;
                 reviewTemplate.firstName = FirstName;
-              }),
-            /*
+              })
+            
             axios.post("api/comments/one", { commentID }).then(res => {
               const { Heading, Description } = res.data;
               reviewTemplate.heading = Heading;
               reviewTemplate.description = Description;
-            }),   */
+            }),  
+            
             axios.post("api/reviews/rating", { ratingID }).then(res => {
               reviewTemplate.rating = res.data.Value;
-            })
+            }) 
           ])
           .then(res => {
             const { reviews } = this.state;
             reviews.push(reviewTemplate);
             this.setState({ rerender: "yes" });
-          });
+          }); */
       });
     });
   };

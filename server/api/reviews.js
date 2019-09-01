@@ -30,13 +30,14 @@ router.post("/one/bookedTripId", (req, res) => {
 
 router.post("/trip", (req, res) => {
   const { tripID } = req.body;
-  Review.findAll({ where: { TripID: tripID }, include: Comment })
+  Review.findAll({ where: { TripID: tripID }, include: [Comment, Rating] })
     .then(trips => {
       res.send(trips);
     })
     .catch(error => console.log(error));
 });
 
+/* mislin da vise ne triba
 router.post("/rating", (req, res) => {
   const { ratingID } = req.body;
   Rating.findByPk(ratingID)
@@ -45,6 +46,7 @@ router.post("/rating", (req, res) => {
     })
     .catch(error => console.log(error));
 });
+*/
 
 router.post("/new", (req, res) => {
   const {

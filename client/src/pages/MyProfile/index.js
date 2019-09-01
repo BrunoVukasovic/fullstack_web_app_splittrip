@@ -19,6 +19,9 @@ export default class MyReviews extends Component {
     axios.post("api/bookedTrips/reviewed", { email }).then(res => {
       const reviewedBookings = res.data;
       reviewedBookings.forEach(reviewedBooking => {
+        // Ipak Commetn nije asosicated sa book trip
+        // nastavi sredivat ovu komponentu
+        console.log(reviewedBooking);
         const {
           BookedTripID: bookedTripID,
           TripID: tripID,
