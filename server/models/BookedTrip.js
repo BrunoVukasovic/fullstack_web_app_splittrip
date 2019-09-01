@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
+const Trip = require("../models/Trip");
+const Review = require("../models/Review");
 
 const BookedTrip = sequelize.define("BookedTrip", {
   BookedTripID: {
@@ -40,4 +42,6 @@ const BookedTrip = sequelize.define("BookedTrip", {
   }
 });
 
+BookedTrip.belongsTo(Trip, { foreignKey: "TripID" });
+BookedTrip.hasOne(Review, { foreignKey: "BookedTripID" });
 module.exports = BookedTrip;

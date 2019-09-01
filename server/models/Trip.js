@@ -35,7 +35,7 @@ const Trip = sequelize.define("Trip", {
   }
 });
 
-Trip.hasMany(BookedTrip, { as: "BookedTrips", foreignKey: "TripID" });
+// Trip.hasMany(BookedTrip, { as: "BookedTrips", foreignKey: "TripID" });
 Trip.hasMany(Review, { as: "Reviews", foreignKey: "TripID" });
 
 module.exports = Trip;

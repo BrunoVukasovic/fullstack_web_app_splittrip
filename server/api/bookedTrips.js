@@ -11,7 +11,8 @@ router.post("/", (req, res) => {
     BookedTrip.findAll({
       where: {
         UserID: user.UserID
-      }
+      },
+      include: Trip
     })
       .then(bookedTrips => {
         res.send(bookedTrips);
@@ -72,18 +73,29 @@ router.post("/userAndDate", (req, res) => {
   })
     .then(bookedTrip => {
       const { Date, UserID } = bookedTrip;
-      User.findOne({
-        where: { UserID },
-        attributes: ["FirstName"]
-      })
-        .then(user => {
-          const userAndDate = {
-            Date: Date,
-            FirstName: user.FirstName
-          };
-          res.send(userAndDate);
+      // if user is not deleted
+      console.log("!!!!!!!!!!!!!!!!!!!!!!");
+      console.log(UserID);
+      if (UserID) {
+        User.findOne({
+          where: { UserID },
+          attributes: ["FirstName"]
         })
-        .catch(error => console.log(error));
+          .then(user => {
+            const userAndDate = {
+              Date: Date,
+              FirstName: user.FirstName
+            };
+            res.send(userAndDate);
+          })
+          .catch(error => console.log(error));
+      } else {
+        const userAndDate = {
+          Date: Date,
+          FirstName: "Unknown traveler"
+        };
+        res.send(userAndDate);
+      }
     })
     .catch(error => console.log(error));
 });

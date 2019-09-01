@@ -2,41 +2,13 @@ const express = require("express");
 const Trip = require("../models/Trip");
 const User = require("../models/User");
 const BookedTrip = require("../models/BookedTrip");
-
+const tripController = require("../controllers/trip");
 const router = express.Router();
 
-router.post("/one/id", (req, res) =>
-  Trip.findOne({
-    where: { TripID: req.body.tripID },
-    attributes: ["Heading", "Description", "Slug"]
-  })
-    .then(trip => {
-      res.send(trip);
-    })
-    .catch(err => console.log(err))
-);
+router.post("/one/id", (req, res) => tripController.findTripById(req, res));
 
-router.post("/one/slug", (req, res) =>
-  Trip.findOne({
-    where: { Slug: req.body.pathname },
-    attributes: ["Heading", "Description", "Slug", "TripID"]
-  })
-    .then(trip => {
-      res.send(trip);
-      console.log(trip);
-    })
-    .catch(err => console.log(err))
-);
+router.post("/one/slug", (req, res) => tripController.findTripBySlug(req, res));
 
-router.get("/all", (req, res) =>
-  Trip.findAll()
-    .then(trips => {
-      res.send(trips);
-      // console.log(req.user);
-      // const obj = req.user.dataValues;
-      // res.send(obj);
-    })
-    .catch(err => console.log(err))
-);
+router.get("/all", (req, res) => tripController.getAllTrips(req, res));
 
 module.exports = router;

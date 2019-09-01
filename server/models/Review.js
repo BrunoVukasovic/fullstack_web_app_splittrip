@@ -35,7 +35,7 @@ const Review = sequelize.define("Review", {
   }
 });
 
-Review.belongsTo(BookedTrip, { foreignKey: "BookedTripID" });
+// Review.belongsTo(BookedTrip, { foreignKey: "BookedTripID" });
 Review.belongsTo(Comment, { foreignKey: "CommentID" });
 Review.belongsTo(Rating, { foreignKey: "RatingID" });
 
