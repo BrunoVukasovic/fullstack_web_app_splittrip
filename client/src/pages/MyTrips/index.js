@@ -26,7 +26,7 @@ class MyTrips extends Component {
     if (user) {
       const { email } = user;
       axios.post("/api/bookedTrips", { email }).then(res => {
-        console.log(res);
+        console.log(res.data);
         const bookedTrips = res.data;
         const {
           upcomingTrips,
@@ -34,7 +34,6 @@ class MyTrips extends Component {
           reviewedPastTrips,
           canceledTrips
         } = this.state;
-        console.log(this.state);
         // fill past, canceled and upcomning trips
         bookedTrips.forEach(bookedTrip => {
           if (bookedTrip.Past) {
@@ -102,7 +101,6 @@ class MyTrips extends Component {
       };
     }
     const { firstName } = user;
-    console.log(this.state);
     // if logged in
     if (firstName) {
       // if bookedTrips are fetched
@@ -142,7 +140,7 @@ class MyTrips extends Component {
                   <h3>Upcoming Trips: </h3>
                   {upcomingTrips.map((upcomingTrip, index) => (
                     <UpcomingTrips
-                      trip={upcomingTrip}
+                      bookedTrip={upcomingTrip}
                       cancelTrip={this.cancelTrip}
                       travelerName={firstName}
                       key={index}
@@ -176,7 +174,7 @@ class MyTrips extends Component {
                   <h3>Canceled trips:</h3>
                   {canceledTrips.map((canceledTrip, index) => (
                     <CanceledTrips
-                      trip={canceledTrip}
+                      bookedTrip={canceledTrip}
                       travelerName={firstName}
                       key={index}
                     />

@@ -12,21 +12,22 @@ export default class ShowReviews extends Component {
     const { tripID } = this.props;
 
     axios.post("api/reviews/trip", { tripID }).then(res => {
+      console.log(res.data);
       const reviews = res.data;
-
       reviews.forEach(review => {
         const {
           BookedTripID: bookedTripID,
           CommentID: commentID,
-          RatingID: ratingID
+          RatingID: ratingID,
+          Comment: comment
         } = review;
-
+        const { heading, description } = comment;
         const reviewTemplate = {
           firstName: "",
           date: null,
           rating: null,
-          heading: "",
-          decription: ""
+          heading,
+          description
         };
 
         axios
@@ -38,14 +39,14 @@ export default class ShowReviews extends Component {
                 reviewTemplate.date = Date;
                 reviewTemplate.firstName = FirstName;
               }),
+            /*
             axios.post("api/comments/one", { commentID }).then(res => {
               const { Heading, Description } = res.data;
               reviewTemplate.heading = Heading;
               reviewTemplate.description = Description;
-            }),
+            }),   */
             axios.post("api/reviews/rating", { ratingID }).then(res => {
               reviewTemplate.rating = res.data.Value;
-              console.log(reviewTemplate.rating);
             })
           ])
           .then(res => {
@@ -63,7 +64,6 @@ export default class ShowReviews extends Component {
       head = "Review: ";
     } else head = "Reviews: ";
 
-    console.log(this.state);
     return (
       <Container className={styles.ReviewContainer}>
         <div className={styles.LeftReviewPanel}>

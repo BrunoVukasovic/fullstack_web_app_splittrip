@@ -21,11 +21,12 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/my-trips" component={MyTrips} />
+          <Route path="/my-profile" component={MyProfile} />
           <Route path="/krka" component={Trip} />
           <Route path="/zip" component={Trip} />
           <Route path="/rafting" component={Trip} />
           <Route path="/blue-cave" component={Trip} />
-          <Route path="/my-profile" component={MyProfile} />
+          <Route path="/brac" component={Trip} />
         </Switch>
       </Router>
     );

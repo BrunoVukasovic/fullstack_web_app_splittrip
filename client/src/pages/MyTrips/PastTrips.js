@@ -12,7 +12,6 @@ import ReviewForm from "./ReviewForm";
 export default class PastTrips extends Component {
   state = {
     heading: "",
-    description: "",
     slug: "/blur",
     reviewClicked: false
   };
@@ -29,12 +28,9 @@ export default class PastTrips extends Component {
   };
 
   componentDidMount = () => {
-    const { TripID: tripID } = this.props.bookedTrip;
-
-    axios.post("/api/trips/one/id", { tripID }).then(res => {
-      const { Heading, Description, Slug } = res.data;
-      this.setState({ heading: Heading, description: Description, slug: Slug });
-    });
+    const { Trip: trip } = this.props.bookedTrip;
+    const { Heading: heading, Slug: slug } = trip;
+    this.setState({ heading, slug });
   };
 
   render() {

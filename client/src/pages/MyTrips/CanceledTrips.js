@@ -7,21 +7,18 @@ import axios from "axios";
 export default class UpcomingTrips extends Component {
   state = {
     heading: "",
-    description: "",
     slug: "/blur"
   };
 
   componentDidMount = () => {
-    const { TripID: tripID } = this.props.trip;
-
-    axios.post("/api/trips/one/id", { tripID }).then(res => {
-      const { Heading, Description, Slug } = res.data;
-      this.setState({ heading: Heading, description: Description, slug: Slug });
-    });
+    const { Trip: trip } = this.props.bookedTrip;
+    const { Heading: heading, Slug: slug } = trip;
+    this.setState({ heading, slug });
   };
 
   render() {
-    const { trip, travelerName } = this.props;
+    const { bookedTrip, travelerName } = this.props;
+    const { Date: date, NumberOfPeople: numberOfPeople } = bookedTrip;
     const { slug, heading } = this.state;
     const tripDescriptionStyle = { fontSize: "larger" };
     return (
@@ -41,10 +38,10 @@ export default class UpcomingTrips extends Component {
               {travelerName}
               <br />
               <strong>Date: </strong>
-              {trip.Date.slice(0, 10)}
+              {date.slice(0, 10)}
               <br />
               <strong>Group size: </strong>
-              {trip.NumberOfPeople}
+              {numberOfPeople}
             </TripDescription>
             <h2 className={styles.CanceledNote}>Canceled</h2>
           </div>

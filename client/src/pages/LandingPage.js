@@ -24,7 +24,7 @@ class LandingPage extends Component {
   }
 
   handleClick = () => {
-    axios.get("api/reviews/all").then(res => {
+    axios.get("api/trips/all").then(res => {
       console.log(res.data);
     });
   };

@@ -65,13 +65,6 @@ export default class MyReviews extends Component {
   handleDeleteProfile = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     const { email } = user;
-    /*
-    axios.post("api/users/delete", { email }).then(res => {
-      console.log(res);
-    });
- 
-    axios.post("api/bookedTrips/user")
-       */
 
     axios.post("/api/bookedTrips/userIdNull", { email }).then(res => {
       axios.post("api/users/delete", { email }).then(res => {

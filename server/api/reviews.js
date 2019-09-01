@@ -5,6 +5,7 @@ const Comment = require("../models/Comment");
 const Rating = require("../models/Rating");
 const BookedTrip = require("../models/BookedTrip");
 
+/*  mislim da se ne koristi
 router.get("/all", (req, res) => {
   Review.findAll({
     include: Comment
@@ -12,6 +13,7 @@ router.get("/all", (req, res) => {
     res.send(review);
   });
 });
+*/
 
 router.post("/one/bookedTripId", (req, res) => {
   const { bookedTripID } = req.body;
@@ -28,7 +30,7 @@ router.post("/one/bookedTripId", (req, res) => {
 
 router.post("/trip", (req, res) => {
   const { tripID } = req.body;
-  Review.findAll({ where: { TripID: tripID } })
+  Review.findAll({ where: { TripID: tripID }, include: Comment })
     .then(trips => {
       res.send(trips);
     })
