@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "./styles.module.css";
 import {
   Layout,
   ReviewItem,
@@ -13,45 +12,61 @@ export default class MyReviews extends Component {
     reviews: [],
     rerender: ""
   };
+
   componentDidMount = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     const { email } = user;
     axios.post("api/bookedTrips/reviewed", { email }).then(res => {
       const reviewedBookings = res.data;
       reviewedBookings.forEach(reviewedBooking => {
-        // Ipak Commetn nije asosicated sa book trip
-        // nastavi sredivat ovu komponentu
-        console.log(reviewedBooking);
         const {
           BookedTripID: bookedTripID,
-          TripID: tripID,
-          Date: date
+          Date: date,
+          Trip: trip,
+          Review: review
         } = reviewedBooking;
+        const { Heading: tripName, Slug: slug } = trip;
+        const { ReviewID: reviewID } = review;
         const reviewTemplate = {
           date,
           bookedTripID,
-          tripName: "",
+          tripName,
+          slug,
+          reviewID,
           rating: null,
           heading: "",
-          description: "",
-          slug: "",
-          reviewID: null
+          description: ""
         };
 
+        axios.post("api/reviews/id", { reviewID }).then(res => {
+          const { Comment, Rating } = res.data;
+          const { Heading, Description } = Comment;
+          const { Value } = Rating;
+          // reviewTemplate.reviewID = ReviewID;
+          reviewTemplate.heading = Heading;
+          reviewTemplate.description = Description;
+          reviewTemplate.rating = Value;
+          this.state.reviews.push(reviewTemplate);
+          console.log(reviewTemplate);
+          this.setState({ rerender: "yes" });
+        });
+
+        /*
         axios
           .all([
-            (axios.post("/api/trips/one/id", { tripID }).then(res => {
+            (
+              axios.post("/api/trips/one/id", { tripID }).then(res => {
               const { Heading, Slug } = res.data;
               reviewTemplate.tripName = Heading;
               reviewTemplate.slug = Slug;
             }),
             axios
-              .post("api/reviews/one/bookedTripId", { bookedTripID })
+              .post("api/reviews/id", { reviewID })
               .then(res => {
-                const { Comment, Rating, ReviewID } = res.data;
+                const { Comment, Rating } = res.data;
                 const { Heading, Decription } = Comment;
                 const { Value } = Rating;
-                reviewTemplate.reviewID = ReviewID;
+                // reviewTemplate.reviewID = ReviewID;
                 reviewTemplate.heading = Heading;
                 reviewTemplate.description = Decription;
                 reviewTemplate.rating = Value;
@@ -60,7 +75,7 @@ export default class MyReviews extends Component {
           .then(res => {
             this.state.reviews.push(reviewTemplate);
             this.setState({ rerender: "yes" });
-          });
+          });   */
       });
     });
   };
@@ -78,6 +93,7 @@ export default class MyReviews extends Component {
       window.location.reload();
     });
   };
+
   render() {
     const { reviews } = this.state;
     return (

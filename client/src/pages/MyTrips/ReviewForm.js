@@ -20,9 +20,7 @@ class ReviewForm extends Component {
     this.setState({ rating: newRating });
     console.log(this.state.rating);
   };
-  setRating = () => {
-    console.log();
-  };
+
   handleReviewSubmit = () => {
     const { rating, heading, description } = this.state;
     const {

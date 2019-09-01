@@ -60,8 +60,7 @@ class BookNow extends Component {
     };
 
     if (this.isFormFilled()) {
-      axios.post("/api/bookedTrips/book", { bookedTrip }).then(res => {
-        console.log(res);
+      axios.post("/api/bookedTrips/new", { bookedTrip }).then(res => {
         this.props.history.push("/my-trips");
       });
     }

@@ -9,6 +9,7 @@ const tripController = {
       })
       .catch(err => console.log(err));
   },
+
   async findTripBySlug(req, res) {
     Trip.findOne({
       where: { Slug: req.body.pathname },
@@ -20,6 +21,7 @@ const tripController = {
       })
       .catch(err => console.log(err));
   },
+
   async findTripById(req, res) {
     Trip.findOne({
       where: { TripID: req.body.tripID },

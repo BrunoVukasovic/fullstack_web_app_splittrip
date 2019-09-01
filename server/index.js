@@ -31,13 +31,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => res.send("INDEX"));
-app.use("/api/trips", require("./api/trips"));
-app.use("/api/register", require("./api/register"));
-app.use("/api/login", require("./api/login"));
-app.use("/api/bookedTrips", require("./api/bookedTrips"));
-app.use("/api/reviews", require("./api/reviews"));
-app.use("/api/users", require("./api/users"));
-app.use("/api/comments", require("./api/comments"));
+app.use("/api/trips", require("./routes/trips"));
+app.use("/api/register", require("./routes/register"));
+app.use("/api/login", require("./routes/login"));
+app.use("/api/bookedTrips", require("./routes/bookedTrips"));
+app.use("/api/reviews", require("./routes/reviews"));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/comments", require("./routes/comments"));
 
 app.use(express.static("public"));
 

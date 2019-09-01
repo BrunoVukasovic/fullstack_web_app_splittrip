@@ -25,7 +25,7 @@ class MyTrips extends Component {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       const { email } = user;
-      axios.post("/api/bookedTrips", { email }).then(res => {
+      axios.post("/api/bookedTrips/all", { email }).then(res => {
         console.log(res.data);
         const bookedTrips = res.data;
         const {
@@ -55,8 +55,8 @@ class MyTrips extends Component {
   };
 
   cancelTrip = bookedTrip => {
-    const { BookedTripID } = bookedTrip;
-    axios.patch("api/bookedTrips/cancel", { BookedTripID }).then(res => {
+    const { BookedTripID: bookedTripID } = bookedTrip;
+    axios.patch("api/bookedTrips/cancel", { bookedTripID }).then(res => {
       console.log(res.data);
       this.props.history.push("/my-trips");
     });
@@ -70,16 +70,17 @@ class MyTrips extends Component {
   };
 
   updatePastInBookedTripTable = bookedTrip => {
-    const { BookedTripID } = bookedTrip;
-    axios.patch("api/bookedTrips/past", { BookedTripID }).then(res => {
+    const { BookedTripID: bookedTripID } = bookedTrip;
+    axios.patch("api/bookedTrips/past", { bookedTripID }).then(res => {
       console.log(res.data);
     });
   };
 
   isDateInPast = tripDate => {
     const date = Date.parse(tripDate);
-    const now = Date.now();
-    if (date - now < 0) return true;
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    if (date < now) return true;
     else return false;
   };
 
