@@ -76,8 +76,8 @@ class Header extends Component {
 
               {isAuthenticated ? (
                 <>
-                  <Link to="/my-reviews" className={styles.MobileLink}>
-                    My Reviews
+                  <Link to="/my-profile" className={styles.MobileLink}>
+                    My Profile
                   </Link>
                   <Link
                     to="/"
@@ -105,8 +105,8 @@ class Header extends Component {
 
           {isAuthenticated ? (
             <>
-              <div className={styles.MyReviews}>
-                <NavLink to="/my-reviews">My Reviews</NavLink>
+              <div className={styles.MyProfile}>
+                <NavLink to="/my-profile">My Profile</NavLink>
               </div>
               <div className={styles.LogIn} onClick={this.onLogoutClick}>
                 <NavLink to="/">LOG OUT</NavLink>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { LandingPage, Register, MyTrips, Login, MyReviews } from "./pages";
+import { LandingPage, Register, MyTrips, Login, MyProfile } from "./pages";
 
 import { Trip } from "./components";
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ class App extends Component {
           <Route path="/zip" component={Trip} />
           <Route path="/rafting" component={Trip} />
           <Route path="/blue-cave" component={Trip} />
-          <Route path="/my-reviews" component={MyReviews} />
+          <Route path="/my-profile" component={MyProfile} />
         </Switch>
       </Router>
     );

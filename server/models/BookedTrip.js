@@ -35,7 +35,8 @@ const BookedTrip = sequelize.define("BookedTrip", {
     type: Sequelize.INTEGER
   },
   UserID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    allowNull: true
   }
 });
 

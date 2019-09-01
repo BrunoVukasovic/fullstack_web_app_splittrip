@@ -20,6 +20,28 @@ router.post("/", (req, res) => {
   });
 });
 
+router.post("/userIdNull", (req, res) => {
+  User.findOne({
+    where: { Email: req.body.email }
+  }).then(user => {
+    BookedTrip.findAll({
+      where: {
+        UserID: user.UserID
+      }
+    })
+      .then(bookedTrips => {
+        console.log("aa");
+        bookedTrips.forEach(bookedTrip => {
+          bookedTrip.update({
+            UserID: null
+          });
+        });
+        res.send(bookedTrips);
+      })
+      .catch(err => console.log(err));
+  });
+});
+
 router.post("/book", (req, res) => {
   const { email, tripID, date, numberOfPeople, message } = req.body.bookedTrip;
   User.findOne({

@@ -21,7 +21,8 @@ const Review = sequelize.define("Review", {
     field: "UpdatedAt"
   },
   BookedTripID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    allowNull: true
   },
   TripID: {
     type: Sequelize.INTEGER
@@ -35,7 +36,7 @@ const Review = sequelize.define("Review", {
 });
 
 Review.belongsTo(BookedTrip, { foreignKey: "BookedTripID" });
-Review.belongsTo(Comment, { foreignKey: "CommentID", onDelete: "CASCADE" });
+Review.belongsTo(Comment, { foreignKey: "CommentID" });
 Review.belongsTo(Rating, { foreignKey: "RatingID" });
 
 module.exports = Review;

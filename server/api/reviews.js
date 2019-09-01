@@ -13,20 +13,6 @@ router.get("/all", (req, res) => {
   });
 });
 
-router.post("/delete", (req, res) => {
-  console.log("!!!!!!!!!!!!!!!!!!!!!!");
-  console.log(req.body);
-  const { reviewID } = req.body;
-  Review.destroy({
-    where: {
-      ReviewID: reviewID
-    },
-    include: Comment
-  })
-    .then(res.send("Deleted"))
-    .catch(error => console.log(error));
-});
-
 router.post("/one/bookedTripId", (req, res) => {
   const { bookedTripID } = req.body;
   Review.findOne({
