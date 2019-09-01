@@ -20,7 +20,8 @@ router.post("/delete", (req, res) => {
   Review.destroy({
     where: {
       ReviewID: reviewID
-    }
+    },
+    include: Comment
   })
     .then(res.send("Deleted"))
     .catch(error => console.log(error));

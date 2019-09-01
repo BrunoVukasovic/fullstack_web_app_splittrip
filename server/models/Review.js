@@ -35,7 +35,7 @@ const Review = sequelize.define("Review", {
 });
 
 Review.belongsTo(BookedTrip, { foreignKey: "BookedTripID" });
-Review.belongsTo(Comment, { foreignKey: "CommentID" });
+Review.belongsTo(Comment, { foreignKey: "CommentID", onDelete: "CASCADE" });
 Review.belongsTo(Rating, { foreignKey: "RatingID" });
 
 module.exports = Review;
