@@ -11,4 +11,10 @@ router.post("/one/slug", (req, res) => tripController.findTripBySlug(req, res));
 
 router.get("/all", (req, res) => tripController.getAllTrips(req, res));
 
+router.get("/category/:id", (req, res) => {
+  Trip.findAll({ where: { CategoryID: req.params.id } }).then(trips =>
+    res.send(trips)
+  );
+});
+
 module.exports = router;

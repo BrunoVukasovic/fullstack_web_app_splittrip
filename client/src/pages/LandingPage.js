@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   Layout,
-  Container,
   MainImage,
   TripItem,
   TripItemHeading,
@@ -16,29 +15,10 @@ import raftingPhoto from "../images/4x3/rafting.jpg";
 import mainImage from "../images/plitvice.jpg";
 
 class LandingPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      trips: []
-    };
-  }
-
-  handleClick = () => {
-    axios.get("api/trips/all").then(res => {
-      console.log(res.data);
-    });
-  };
-
   render() {
     return (
       <Layout>
-        <button onClick={this.handleClick}>EVoooo me</button>
         <MainImage src={mainImage} />
-        <ul>
-          {this.state.trips.map(trip => (
-            <li key={trip.TripID}>{trip.Heading}</li>
-          ))}
-        </ul>
 
         <Link to="/krka">
           <TripItem>
@@ -87,8 +67,6 @@ class LandingPage extends Component {
             </TripItemDescription>
           </TripItem>
         </Link>
-
-        <Container />
       </Layout>
     );
   }
