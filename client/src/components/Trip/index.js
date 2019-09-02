@@ -5,6 +5,7 @@ import ContactUs from "./ContactUs";
 import BookNow from "./BookNow";
 import TripDescription from "./TripDescription";
 import ShowReviews from "./ShowReviews";
+import { throws } from "assert";
 
 class Trip extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Trip extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
+      this.setState({ fetched: false });
       this.getTrip();
     }
   }
