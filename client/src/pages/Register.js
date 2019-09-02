@@ -47,7 +47,6 @@ class Register extends Component {
         this.setState({ errors, invalid: true });
         window.scrollTo(0, 0);
       } else {
-        console.log(res.data);
         this.props.history.push("/login");
       }
     });

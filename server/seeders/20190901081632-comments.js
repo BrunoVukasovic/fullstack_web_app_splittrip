@@ -20,6 +20,30 @@ module.exports = {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut egestas mauris, vel consectetur dolor. Pellentesque eu egestas odio. Integer facilisis dolor massa, vitae ullamcorper odio pharetra volutpat. Integer nibh ipsum, mattis a facilisis in, lacinia a elit. Maecenas consequat odio lorem, et porttitor leo consequat eu. Aliquam tristique congue nisl non feugiat. Sed hendrerit efficitur ex sit amet mollis. Praesent libero odio, consequat et dui nec, facilisis viverra tellus.",
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
+        },
+        {
+          CommentID: 3234,
+          Heading: "Dost dobro",
+          Description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut egestas mauris, vel consectetur dolor. Pellentesque eu egestas odio. Integer facilisis dolor massa, vitae ullamcorper odio pharetra volutpat. Integer nibh ipsum, mattis a facilisis in, lacinia a elit. Maecenas consequat odio lorem, et porttitor leo consequat eu. Aliquam tristique congue nisl non feugiat. Sed hendrerit efficitur ex sit amet mollis. Praesent libero odio, consequat et dui nec, facilisis viverra tellus.",
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          CommentID: 4234,
+          Heading: "I loved it",
+          Description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut egestas mauris, vel consectetur dolor. Pellentesque eu egestas odio. Integer facilisis dolor massa, vitae ullamcorper odio pharetra volutpat. Integer nibh ipsum, mattis a facilisis in, lacinia a elit. Maecenas consequat odio lorem, et porttitor leo consequat eu. Aliquam tristique congue nisl non feugiat. Sed hendrerit efficitur ex sit amet mollis. Praesent libero odio, consequat et dui nec, facilisis viverra tellus.",
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          CommentID: 5234,
+          Heading: "Best trip of my life",
+          Description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut egestas mauris, vel consectetur dolor. Pellentesque eu egestas odio. Integer facilisis dolor massa, vitae ullamcorper odio pharetra volutpat. Integer nibh ipsum, mattis a facilisis in, lacinia a elit. Maecenas consequat odio lorem, et porttitor leo consequat eu. Aliquam tristique congue nisl non feugiat. Sed hendrerit efficitur ex sit amet mollis. Praesent libero odio, consequat et dui nec, facilisis viverra tellus.",
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
         }
       ],
       {}

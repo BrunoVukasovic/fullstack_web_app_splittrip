@@ -9,7 +9,7 @@ module.exports = {
           Email: "a@a.com",
           Password:
             "$2b$10$W1NEykljoKik6SeJqmBahuLMyQZsWLRgpLw1LMyiuVhTCIUIJMPpG",
-          FirstName: "Ante",
+          FirstName: "Mate",
           LastName: "User",
           Phone: 98
         }

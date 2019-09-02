@@ -49,7 +49,6 @@ class MyProfile extends Component {
           reviewTemplate.description = Description;
           reviewTemplate.rating = Value;
           this.state.reviews.push(reviewTemplate);
-          console.log(reviewTemplate);
           this.setState({ rerender: "yes" });
         });
       });

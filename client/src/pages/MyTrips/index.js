@@ -26,7 +26,6 @@ export default class MyTrips extends Component {
     if (user) {
       const { email } = user;
       axios.post("/api/bookedTrips/all", { email }).then(res => {
-        console.log(res.data);
         const bookedTrips = res.data;
         const {
           upcomingTrips,

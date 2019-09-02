@@ -24,7 +24,6 @@ class Login extends Component {
 
   LogOut = () => {
     axios.get("/api/login/logout").then(res => {
-      console.log(res);
       this.props.removeUserFromStore();
       localStorage.clear();
     });
@@ -37,7 +36,6 @@ class Login extends Component {
     axios
       .post("/api/login", { email, password })
       .then(res => {
-        console.log(res.data);
         const {
           FirstName: firstName,
           LastName: lastName,

@@ -22,6 +22,33 @@ module.exports = {
           RatingID: 4,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
+        },
+        {
+          ReviewID: 3234,
+          BookedTripID: 3234,
+          TripID: 2,
+          CommentID: 3234,
+          RatingID: 4,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          ReviewID: 4234,
+          BookedTripID: 4234,
+          TripID: 3,
+          CommentID: 4234,
+          RatingID: 5,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          ReviewID: 5234,
+          BookedTripID: 5234,
+          TripID: 4,
+          CommentID: 5234,
+          RatingID: 5,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
         }
       ],
       {}
