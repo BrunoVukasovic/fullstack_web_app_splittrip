@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import cn from "classnames";
 import { Container, ReviewItem } from "../";
 import styles from "./styles.module.css";
 
@@ -8,6 +9,7 @@ export default class ShowReviews extends Component {
     reviews: [],
     rerender: ""
   };
+
   componentDidMount = () => {
     const { tripID } = this.props;
 
@@ -17,8 +19,6 @@ export default class ShowReviews extends Component {
       reviews.forEach(review => {
         const {
           BookedTripID: bookedTripID,
-          CommentID: commentID,
-          RatingID: ratingID,
           Comment: comment,
           Rating: rating
         } = review;
@@ -41,33 +41,6 @@ export default class ShowReviews extends Component {
             reviews.push(reviewTemplate);
             this.setState({ rerender: "yes" });
           });
-
-        /*
-        axios
-          .all([
-            axios
-              .post("api/bookedTrips/userAndDate", { bookedTripID })
-              .then(res => {
-                const { Date, FirstName } = res.data;
-                reviewTemplate.date = Date;
-                reviewTemplate.firstName = FirstName;
-              })
-            
-            axios.post("api/comments/one", { commentID }).then(res => {
-              const { Heading, Description } = res.data;
-              reviewTemplate.heading = Heading;
-              reviewTemplate.description = Description;
-            }),  
-            
-            axios.post("api/reviews/rating", { ratingID }).then(res => {
-              reviewTemplate.rating = res.data.Value;
-            }) 
-          ])
-          .then(res => {
-            const { reviews } = this.state;
-            reviews.push(reviewTemplate);
-            this.setState({ rerender: "yes" });
-          }); */
       });
     });
   };
@@ -79,7 +52,7 @@ export default class ShowReviews extends Component {
     } else head = "Reviews: ";
 
     return (
-      <Container className={styles.ReviewContainer}>
+      <Container className={cn(styles.ReviewContainer, "BorderTop")}>
         <div className={styles.LeftReviewPanel}>
           <h2>{reviews.length + " " + head}</h2>
         </div>

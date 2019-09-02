@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import classNames from "classnames";
+import cn from "classnames";
 import { Link } from "react-router-dom";
 
 import Container from "../Container";
@@ -46,7 +46,7 @@ class Header extends Component {
     return (
       <header className={styles.Header}>
         <Container className={styles.Container}>
-          <div className={styles.Logo}>
+          <div className={cn(styles.Logo, "ColorLogoBlue")}>
             <Logo />
           </div>
           <div className={styles.MobileDropdown}>
@@ -118,16 +118,14 @@ class Header extends Component {
             </div>
           )}
 
-          <div
-            className={classNames(styles.LandToursDropDown, styles.Dropdown)}
-          >
+          <div className={cn(styles.LandToursDropDown, "ColorLogoBlue")}>
             <NavLinkDrpodown to="/land-tours">
               Land Tours <FontAwesomeIcon icon="angle-double-down" />
             </NavLinkDrpodown>
             <DropdownContent>
               <Link to="/krka">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image1]: true
                   })}
@@ -137,7 +135,7 @@ class Header extends Component {
               </Link>
               <Link to="/plitvice">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image2]: true
                   })}
@@ -148,7 +146,7 @@ class Header extends Component {
 
               <Link to="/dubrovnik">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image5]: true
                   })}
@@ -158,7 +156,7 @@ class Header extends Component {
               </Link>
               <Link to="/mostar">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image6]: true
                   })}
@@ -168,14 +166,14 @@ class Header extends Component {
               </Link>
             </DropdownContent>
           </div>
-          <div className={classNames(styles.SeaToursDropDown, styles.Dropdown)}>
+          <div className={cn(styles.SeaToursDropDown, styles.Dropdown)}>
             <NavLinkDrpodown to="/sea-tours">
               Sea Tours <FontAwesomeIcon icon="angle-double-down" />
             </NavLinkDrpodown>
             <DropdownContent>
               <Link to="/blue-cave">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image1]: true
                   })}
@@ -186,7 +184,7 @@ class Header extends Component {
 
               <Link to="/brac">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image3]: true
                   })}
@@ -196,7 +194,7 @@ class Header extends Component {
               </Link>
               <Link to="/brac">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image4]: true
                   })}
@@ -206,7 +204,7 @@ class Header extends Component {
               </Link>
               <Link to="/sailing">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image5]: true
                   })}
@@ -216,16 +214,14 @@ class Header extends Component {
               </Link>
             </DropdownContent>
           </div>
-          <div
-            className={classNames(styles.AdventuresDropDown, styles.Dropdown)}
-          >
+          <div className={cn(styles.AdventuresDropDown, styles.Dropdown)}>
             <NavLinkDrpodown to="/adventures">
               Adventures <FontAwesomeIcon icon="angle-double-down" />
             </NavLinkDrpodown>
             <DropdownContent>
               <Link to="/rafting">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image1]: true
                   })}
@@ -235,7 +231,7 @@ class Header extends Component {
               </Link>
               <Link to="/zip">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image2]: true
                   })}
@@ -245,7 +241,7 @@ class Header extends Component {
               </Link>
               <Link to="/canyoning">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image3]: true
                   })}
@@ -256,7 +252,7 @@ class Header extends Component {
 
               <Link to="/diving">
                 <img
-                  className={classNames({
+                  className={cn({
                     [styles.DropImage]: true,
                     [styles.Image5]: true
                   })}

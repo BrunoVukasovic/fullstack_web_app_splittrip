@@ -4,6 +4,6 @@ import styles from "./styles.module.css";
 
 export default () => (
   <footer className={styles.Footer}>
-    <Container className={styles.Container}>Footer</Container>
+    <Container className={"BorderTop"}>Footer</Container>
   </footer>
 );

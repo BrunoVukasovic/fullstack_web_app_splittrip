@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import cn from "classnames";
 import { Link } from "react-router-dom";
 import styles from "../styles/form.module.css";
 import { Container, Layout } from "../components";
@@ -96,7 +97,7 @@ class Login extends Component {
               <input type="submit" className={"Button"} value={"Login"} />
             </form>
 
-            <div className={styles.Register}>
+            <div className={cn(styles.Register, "BorderTop")}>
               <label className={styles.Label}>Dont't have an account?</label>
               <Link to="/register">
                 <button className={"Button"}>Register</button>

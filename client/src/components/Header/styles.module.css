@@ -18,8 +18,6 @@
 }
 
 .Logo {
-  color: var(--color-logo-blue, blue);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   grid-column: 1/2;
   grid-row: 1/3;
 }
@@ -67,7 +65,6 @@
   white-space: nowrap;
   font-size: 14px;
   font-weight: normal;
-  color: var(--color-logo-blue, blue);
 }
 
 .NavLink:first-child {
@@ -76,12 +73,7 @@
 
 .NavLink__active,
 .NavLink:hover {
-  color: var(--color-logo-blue, blue);
   font-weight: bold;
-}
-
-.DropDown {
-  color: var(--color-logo-blue, blue);
 }
 
 .DropdownContent {
@@ -199,7 +191,5 @@
   .MobileDropdown:hover .MobileDropbtn {
     background-color: white;
     color: var(--color-logo-blue, blue);
-    color: var(--color-logo-blue, blue);
-    /* border: 2px solid var(--color-gold); */
   }
 }

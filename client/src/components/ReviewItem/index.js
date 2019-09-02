@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
-
+import cn from "classnames";
 import StarRatingComponent from "react-star-rating-component";
 
 export default class ReviewItem extends Component {
@@ -51,7 +51,7 @@ export default class ReviewItem extends Component {
     const name = firstName ? firstName : tripName;
 
     return (
-      <div className={styles.ReviewItem}>
+      <div className={cn(styles.ReviewItem, "BorderTop")}>
         <p>{name + ", " + this.getMonthNameFromNumber(month) + " " + year}</p>
         <StarRatingComponent
           className={styles.RatingStar}

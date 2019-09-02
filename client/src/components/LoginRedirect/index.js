@@ -1,13 +1,12 @@
 import React from "react";
-import Layout from "../Layout";
-import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
+import { Container } from "..";
 
 export default ({ children }) => (
-  <Layout>
+  <Container>
     <p>{children}</p>
     <Link to="/login">
-      <button className={styles.LoginButton}>Login</button>
+      <button className={"Button"}>Login</button>
     </Link>
-  </Layout>
+  </Container>
 );

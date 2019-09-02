@@ -6,7 +6,6 @@ import {
   TripDescription,
   Container
 } from "../../components";
-import axios from "axios";
 import ReviewForm from "./ReviewForm";
 
 export default class PastTrips extends Component {

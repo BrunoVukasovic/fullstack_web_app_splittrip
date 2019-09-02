@@ -194,9 +194,11 @@ class MyTrips extends Component {
       }
     } else {
       return (
-        <LoginRedirect>
-          You must be logged in to view booked trips!
-        </LoginRedirect>
+        <Layout>
+          <LoginRedirect>
+            You must be logged in to view booked trips!
+          </LoginRedirect>
+        </Layout>
       );
     }
   }

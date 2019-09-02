@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styles from "../../styles/form.module.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import { ButtonContainer } from "../";
+import { ButtonContainer, LoginRedirect } from "../";
+import Container from "../Container";
 
 class BookNow extends Component {
   state = {
@@ -67,7 +68,7 @@ class BookNow extends Component {
   };
 
   render() {
-    const { firstName, lastName, phone, errorMessage } = this.state;
+    const { firstName, lastName, phone, errorMessage, email } = this.state;
     const { heading, handleClose } = this.props;
 
     return (
@@ -75,71 +76,80 @@ class BookNow extends Component {
         <span onClick={handleClose} className={styles.Close}>
           &times;
         </span>
-        <div>
-          <h2>Book now!</h2>
-          <div>
-            <h3>Trip: {heading}</h3>
-            <label className={styles.ErrorInput}>{errorMessage}</label>
-            <input
-              className={styles.Input}
-              type="text"
-              name="firstName"
-              placeholder="Your first name.."
-              onChange={this.onChange}
-              value={firstName}
-            />
+        {email ? (
+          <Container>
+            <div>
+              <h2>Book now!</h2>
+              <div>
+                <h3>Trip: {heading}</h3>
+                <label className={styles.ErrorInput}>{errorMessage}</label>
+                <input
+                  className={styles.Input}
+                  type="text"
+                  name="firstName"
+                  placeholder="Your first name.."
+                  onChange={this.onChange}
+                  value={firstName}
+                />
 
-            <input
-              className={styles.Input}
-              type="text"
-              name="lastName"
-              placeholder="Your last name.."
-              onChange={this.onChange}
-              value={lastName}
-            />
-            <input
-              className={styles.Input}
-              type="number"
-              name="phone"
-              placeholder="Your phone number.."
-              onChange={this.onChange}
-              value={phone}
-            />
+                <input
+                  className={styles.Input}
+                  type="text"
+                  name="lastName"
+                  placeholder="Your last name.."
+                  onChange={this.onChange}
+                  value={lastName}
+                />
+                <input
+                  className={styles.Input}
+                  type="number"
+                  name="phone"
+                  placeholder="Your phone number.."
+                  onChange={this.onChange}
+                  value={phone}
+                />
 
-            <input
-              className={styles.Input}
-              type="date"
-              name="date"
-              onChange={this.onChange}
-              value={this.state.date}
-            />
-            <input
-              className={styles.Input}
-              type="number"
-              name="numberOfPeople"
-              placeholder="Number of people..."
-              onChange={this.onChange}
-              value={this.state.numberOfPeople}
-            />
+                <input
+                  className={styles.Input}
+                  type="date"
+                  name="date"
+                  onChange={this.onChange}
+                  value={this.state.date}
+                />
+                <input
+                  className={styles.Input}
+                  type="number"
+                  name="numberOfPeople"
+                  placeholder="Number of people..."
+                  onChange={this.onChange}
+                  value={this.state.numberOfPeople}
+                />
 
-            <input
-              className={styles.Input}
-              type="text"
-              name="message"
-              placeholder="Your message.."
-              onChange={this.onChange}
-              value={this.state.message}
-            />
-          </div>
-        </div>
-        <ButtonContainer>
-          <button onClick={handleClose} className={styles.Cancle}>
-            Cancle
-          </button>
-          <button onClick={this.handleBookNowSubmit} className={styles.Submit}>
-            Submit
-          </button>
-        </ButtonContainer>
+                <input
+                  className={styles.Input}
+                  type="text"
+                  name="message"
+                  placeholder="Your message.."
+                  onChange={this.onChange}
+                  value={this.state.message}
+                />
+              </div>
+            </div>
+            <ButtonContainer>
+              <button onClick={handleClose} className={styles.Cancle}>
+                Cancle
+              </button>
+              <button
+                onClick={this.handleBookNowSubmit}
+                className={styles.Submit}
+              >
+                Submit
+              </button>
+            </ButtonContainer>
+          </Container>
+        ) : (
+          <LoginRedirect>You must be logged in to book a trip!</LoginRedirect>
+        )}
       </div>
     );
   }

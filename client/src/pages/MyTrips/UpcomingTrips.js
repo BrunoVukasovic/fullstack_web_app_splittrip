@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styles from "./styles.module.css";
 import { TripItem, TripItemHeading, TripDescription } from "../../components";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default class UpcomingTrips extends Component {
   state = {
