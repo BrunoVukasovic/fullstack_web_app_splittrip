@@ -118,7 +118,13 @@ class Header extends Component {
             </div>
           )}
 
-          <div className={cn(styles.LandToursDropDown, "ColorLogoBlue")}>
+          <div
+            className={cn(
+              styles.LandToursDropDown,
+              styles.Dropdown,
+              "ColorLogoBlue"
+            )}
+          >
             <NavLinkDrpodown to="/land-tours">
               Land Tours <FontAwesomeIcon icon="angle-double-down" />
             </NavLinkDrpodown>
