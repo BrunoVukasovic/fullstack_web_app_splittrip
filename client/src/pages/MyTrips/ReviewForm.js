@@ -18,7 +18,6 @@ class ReviewForm extends Component {
 
   ratingChanged = newRating => {
     this.setState({ rating: newRating });
-    console.log(this.state.rating);
   };
 
   handleReviewSubmit = () => {

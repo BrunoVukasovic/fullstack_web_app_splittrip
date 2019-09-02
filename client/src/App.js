@@ -37,6 +37,12 @@ class App extends Component {
           <Route path="/rafting" component={Trip} />
           <Route path="/blue-cave" component={Trip} />
           <Route path="/brac" component={Trip} />
+          <Route path="/canyoning" component={Trip} />
+          <Route path="/diving" component={Trip} />
+          <Route path="/dubrovnik" component={Trip} />
+          <Route path="/mostar" component={Trip} />
+          <Route path="/plitvice" component={Trip} />
+          <Route path="/sailing" component={Trip} />
         </Switch>
       </Router>
     );

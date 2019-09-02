@@ -40,7 +40,6 @@ export default class PastTrips extends Component {
       Reviewed: reviewed
     } = bookedTrip;
     const { slug, heading } = this.state;
-    const tripDescriptionStyle = { fontSize: "larger" };
     return (
       <Container>
         <TripItem>

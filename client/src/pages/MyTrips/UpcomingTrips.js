@@ -23,7 +23,6 @@ export default class UpcomingTrips extends Component {
     const { bookedTrip, travelerName } = this.props;
     const { Date: date, NumberOfPeople: numberOfPeople } = bookedTrip;
     const { heading, slug } = this.state;
-    const tripDescriptionStyle = { fontSize: "larger" };
     return (
       <Link to={slug}>
         <TripItem>

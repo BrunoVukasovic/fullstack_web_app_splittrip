@@ -25,18 +25,7 @@ class Trip extends Component {
   }
 
   componentDidMount() {
-    const { pathname } = this.props.location;
-
-    axios.post("/api/trips/one/slug", { pathname }).then(res => {
-      const { TripID, Heading, Description, Slug } = res.data;
-      this.setState({
-        tripID: TripID,
-        heading: Heading,
-        description: Description,
-        slug: Slug,
-        fetched: true
-      });
-    });
+    this.getTrip();
   }
 
   handleContactClick = () => {
@@ -50,6 +39,26 @@ class Trip extends Component {
   handleClose = () => {
     this.setState({ contactUs: false, bookNow: false });
   };
+
+  getTrip = () => {
+    const { pathname } = this.props.location;
+    axios.post("/api/trips/one/slug", { pathname }).then(res => {
+      const { TripID, Heading, Description, Slug } = res.data;
+      this.setState({
+        tripID: TripID,
+        heading: Heading,
+        description: Description,
+        slug: Slug,
+        fetched: true
+      });
+    });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.getTrip();
+    }
+  }
 
   render() {
     const { heading, description, slug, tripID, fetched } = this.state;
