@@ -10,5 +10,4 @@ export { default as TripItemDescription } from "./TripItemDescription";
 export { default as ButtonContainer } from "./ButtonContainer";
 export { default as LoginRedirect } from "./LoginRedirect";
 export { default as Spinner } from "./Spinner";
-export { default as TripDescription } from "./TripDescription";
 export { default as ReviewItem } from "./ReviewItem";

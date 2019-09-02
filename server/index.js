@@ -37,9 +37,6 @@ app.use("/api/login", require("./routes/login"));
 app.use("/api/bookedTrips", require("./routes/bookedTrips"));
 app.use("/api/reviews", require("./routes/reviews"));
 app.use("/api/users", require("./routes/users"));
-app.use("/api/comments", require("./routes/comments"));
-
-app.use(express.static("public"));
 
 app.listen(PORT, () => {
   console.log(`Server listening on the port ${PORT}...`);

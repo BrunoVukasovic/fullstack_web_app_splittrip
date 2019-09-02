@@ -31,6 +31,12 @@ const tripController = {
         res.send(trip);
       })
       .catch(err => console.log(err));
+  },
+
+  async findByCategoryId(req, res) {
+    Trip.findAll({ where: { CategoryID: req.params.id } })
+      .then(trips => res.send(trips))
+      .catch(err => console.log(err));
   }
 };
 

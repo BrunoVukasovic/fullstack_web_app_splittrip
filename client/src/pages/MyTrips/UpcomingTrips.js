@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
-import { TripItem, TripItemHeading, TripDescription } from "../../components";
+import {
+  TripItem,
+  TripItemHeading,
+  TripItemDescription
+} from "../../components";
 import { Link } from "react-router-dom";
 
 export default class UpcomingTrips extends Component {
@@ -13,12 +17,6 @@ export default class UpcomingTrips extends Component {
     const { Trip: trip } = this.props.bookedTrip;
     const { Heading: heading, Slug: slug } = trip;
     this.setState({ heading, slug });
-    /*
-    axios.post("/api/trips/one/id", { tripID }).then(res => {
-      const { Heading, Description, Slug } = res.data;
-      this.setState({ heading: Heading, description: Description, slug: Slug });
-    });
-  */
   };
 
   render() {
@@ -38,7 +36,7 @@ export default class UpcomingTrips extends Component {
           <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
 
           <div className={styles.myTripsDiv}>
-            <TripDescription style={tripDescriptionStyle}>
+            <TripItemDescription>
               <strong>Lead Traveler Name: </strong>
               {travelerName}
               <br />
@@ -47,7 +45,7 @@ export default class UpcomingTrips extends Component {
               <br />
               <strong>Group size: </strong>
               {numberOfPeople}
-            </TripDescription>
+            </TripItemDescription>
             <button
               onClick={() => this.props.cancelTrip(bookedTrip)}
               className={styles.CancelButton}

@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Trip = require("../models/Trip");
 const BookedTrip = require("../models/BookedTrip");
 const Review = require("../models/Review");
-const Comment = require("../models/Comment");
 
 const bookedTripController = {
   async findAllByUserEmail(req, res) {

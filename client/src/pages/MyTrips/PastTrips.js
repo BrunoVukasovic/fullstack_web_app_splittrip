@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import {
   TripItem,
   TripItemHeading,
-  TripDescription,
+  TripItemDescription,
   Container
 } from "../../components";
 import ReviewForm from "./ReviewForm";
@@ -53,7 +53,7 @@ export default class PastTrips extends Component {
           <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
 
           <div className={styles.myTripsDiv}>
-            <TripDescription style={tripDescriptionStyle}>
+            <TripItemDescription>
               <strong>Lead Traveler Name: </strong>
               {travelerName}
               <br />
@@ -62,7 +62,7 @@ export default class PastTrips extends Component {
               <br />
               <strong>Group size: </strong>
               {numberOfPeople}
-            </TripDescription>
+            </TripItemDescription>
             {reviewed ? null : (
               <button className={"Button"} onClick={this.leaveAReviewClicked}>
                 Leave a review!

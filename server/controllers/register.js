@@ -26,8 +26,6 @@ const registerController = {
       errors.push({ message: "Passwords do not match" });
     }
 
-    // dodaj provjeru kvalitete passworda (npm password-validator)
-
     if (errors.length > 0) {
       const userError = {
         errors,

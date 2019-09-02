@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
-const Review = require("./Review");
 
 const Rating = sequelize.define("Rating", {
   RatingID: {
@@ -21,7 +20,5 @@ const Rating = sequelize.define("Rating", {
     field: "UpdatedAt"
   }
 });
-
-// Rating.hasMany(Review, {foreignKey: "RatingID"});
 
 module.exports = Rating;

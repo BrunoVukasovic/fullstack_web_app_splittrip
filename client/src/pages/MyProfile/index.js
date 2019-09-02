@@ -76,8 +76,7 @@ class MyProfile extends Component {
       <Layout>
         <Container>
           <ButtonContainer>
-            <button className={"Button"}>Update info</button>
-            <button className={"Button"} onClick={this.handleDeleteProfile}>
+            <button className={"Cancle"} onClick={this.handleDeleteProfile}>
               Delete profile
             </button>
           </ButtonContainer>

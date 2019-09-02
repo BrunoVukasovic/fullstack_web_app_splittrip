@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styles from "./styles.module.css";
-import { TripItem, TripItemHeading, TripDescription } from "../../components";
+import {
+  TripItem,
+  TripItemHeading,
+  TripItemDescription
+} from "../../components";
 import { Link } from "react-router-dom";
 
 export default class UpcomingTrips extends Component {
@@ -32,7 +36,7 @@ export default class UpcomingTrips extends Component {
           <TripItemHeading>{"Trip: " + heading}</TripItemHeading>
 
           <div className={styles.myTripsDiv}>
-            <TripDescription style={tripDescriptionStyle}>
+            <TripItemDescription>
               <strong>Lead Traveler Name: </strong>
               {travelerName}
               <br />
@@ -41,7 +45,7 @@ export default class UpcomingTrips extends Component {
               <br />
               <strong>Group size: </strong>
               {numberOfPeople}
-            </TripDescription>
+            </TripItemDescription>
             <h2 className={styles.CanceledNote}>Canceled</h2>
           </div>
         </TripItem>

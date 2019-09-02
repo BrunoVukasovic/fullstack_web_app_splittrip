@@ -28,20 +28,6 @@ p {
   line-height: 1.6;
 }
 
-.ButtonSmall {
-  background-color: white;
-  border: 3px solid #008cba;
-  color: black;
-  padding: 8px 8px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-
 .Button {
   background-color: white;
   border: 3px solid #008cba;
@@ -57,8 +43,7 @@ p {
   cursor: pointer;
 }
 
-.Button:hover,
-.ButtonSmall:hover {
+.Button:hover {
   background-color: #008cba;
   color: white;
 }

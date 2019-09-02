@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
-const Review = require("./Review");
 
 const Comment = sequelize.define("Comment", {
   CommentID: {
@@ -24,7 +23,5 @@ const Comment = sequelize.define("Comment", {
     field: "UpdatedAt"
   }
 });
-
-// Comment.hasOne(Review, { foreignKey: "CommentID" });
 
 module.exports = Comment;
