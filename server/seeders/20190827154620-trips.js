@@ -16,6 +16,16 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
+          Heading: "Sailing",
+          Description:
+            "Set sail with us and cruise to the islands of Šolta, Brač or Čiovo on an unforgettable sailing tour. Anchor in secluded bay, discover rich underwater life while snorkeling. Visibility in the Adriatic can be clear up to 30 meters so snorkeling is a must. <br /> <br /> Swim in crystal clear Adriatic sea while our chef prepares light Dalmatian lunch with fresh ingredients. During lunch indigenous Croatian eco-wines will be served on the boat. <br /> <br /> Tour departs at 10 am and return to Split is around 5 pm. There is no strict route here as sailing depends on the weather conditions but we know that islands Brac, Solta and Ciovo will reveal their pristine beauty and implant unforgettable memories. <br /> <br /> Maximum number of person on the boat is 8. Boat can also be rented for private sail. <br /> <br /> This one day trip is the perfect choice to explore the whole area around Split. <br /> <br />",
+          Price: 100,
+          Slug: "/sailing",
+          CategoryID: 2,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
           Heading: "Blue Cave",
           Description:
             "For all sea lovers, but also for those who want to see something unique, Blue cave tour from Split is perfect excursion! Jump on speedboat for an early morning exciting<strong> 90 minutes ride to Biševo Island </strong>and the Blue cave visit from Split. We will arrive around 09:30h, just in time for memorable scenery when the sunlight reflects through the sea and illuminates the entire cave in <strong>aquamarine blue light</strong>. Listen the story from official local guide of how the cave was discovered and what makes the magic. <br /> <br /> After the cave tour, we are back on a speedboat to our next attraction which is <strong>Monk Seal cave</strong>, where the Mediterranean monk seal used to reside. Passing beside picturesque southern side of the island Vis, where full of caves, beaches and diverse forms of nature and rocks caused by changes on the sea, our next destination is Stiniva bay, voted best European beach in 2016., where we'll stop for a swim in the unique narrow bay that ends with a white pebbles beach. <br /> <br /> Afterwards we stop on Budikovac island for a longer swim on hidden white pebble beach with turquoise sea color. On our way to the island of Hvar you will enjoy the panoramic view of the amazing archipelago of Pakleni islands – the oldest and the most famous Hvar’s resort, spacious lagoon with shallow sandy beaches, surrounded by pine forest, fragrant heather and rosemary bushes and various exotic plants. <br /> <br /> Free time for a lunch in Palmizana at Pakleni islands. Our final stop is town of Hvar, on the island Hvar, <strong> one of most beautiful harbours of the world</strong>, with beautiful nature and surroundings, as well a rich cultural heritage, with walls dating back to the 7th century, and many 15th-17th century Venetian era noble houses. Explore the town by yourself and enjoy the real Mediterranean atmosphere and local hospitality. <br /> <br /> Our Blue cave and Hvar tour from Split ends with a quiet ride on the smooth sea at sunset, so you can enjoy all the beauty and all the colors of the sunset at the open sea. There you will have more time for swimming and sunbathing on a beautiful pebble beach. <br /> <br /> <strong>NOTE:</strong> Guest should have proper clothing, wind jacket, bathing suite, hat, additional clothes for change, towel, sunglasses and suncream. <br /> <br /> ",
@@ -52,6 +62,56 @@ module.exports = {
           Price: 100,
           Slug: "/brac",
           CategoryID: 2,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          Heading: "Canyoning",
+          Description:
+            "We will pick you up at arranged meeting points (if you take a transfer). Following the highway we will reach Zadvarje. Getting ready for the truly exciting adventure along the Cetina River canyon follows our arrival. After instructors provide you with a life-jacket, a helmet, a long neoprene pants and jacket, the small expedition will be ready for the unknown. Our tour guide will help you to get familiar with the route and rules of the excursion to ensure the safety of all participants. <br /> <br /> What is canyoning? You slowly go down the canyon while the sound of the river amplifies, so after a ten-minute walk you will find yourself deep in the canyon carved by Cetina River. You walk through the river and rapids, pass through subterranean tunnels, swim in natural river basins, bypass waterfalls and lakes...That is canyoning experience! Swimming in the lake into which the waterfall thunders from a height of 60m and the climb to the “step” behind the “water curtains” will be an experience worth remembering. For thousands of years Cetina River has been flowing persistently through the canyon, creating magical shapes in its bed. Crystal clear and pleasant for swimming, the Cetina River today represents the genuine experience of the intact nature with its 180 meters high cliffs, wild rapids, basins, lakes, subterranean tunnels and a 60 meters high waterfall called Gubavica. <br /> <br /> Equipment and staff: All equipment used is registered and certified at the EU. All participants must wear Personal Flotation Devices and helmets at all times while on the river. <br /> <br /> All guides are registered at Croatian mountain rescue service. Our tour leaders are IRF (International rafting federation) certified. Staff members speak Croatian and English.",
+          Price: 100,
+          Slug: "/canyoning",
+          CategoryID: 3,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          Heading: "Diving",
+          Description:
+            "Safety and a serious approach are the most important for relaxed diving, and for those reasons our priorities are quality choice and education of the guides, and a quality preparation before the dive. Discover a new dimension of the world with us and take our diving courses done by old American diving school PADI (Professional Association of Diving Instructors), oldest and biggest diving organization in the world. <br /> <br /> We offer you a diving trips on attractive diving locations on daily basis. <br /> <br /> Diving trips can be half-day or one-day trips. <br /> <br /> Half-day diving trip consist of one dive on attractive location of your choice. Departure is at 10:00 AM, return to Split at 14:00 PM. <br /> <br /> One-day diving trip consists of two dives on attractive locations of your choice. Departure is at 10:00 AM, arrival to Split at 16:00 PM. <br /> <br /> Locations of diving trips are: <br /> <br /> Island Čiovo (Wreck Pajo and Red rocks) <br /> <br /> Kluda <br /> <br /> Kraljevac (Wreck Dube) <br /> <br /> Island Šolta (Wreck Ribolovac) <br /> <br /> Island Brač (Cave Dragon’s eye) <br /> <br /> Island Hvar, and other locations upon agreement. <br /> <br /> <br /> <br /> Besides trips, we offer diving courses are for all age 8-78 years old candidates. <br /> <br /> Also you can do many specialities like: boat diving, deep diving, dry suit diving, night diving, search and recovery, underwater navigation, underwater photography, wreck diving. <br /> <br /> ",
+          Price: 100,
+          Slug: "/diving",
+          CategoryID: 3,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          Heading: "Dubrovnik",
+          Description:
+            "Excursion starts at the pre-arranged meeting point, where you will begin a full day of experiencing and discovering famous walls of Dubrovnik, a UNESCO World Heritage site. <br /> <br /> Drive in air-conditioned van goes along the winding coast and stops at several overlooks for amazing panoramic views of the Dalmatian islands. <br /> <br /> Arrival to Dubrovnik (Croatia's most famous medieval city and also the “pearl of the Adriatic”) is around noon. <br /> <br /> The tour begins at the monumental Pile Gate, built on the top of Stradun, a splendid main promenade street of the Old Town. You will get to sightsee Franciscan Monastery (its cloister is one of the most impressive sites in the city!) then stop by the oldest pharmacy in Europe opened in 1317. Nearby stands Sponza Palace, notable for its portico with columns and elaborate stone carvings which today houses the State Archives. <br /> <br /> Tour ends with a visit to the Cathedral where you will learn more how it was built on the ruins of a 12th century church, then destroyed by the great earthquake of 1667. The guided tour lasts for about an hour and a half and after sightseeing the most important parts of the Old Town, there's time to go back and explore its hidden corners by yourself. You can climb the stairs to the walls that let you walk around the Old Town from high up on its ramparts or even take a cable car for a amazing view of the famous red tile roofs and the sea. <br /> <br /> Dubrovnik leaves nobody unimpressed! <br /> <br /> <strong>Bring passport!</strong> <br /> <br />",
+          Price: 100,
+          Slug: "/dubrovnik",
+          CategoryID: 1,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          Heading: "Mostar",
+          Description:
+            "The journey starts with driving between the Dalmatian coast and hinterland. <br /> <br /> Our first destination is Mostar (ancient Ottoman city known as ˈthe window to the Orient'), where you will get to explore the Old Bazaar, full of picturesque shops and crafts workshops, then sightsee the Mosque. <br /> <br /> Afterwards, you will enjoy a walk along the famous 16th century Turkish bridge. After guided tour you’ll have enough free time for shopping unique souvenirs and opportunity to taste authentic Bosnian specialties like ćevapi, pita or burek. <br /> <br /> Last stop is amazing Kravica Waterfall to cool-off before we return to Split. <br /> <br /> <strong>Bring passport!</strong> <br /> <br /> ",
+          Price: 100,
+          Slug: "/mostar",
+          CategoryID: 1,
+          CreatedAt: new Date().toISOString(),
+          UpdatedAt: new Date().toISOString()
+        },
+        {
+          Heading: "Plitvice lakes",
+          Description:
+            "Immerse yourself in exceptional natural beauty, in a place so magical you can't even believe it exists. A magical mix of waterfalls and lakes, all set against a lush green backdrop, this national park is a must. <br /> <br /> In about three and a half hours drive we arrive to Plitvice National Park, the largest, the oldest and most famous national park in Croatia, which was declared as UNESCO world heritage in 1979. (among the first in the world). Plitvice Lakes National Park is a special geological and hydrogeological phenomenon with natural and rich biodiversity. The oldest national park in Croatia represents a forested mountain area and a series of 16 crystal blue lakes. Lakes receive water from numerous rivers and streams, and they are connected by cascades and waterfalls. Travertine barriers, which were made in the period of ten thousand years ago are one of the fundamental features of the park. Vast forests, extraordinary beauty of lakes and waterfalls, flora and fauna, contrasting autumn colors, trails and wooden bridges form a remarkable and unforgettable beauty. <br /> <br /> Upon arriving at Plitvice you will walk through woodland. The path takes you across Upper Lakes and then it is time for boat ride within the sound of the waterfalls to Lower Lakes. Get ready to walk across the lake on charming wooden paths, as well as an unforgettable thunder produced by Great Falls, 78 meters high waterfall. Tour ends with a panoramic train ride through the forest, but after that there is a plenty of time for lunch at local tavern or for a picnic in the shade, next to the magnificent lake. <br /> <br /> <strong>NOTE:</strong> Guests should have proper clothing; sportswear, closed comfortable shoes. Out of season don’t forget warm sweater, umbrella or raincoat. <br /> <br /> ",
+          Price: 100,
+          Slug: "/plitvice",
+          CategoryID: 1,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         }
