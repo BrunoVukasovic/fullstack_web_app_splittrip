@@ -7,7 +7,10 @@ import {
 } from "../../components";
 import axios from "axios";
 
-export default class MyReviews extends Component {
+import { logoutAction } from "../../actions/logoutAction";
+import { connect } from "react-redux";
+
+class MyProfile extends Component {
   state = {
     reviews: [],
     rerender: ""
@@ -42,7 +45,6 @@ export default class MyReviews extends Component {
           const { Comment, Rating } = res.data;
           const { Heading, Description } = Comment;
           const { Value } = Rating;
-          // reviewTemplate.reviewID = ReviewID;
           reviewTemplate.heading = Heading;
           reviewTemplate.description = Description;
           reviewTemplate.rating = Value;
@@ -50,32 +52,6 @@ export default class MyReviews extends Component {
           console.log(reviewTemplate);
           this.setState({ rerender: "yes" });
         });
-
-        /*
-        axios
-          .all([
-            (
-              axios.post("/api/trips/one/id", { tripID }).then(res => {
-              const { Heading, Slug } = res.data;
-              reviewTemplate.tripName = Heading;
-              reviewTemplate.slug = Slug;
-            }),
-            axios
-              .post("api/reviews/id", { reviewID })
-              .then(res => {
-                const { Comment, Rating } = res.data;
-                const { Heading, Decription } = Comment;
-                const { Value } = Rating;
-                // reviewTemplate.reviewID = ReviewID;
-                reviewTemplate.heading = Heading;
-                reviewTemplate.description = Decription;
-                reviewTemplate.rating = Value;
-              }))
-          ])
-          .then(res => {
-            this.state.reviews.push(reviewTemplate);
-            this.setState({ rerender: "yes" });
-          });   */
       });
     });
   };
@@ -88,9 +64,9 @@ export default class MyReviews extends Component {
       axios.post("api/users/delete", { email }).then(res => {
         console.log(res.data);
       });
+      this.props.removeUserFromStore();
       localStorage.clear();
       this.props.history.push("/");
-      window.location.reload();
     });
   };
 
@@ -119,3 +95,22 @@ export default class MyReviews extends Component {
     );
   }
 }
+
+const mapStateToProp = state => {
+  return {
+    isAuthenticated: state.isLoggedReducer.isAuthenticated
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    removeUserFromStore: () => {
+      dispatch(logoutAction());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProp,
+  mapDispatchToProps
+)(MyProfile);

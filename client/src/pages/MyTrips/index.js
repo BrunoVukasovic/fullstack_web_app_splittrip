@@ -9,7 +9,7 @@ import { Spinner, LoginRedirect, Container } from "../../components";
 import { Layout } from "../../components";
 import cn from "classnames";
 
-class MyTrips extends Component {
+export default class MyTrips extends Component {
   state = {
     showUpcoming: true,
     showPast: false,
@@ -203,5 +203,3 @@ class MyTrips extends Component {
     }
   }
 }
-
-export default MyTrips;
