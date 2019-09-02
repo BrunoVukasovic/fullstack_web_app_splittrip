@@ -5,7 +5,6 @@ import ContactUs from "./ContactUs";
 import BookNow from "./BookNow";
 import TripDescription from "./TripDescription";
 import ShowReviews from "./ShowReviews";
-import { throws } from "assert";
 
 class Trip extends Component {
   constructor(props) {
