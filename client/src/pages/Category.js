@@ -58,7 +58,7 @@ export default class Category extends Component {
       <Layout>
         {fetched ? (
           <Container>
-            <MainImage src={require("../images" + trips[0].Slug + ".jpg")} />
+            <MainImage src={require(`../images${trips[0].Slug}.jpg`)} />
 
             {trips.map((trip, index) => (
               <Link to={trip.Slug} key={index}>

@@ -2,34 +2,20 @@ const express = require("express");
 const router = express.Router();
 const bookedTripController = require("../controllers/bookedTrip");
 
-router.post("/all", (req, res) =>
-  bookedTripController.findAllByUserEmail(req, res)
-);
+router.post("/all", bookedTripController.findAllByUserEmail);
 
-router.patch("/cancel", (req, res) =>
-  bookedTripController.setCancelToTrue(req, res)
-);
+router.patch("/cancel", bookedTripController.setCancelToTrue);
 
-router.patch("/past", (req, res) =>
-  bookedTripController.setPastToTrue(req, res)
-);
+router.patch("/past", bookedTripController.setPastToTrue);
 
-router.post("/userIdNull", (req, res) =>
-  bookedTripController.setUserIdToNull(req, res)
-);
+router.post("/userIdNull", bookedTripController.setUserIdToNull);
 
-router.post("/new", (req, res) => bookedTripController.createNew(req, res));
+router.post("/new", bookedTripController.createNew);
 
-router.post("/userAndDate", (req, res) =>
-  bookedTripController.getUserAndDate(req, res)
-);
+router.post("/userAndDate", bookedTripController.getUserAndDate);
 
-router.patch("/newReview", (req, res) =>
-  bookedTripController.setReviewedToTrue(req, res)
-);
+router.patch("/newReview", bookedTripController.setReviewedToTrue);
 
-router.post("/reviewed", (req, res) =>
-  bookedTripController.findAllReviewed(req, res)
-);
+router.post("/reviewed", bookedTripController.findAllReviewed);
 
 module.exports = router;

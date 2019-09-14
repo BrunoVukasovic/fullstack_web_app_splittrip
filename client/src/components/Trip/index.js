@@ -66,7 +66,7 @@ class Trip extends Component {
 
     return (
       <Layout>
-        <MainImage src={require("../../images" + slug + ".jpg")}></MainImage>
+        <MainImage src={require(`../../images${slug}.jpg`)}></MainImage>
 
         <ButtonContainer>
           <button

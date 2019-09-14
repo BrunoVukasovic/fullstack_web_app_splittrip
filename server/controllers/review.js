@@ -3,7 +3,7 @@ const Rating = require("../models/Rating");
 const Comment = require("../models/Comment");
 
 const reviewController = {
-  async findbyPk(req, res) {
+  findbyPk: (req, res) => {
     const { reviewID } = req.body;
     Review.findByPk(reviewID, {
       include: [Rating, Comment]
@@ -14,7 +14,7 @@ const reviewController = {
       .catch(error => console.log(error));
   },
 
-  async findbyTripID(req, res) {
+  findbyTripID: (req, res) => {
     const { tripID } = req.body;
     Review.findAll({ where: { TripID: tripID }, include: [Comment, Rating] })
       .then(trips => {
@@ -23,7 +23,7 @@ const reviewController = {
       .catch(error => console.log(error));
   },
 
-  async createNewReview(req, res) {
+  createNewReview: (req, res) => {
     const {
       heading,
       description,

@@ -2,36 +2,37 @@ const User = require("../models/User");
 const Trip = require("../models/Trip");
 const BookedTrip = require("../models/BookedTrip");
 const Review = require("../models/Review");
+const userController = require("./user");
 
 const bookedTripController = {
-  async findAllByUserEmail(req, res) {
-    User.findOne({
-      where: { Email: req.body.email }
-    }).then(user => {
-      BookedTrip.findAll({
-        where: {
-          UserID: user.UserID
-        },
-        include: Trip
-      })
-        .then(bookedTrips => {
+  findAllByUserEmail: (req, res) => {
+    userController
+      .findUserByEmail(req.body.email)
+      .then(user => {
+        BookedTrip.findAll({
+          where: {
+            UserID: user.UserID
+          },
+          include: Trip
+        }).then(bookedTrips => {
           res.send(bookedTrips);
-        })
-        .catch(err => console.log(err));
-    });
+        });
+      })
+      .catch(err => console.log(err));
   },
 
-  async setCancelToTrue(req, res) {
-    BookedTrip.findByPk(req.body.bookedTripID).then(BookedTrip => {
-      BookedTrip.update({
-        Canceled: true
-      })
+  setCancelToTrue: (req, res) => {
+    BookedTrip.findByPk(req.body.bookedTripID).then(bookedTrip => {
+      bookedTrip
+        .update({
+          Canceled: true
+        })
         .then(res.sendStatus(204))
         .catch(err => console.log(err));
     });
   },
 
-  async setPastToTrue(req, res) {
+  setPastToTrue: (req, res) => {
     BookedTrip.findByPk(req.body.bookedTripID).then(BookedTrip => {
       BookedTrip.update({
         Past: true
@@ -41,10 +42,8 @@ const bookedTripController = {
     });
   },
 
-  async setUserIdToNull(req, res) {
-    User.findOne({
-      where: { Email: req.body.email }
-    }).then(user => {
+  setUserIdToNull: (req, res) => {
+    userController.findUserByEmail(req.body.email).then(user => {
       BookedTrip.findAll({
         where: {
           UserID: user.UserID
@@ -62,7 +61,7 @@ const bookedTripController = {
     });
   },
 
-  async createNew(req, res) {
+  createNew: (req, res) => {
     const {
       email,
       tripID,
@@ -70,11 +69,9 @@ const bookedTripController = {
       numberOfPeople,
       message
     } = req.body.bookedTrip;
-    User.findOne({
-      where: { Email: email }
-    })
+    userController
+      .findUserByEmail(email)
       .then(user => {
-        console.log(user);
         BookedTrip.create({
           UserID: user.UserID,
           TripID: tripID,
@@ -91,7 +88,7 @@ const bookedTripController = {
       .catch(err => console.log(err));
   },
 
-  async getUserAndDate(req, res) {
+  getUserAndDate: (req, res) => {
     BookedTrip.findOne({
       where: { BookedTripID: req.body.bookedTripID },
       attributes: ["UserID", "Date"]
@@ -123,7 +120,7 @@ const bookedTripController = {
       .catch(error => console.log(error));
   },
 
-  async setReviewedToTrue(req, res) {
+  setReviewedToTrue: (req, res) => {
     BookedTrip.findByPk(req.body.bookedTripID).then(BookedTrip => {
       BookedTrip.update({
         Reviewed: true
@@ -133,10 +130,8 @@ const bookedTripController = {
     });
   },
 
-  async findAllReviewed(req, res) {
-    User.findOne({
-      where: { Email: req.body.email }
-    }).then(user => {
+  findAllReviewed: (req, res) => {
+    userController.findUserByEmail(req.body.email).then(user => {
       BookedTrip.findAll({
         where: {
           UserID: user.UserID,

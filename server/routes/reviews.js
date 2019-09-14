@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const reviewController = require("../controllers/review");
 
-router.post("/id", (req, res) => reviewController.findbyPk(req, res));
+router.post("/id", reviewController.findbyPk);
 
-router.post("/trip", (req, res) => reviewController.findbyTripID(req, res));
+router.post("/trip", reviewController.findbyTripID);
 
 router.post("/new", (req, res) => reviewController.createNewReview(req, res));
 
