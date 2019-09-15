@@ -28,6 +28,7 @@ class MyProfile extends Component {
           Trip: trip,
           Review: review
         } = reviewedBooking;
+        console.log(reviewedBooking);
         const { Heading: tripName, Slug: slug } = trip;
         const { Id: reviewID } = review;
         const reviewTemplate = {

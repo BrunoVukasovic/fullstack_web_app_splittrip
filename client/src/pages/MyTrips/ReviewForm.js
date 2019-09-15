@@ -22,10 +22,7 @@ class ReviewForm extends Component {
 
   handleReviewSubmit = () => {
     const { rating, heading, description } = this.state;
-    const {
-      BookedTripID: bookedTripID,
-      TripID: tripID
-    } = this.props.bookedTrip;
+    const { Id: bookedTripID, TripID: tripID } = this.props.bookedTrip;
     const review = {
       bookedTripID,
       tripID,

@@ -27,11 +27,11 @@ module.exports = function(passport) {
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user.UserID);
+    done(null, user.Id);
   });
 
-  passport.deserializeUser((UserID, done) => {
-    User.findByPk(UserID).then(user => {
+  passport.deserializeUser((Id, done) => {
+    User.findByPk(Id).then(user => {
       done(null, user);
     });
   });

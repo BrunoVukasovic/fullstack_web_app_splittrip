@@ -41,7 +41,7 @@ const reviewController = {
           BookedTripID: bookedTripID,
           TripID: tripID,
           RatingID: rating,
-          CommentID: comment.CommentID
+          CommentID: comment.Id
         })
           .then(res.status(201).send("Review created"))
           .catch(error => console.log(error));

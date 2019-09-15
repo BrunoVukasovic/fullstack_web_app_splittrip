@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("splittrip_db", "postgres", "", {
+const sequelize = new Sequelize("splittrip_db", "postgres", "theholybible", {
   host: "localhost",
   dialect: "postgres"
 });

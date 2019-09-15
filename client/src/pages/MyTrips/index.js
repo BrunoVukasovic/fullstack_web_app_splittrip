@@ -49,6 +49,7 @@ export default class MyTrips extends Component {
           } else upcomingTrips.push(bookedTrip);
         });
         this.setState({ fetched: true });
+        console.log(this.state);
       });
     } else this.setState({ fetched: true });
   };

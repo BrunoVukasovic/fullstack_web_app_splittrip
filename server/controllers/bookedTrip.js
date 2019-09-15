@@ -73,7 +73,7 @@ const bookedTripController = {
       .findUserByEmail(email)
       .then(user => {
         BookedTrip.create({
-          UserID: user.UserID,
+          UserID: user.Id,
           TripID: tripID,
           Date: date,
           NumberOfPeople: numberOfPeople,
