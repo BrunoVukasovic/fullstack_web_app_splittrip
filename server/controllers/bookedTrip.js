@@ -46,7 +46,7 @@ const bookedTripController = {
     userController.findUserByEmail(req.body.email).then(user => {
       BookedTrip.findAll({
         where: {
-          UserID: user.UserID
+          UserID: user.Id
         }
       })
         .then(bookedTrips => {

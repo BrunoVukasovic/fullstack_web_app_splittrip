@@ -1,14 +1,9 @@
-const path = require("path");
 const express = require("express");
 const session = require("express-session");
-const flash = require("express-flash");
 const passport = require("passport");
+require("dotenv").config();
 const initializePassport = require("./config/passport");
-const Trip = require("./models/Trip");
-const Category = require("./models/Category");
 const PORT = process.env.PORT || 5000;
-
-const sequelize = require("./database/index");
 
 const app = express();
 app.use(express.json());
@@ -21,7 +16,7 @@ app.use(express.urlencoded({ extended: false })); // Bodyparser
 initializePassport(passport);
 app.use(
   session({
-    secret: "veryGoodSecret",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
   })
