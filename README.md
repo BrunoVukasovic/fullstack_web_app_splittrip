@@ -25,10 +25,10 @@
 5. Klonirajte repozitorij i uđite u stvoreni direktorij tako da u terminalu izvršite sljedeće naredbe:
 
    ```shell
-    >git clone https://github.com/BrunoVukasovic/fullstack_web_app_splittrip.git
+    >git clone https://github.com/BrunoVukasovic/splittrip-v3-node.git
 
     # change directory
-    >cd fullstack_web_app_splittrip
+    >cd splittrip-v3-node
    ```
 
 6. U root direktoriju instalirajte potrebne module naredbom:
@@ -48,78 +48,27 @@
 	>cd server
    ```
 
-9. U database direktoriju umjesto "postgres" i "loznika" upisat svoj username i lozinku za pristup bazi podataka
+9. Preimenujte datoteku .env.example u .env i unesite ime baze, korisničko ime i lozinku za pristup bazi, te proizvoljni secret
    ```shell
-    >cd database
+	# .env
 	
-	# index.js
-	
-	const Sequelize = require("sequelize");
-
-		const sequelize = new Sequelize("splittrip_db", "postgres", "LOZINKA", {
-			host: "localhost",
-			dialect: "postgres"
-		});
-
-	module.exports = sequelize;
+	DB_NAME=
+	DB_USERNAME=
+	DB_PASSWORD=
+	SECRET=
    ```
 
-10. U server/config/config.json pod "development" također upisat username i lozinku na predviđena mjesta
+10. Kreirat novu bazu koristeći naredbu: 
    ```shell
-    >cd..
-	>cd config
-	
-	# config.json
-	
-	{
-	"development": {
-		"username": "postgres",
-		"password": "LOZINKA",
-		"database": "splittrip_db",
-		"host": "127.0.0.1",
-		"dialect": "postgres",
-		"operatorsAliases": "false"
-	},
-	"test": {
-		"username": "root",
-		"password": null,
-		"database": "database_test",
-		"host": "127.0.0.1",
-		"dialect": "mysql",
-		"operatorsAliases": "false"
-	},
-	"production": {
-		"username": "root",
-		"password": null,
-		"database": "database_production",
-		"host": "127.0.0.1",
-		"dialect": "mysql",
-		"operatorsAliases": "false"
-	}
-	}
+    >npx sequelize-cli db:create
    ```
 
-11. Pozicionirajte se u server direktorij
-   ```shell
-    >cd ..
-   ```
-
-12. Kreirat novu bazu spllittrip_db koristeći naredbu: 
-   ```shell
-    >npx sequelize-cli db:create spllittrip_db
-   ```
-
-13. Pokrenit aplikaciju kako bi se kreirale potrebne tablice:
+11. Pokrenit aplikaciju naredbom:
    ```shell
     >npm run dev
    ```
 
-14. U server direktoriju pokrenite naredbu kako bi se baza napunila inijalnim podacima:
+12. U server direktoriju pokrenite naredbu kako bi se baza napunila inijalnim podacima:
    ```shell
     >npx sequelize-cli db:seed:all
-   ```
-
-15. Ponovno pokrenite aplikaciju iz root ili server direktorija naredbom:
-   ```shell
-    >npm run dev
    ```
