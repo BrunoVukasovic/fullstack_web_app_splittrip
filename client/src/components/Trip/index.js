@@ -43,9 +43,9 @@ class Trip extends Component {
   getTrip = () => {
     const { pathname } = this.props.location;
     axios.post("/api/trips/one/slug", { pathname }).then(res => {
-      const { TripID, Heading, Description, Slug } = res.data;
+      const { Id, Heading, Description, Slug } = res.data;
       this.setState({
-        tripID: TripID,
+        tripID: Id,
         heading: Heading,
         description: Description,
         slug: Slug,

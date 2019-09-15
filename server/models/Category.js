@@ -3,7 +3,7 @@ const sequelize = require("../database");
 const Trip = require("./Trip");
 
 const Category = sequelize.define("Category", {
-  CategoryID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,

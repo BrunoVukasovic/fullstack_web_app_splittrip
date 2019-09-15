@@ -54,7 +54,7 @@ export default class MyTrips extends Component {
   };
 
   cancelTrip = bookedTrip => {
-    const { BookedTripID: bookedTripID } = bookedTrip;
+    const { Id: bookedTripID } = bookedTrip;
     axios.patch("api/bookedTrips/cancel", { bookedTripID }).then(res => {
       console.log(res.data);
       this.props.history.push("/my-trips");
@@ -69,7 +69,7 @@ export default class MyTrips extends Component {
   };
 
   updatePastInBookedTripTable = bookedTrip => {
-    const { BookedTripID: bookedTripID } = bookedTrip;
+    const { Id: bookedTripID } = bookedTrip;
     axios.patch("api/bookedTrips/past", { bookedTripID }).then(res => {
       console.log(res.data);
     });

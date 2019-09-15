@@ -6,7 +6,7 @@ module.exports = {
       "BookedTrips",
       [
         {
-          BookedTripID: 1234,
+          Id: 1234,
           Date: "2019-06-16 02:00:00+02",
           NumberOfPeople: 5,
           Canceled: false,
@@ -18,7 +18,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          BookedTripID: 2234,
+          Id: 2234,
           Date: "2019-08-16 02:00:00+02",
           NumberOfPeople: 4,
           Canceled: false,
@@ -30,7 +30,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          BookedTripID: 3234,
+          Id: 3234,
           Date: "2019-08-10 02:00:00+02",
           NumberOfPeople: 13,
           Canceled: false,
@@ -42,7 +42,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          BookedTripID: 4234,
+          Id: 4234,
           Date: "2019-06-16 02:00:00+02",
           NumberOfPeople: 3,
           Canceled: false,
@@ -54,7 +54,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          BookedTripID: 5234,
+          Id: 5234,
           Date: "2019-07-16 02:00:00+02",
           NumberOfPeople: 3,
           Canceled: false,
@@ -66,7 +66,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          BookedTripID: 6234,
+          Id: 6234,
           Date: "2019-10-16 02:00:00+02",
           NumberOfPeople: 3,
           Canceled: false,

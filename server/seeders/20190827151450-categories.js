@@ -6,19 +6,19 @@ module.exports = {
       "Categories",
       [
         {
-          CategoryID: 1,
+          Id: 1,
           CategoryName: "Land Tours",
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         },
         {
-          CategoryID: 2,
+          Id: 2,
           CategoryName: "Sea Tours",
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         },
         {
-          CategoryID: 3,
+          Id: 3,
           CategoryName: "Adventures",
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()

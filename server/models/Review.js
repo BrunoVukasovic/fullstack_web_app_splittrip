@@ -4,13 +4,12 @@ const Comment = require("./Comment");
 const Rating = require("./Rating");
 
 const Review = sequelize.define("Review", {
-  ReviewID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true
   },
-
   createdAt: {
     type: Sequelize.DATE,
     field: "CreatedAt"
@@ -24,13 +23,25 @@ const Review = sequelize.define("Review", {
     allowNull: true
   },
   TripID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    references: {
+      model: "Trips", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   },
   CommentID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    references: {
+      model: "Comments", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   },
   RatingID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    references: {
+      model: "Ratings", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   }
 });
 

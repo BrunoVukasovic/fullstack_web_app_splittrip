@@ -4,7 +4,7 @@ const tripController = {
   findTripBySlug: (req, res) => {
     Trip.findOne({
       where: { Slug: req.body.pathname },
-      attributes: ["Heading", "Description", "Slug", "TripID"]
+      attributes: ["Heading", "Description", "Slug", "Id"]
     })
       .then(trip => {
         res.send(trip);
@@ -14,7 +14,7 @@ const tripController = {
 
   findTripById: (req, res) => {
     Trip.findOne({
-      where: { TripID: req.body.tripID },
+      where: { Id: req.body.tripID },
       attributes: ["Heading", "Description", "Slug"]
     })
       .then(trip => {

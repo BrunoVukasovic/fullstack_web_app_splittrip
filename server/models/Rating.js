@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
 const Rating = sequelize.define("Rating", {
-  RatingID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,

@@ -6,7 +6,7 @@ module.exports = {
       "Reviews",
       [
         {
-          ReviewID: 1234,
+          Id: 1234,
           BookedTripID: 1234,
           TripID: 1,
           CommentID: 1234,
@@ -15,7 +15,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          ReviewID: 2234,
+          Id: 2234,
           BookedTripID: 2234,
           TripID: 2,
           CommentID: 2234,
@@ -24,7 +24,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          ReviewID: 3234,
+          Id: 3234,
           BookedTripID: 3234,
           TripID: 2,
           CommentID: 3234,
@@ -33,7 +33,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          ReviewID: 4234,
+          Id: 4234,
           BookedTripID: 4234,
           TripID: 3,
           CommentID: 4234,
@@ -42,7 +42,7 @@ module.exports = {
           UpdatedAt: new Date().toISOString()
         },
         {
-          ReviewID: 5234,
+          Id: 5234,
           BookedTripID: 5234,
           TripID: 4,
           CommentID: 5234,

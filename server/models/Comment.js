@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
 const Comment = sequelize.define("Comment", {
-  CommentID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,

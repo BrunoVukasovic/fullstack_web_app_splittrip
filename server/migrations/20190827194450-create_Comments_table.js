@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("Comments", {
-      CommentID: {
+      Id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -22,9 +22,6 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         field: "UpdatedAt"
-      },
-      ReviewID: {
-        type: Sequelize.INTEGER
       }
     });
   },

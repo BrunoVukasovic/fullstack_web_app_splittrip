@@ -4,7 +4,7 @@ const Category = require("../models/Category");
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("Trips", {
-      TripID: {
+      Id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -31,7 +31,11 @@ module.exports = {
         field: "UpdatedAt"
       },
       CategoryID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Categories", // refers to table name
+          key: "Id" // refers to column name in table
+        }
       }
     });
   },

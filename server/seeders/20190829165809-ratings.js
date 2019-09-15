@@ -6,31 +6,31 @@ module.exports = {
       "Ratings",
       [
         {
-          RatingID: 1,
+          Id: 1,
           Value: 1,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         },
         {
-          RatingID: 2,
+          Id: 2,
           Value: 2,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         },
         {
-          RatingID: 3,
+          Id: 3,
           Value: 3,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         },
         {
-          RatingID: 4,
+          Id: 4,
           Value: 4,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()
         },
         {
-          RatingID: 5,
+          Id: 5,
           Value: 5,
           CreatedAt: new Date().toISOString(),
           UpdatedAt: new Date().toISOString()

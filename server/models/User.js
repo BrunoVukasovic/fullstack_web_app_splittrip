@@ -3,7 +3,7 @@ const sequelize = require("../database");
 const BookedTrip = require("./BookedTrip");
 
 const User = sequelize.define("User", {
-  UserID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,

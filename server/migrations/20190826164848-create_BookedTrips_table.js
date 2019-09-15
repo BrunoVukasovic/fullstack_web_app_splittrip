@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("BookedTrips", {
-      BookedTripID: {
+      Id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -33,10 +33,19 @@ module.exports = {
         field: "UpdatedAt"
       },
       TripID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Trips", // refers to table name
+          key: "Id" // refers to column name in table
+        }
       },
       UserID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: "Users", // refers to table name
+          key: "Id" // refers to column name in table
+        }
       }
     });
   },

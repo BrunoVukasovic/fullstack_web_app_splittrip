@@ -3,7 +3,7 @@ const sequelize = require("../database");
 const Review = require("./Review");
 
 const Trip = sequelize.define("Trip", {
-  TripID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,
@@ -30,7 +30,11 @@ const Trip = sequelize.define("Trip", {
     field: "UpdatedAt"
   },
   CategoryID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    references: {
+      model: "Categories", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   }
 });
 

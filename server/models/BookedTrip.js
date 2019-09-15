@@ -4,7 +4,7 @@ const Trip = require("../models/Trip");
 const Review = require("../models/Review");
 
 const BookedTrip = sequelize.define("BookedTrip", {
-  BookedTripID: {
+  Id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     autoIncrement: true,
@@ -34,11 +34,19 @@ const BookedTrip = sequelize.define("BookedTrip", {
     field: "UpdatedAt"
   },
   TripID: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    references: {
+      model: "Trips", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   },
   UserID: {
     type: Sequelize.INTEGER,
-    allowNull: true
+    allowNull: true,
+    references: {
+      model: "Users", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   }
 });
 

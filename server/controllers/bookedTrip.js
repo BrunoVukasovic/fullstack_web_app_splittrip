@@ -11,7 +11,7 @@ const bookedTripController = {
       .then(user => {
         BookedTrip.findAll({
           where: {
-            UserID: user.UserID
+            UserID: user.Id
           },
           include: Trip
         }).then(bookedTrips => {
@@ -90,7 +90,7 @@ const bookedTripController = {
 
   getUserAndDate: (req, res) => {
     BookedTrip.findOne({
-      where: { BookedTripID: req.body.bookedTripID },
+      where: { Id: req.body.bookedTripID },
       attributes: ["UserID", "Date"]
     })
       .then(bookedTrip => {
@@ -98,7 +98,7 @@ const bookedTripController = {
         // if user is not deleted
         if (UserID) {
           User.findOne({
-            where: { UserID },
+            where: { Id: UserID },
             attributes: ["FirstName"]
           })
             .then(user => {
@@ -134,11 +134,11 @@ const bookedTripController = {
     userController.findUserByEmail(req.body.email).then(user => {
       BookedTrip.findAll({
         where: {
-          UserID: user.UserID,
+          UserID: user.Id,
           Reviewed: true
         },
         include: [Review, Trip],
-        attributes: ["BookedTripID", "Date"]
+        attributes: ["Id", "Date"]
       })
         .then(bookedTrips => {
           res.send(bookedTrips);

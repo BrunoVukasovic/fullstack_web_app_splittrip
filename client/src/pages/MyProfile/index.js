@@ -23,13 +23,13 @@ class MyProfile extends Component {
       const reviewedBookings = res.data;
       reviewedBookings.forEach(reviewedBooking => {
         const {
-          BookedTripID: bookedTripID,
+          Id: bookedTripID,
           Date: date,
           Trip: trip,
           Review: review
         } = reviewedBooking;
         const { Heading: tripName, Slug: slug } = trip;
-        const { ReviewID: reviewID } = review;
+        const { Id: reviewID } = review;
         const reviewTemplate = {
           date,
           bookedTripID,
