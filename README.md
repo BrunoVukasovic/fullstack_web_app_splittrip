@@ -58,17 +58,14 @@
 	SECRET=
    ```
 
-10. Kreirat novu bazu koristeći naredbu: 
+10. Kreirat novu bazu, tablice i unijeti inicijalne podatke koristeći naredbe: 
    ```shell
     >npx sequelize-cli db:create
+    >npx sequelize-cli db:migrate
+    >npx sequelize-cli db:seed:all
    ```
 
-11. Pokrenit aplikaciju naredbom:
+11. Pokrenit aplikaciju iz root ili server direktorija naredbom:
    ```shell
     >npm run dev
-   ```
-
-12. U server direktoriju pokrenite naredbu kako bi se baza napunila inijalnim podacima:
-   ```shell
-    >npx sequelize-cli db:seed:all
    ```
