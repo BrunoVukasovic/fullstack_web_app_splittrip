@@ -20,7 +20,11 @@ const Review = sequelize.define("Review", {
   },
   BookedTripID: {
     type: Sequelize.INTEGER,
-    allowNull: true
+    allowNull: true,
+    references: {
+      model: "BookedTrips", // refers to table name
+      key: "Id" // refers to column name in table
+    }
   },
   TripID: {
     type: Sequelize.INTEGER,

@@ -18,7 +18,11 @@ module.exports = {
         field: "UpdatedAt"
       },
       BookedTripID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "BookedTrips", // refers to table name
+          key: "Id" // refers to column name in table
+        }
       },
       TripID: {
         type: Sequelize.INTEGER,
