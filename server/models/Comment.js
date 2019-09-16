@@ -12,7 +12,7 @@ const Comment = sequelize.define("Comment", {
     type: Sequelize.STRING
   },
   Description: {
-    type: Sequelize.TEXT("medium")
+    type: Sequelize.TEXT
   },
   createdAt: {
     type: Sequelize.DATE,

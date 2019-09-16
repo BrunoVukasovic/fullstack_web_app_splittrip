@@ -4,13 +4,14 @@ const passport = require("passport");
 require("dotenv").config();
 const initializePassport = require("./config/passport");
 const PORT = process.env.PORT || 5000;
+const sequelize = require("./database/index");
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
 // will overwitre db sequelize.sync({ force: true });
-// sequelize.sync({ force: true });
+console.log(sequelize.sync());
 
 // Passport
 initializePassport(passport);
@@ -26,7 +27,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => res.send("INDEX"));
+app.get("/", (req, res) => {
+  res.send("INDEX");
+  console.log(process.env.DB_USERNAME);
+});
 app.use("/api/trips", require("./routes/trips"));
 app.use("/api/register", require("./routes/register"));
 app.use("/api/login", require("./routes/login"));
