@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const reviewController = require("../controllers/review");
+
+const router = express.Router();
 
 router.post("/id", reviewController.findbyPk);
 

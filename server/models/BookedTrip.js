@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
-const Trip = require("../models/Trip");
 const Review = require("../models/Review");
+const Trip = require("../models/Trip");
 
 const BookedTrip = sequelize.define("BookedTrip", {
   Id: {

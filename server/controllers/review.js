@@ -1,6 +1,6 @@
-const Review = require("../models/Review");
-const Rating = require("../models/Rating");
 const Comment = require("../models/Comment");
+const Rating = require("../models/Rating");
+const Review = require("../models/Review");
 
 const reviewController = {
   findbyPk: (req, res) => {

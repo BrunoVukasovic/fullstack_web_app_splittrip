@@ -1,14 +1,13 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 import {
   Layout,
   ReviewItem,
   Container,
   ButtonContainer
 } from "../../components";
-import axios from "axios";
-
 import { logoutAction } from "../../actions/logoutAction";
-import { connect } from "react-redux";
 
 class MyProfile extends Component {
   state = {

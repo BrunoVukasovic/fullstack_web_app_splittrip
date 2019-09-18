@@ -9,6 +9,7 @@ import {
   TripItemDescription,
   Container
 } from "../components";
+
 export default class Category extends Component {
   state = {
     trips: [],

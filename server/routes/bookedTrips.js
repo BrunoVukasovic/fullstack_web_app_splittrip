@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const bookedTripController = require("../controllers/bookedTrip");
+
+const router = express.Router();
 
 router.post("/all", bookedTripController.findAllByUserEmail);
 

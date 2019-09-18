@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const validator = require("email-validator");
 const bcrypt = require("bcrypt");
+
 const saltRounds = 10;
 
 const registerController = {

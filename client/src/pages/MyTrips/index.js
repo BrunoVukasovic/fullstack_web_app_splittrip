@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import style from "./styles.module.css";
 import styles from "./styles.module.css";
 import axios from "axios";
 import UpcomingTrips from "./UpcomingTrips";
@@ -49,15 +48,13 @@ export default class MyTrips extends Component {
           } else upcomingTrips.push(bookedTrip);
         });
         this.setState({ fetched: true });
-        console.log(this.state);
       });
     } else this.setState({ fetched: true });
   };
 
   cancelTrip = bookedTrip => {
     const { Id: bookedTripID } = bookedTrip;
-    axios.patch("api/bookedTrips/cancel", { bookedTripID }).then(res => {
-      console.log(res.data);
+    return axios.patch("api/bookedTrips/cancel", { bookedTripID }).then(res => {
       this.props.history.push("/my-trips");
     });
   };
@@ -151,7 +148,7 @@ export default class MyTrips extends Component {
               ) : null}
 
               {showPast ? (
-                <Container className={style.PastParent}>
+                <Container>
                   <h3>Past Trips: </h3>
                   {notReviewedPastTrips.map((pastTrip, index) => (
                     <PastTrips

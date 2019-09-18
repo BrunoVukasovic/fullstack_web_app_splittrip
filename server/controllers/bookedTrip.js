@@ -1,7 +1,7 @@
-const User = require("../models/User");
-const Trip = require("../models/Trip");
 const BookedTrip = require("../models/BookedTrip");
 const Review = require("../models/Review");
+const Trip = require("../models/Trip");
+const User = require("../models/User");
 const userController = require("./user");
 
 const bookedTripController = {
