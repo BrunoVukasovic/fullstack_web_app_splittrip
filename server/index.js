@@ -12,24 +12,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // Bodyparser
 
 // will overwitre db sequelize.sync({ force: true });
-sequelize.sync();
+// sequelize.sync();
 
 // Passport
 initializePassport(passport);
+/*
 app.use(
   session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
   })
-);
+); */
 
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.get("/", (req, res) => res.send("INDEX"));
+app.get("/", (req, res) => {
+  res.send("Index");
+  console.log(req.session);
+});
 app.use("/api/trips", require("./routes/trips"));
 app.use("/api/register", require("./routes/register"));
 app.use("/api/login", require("./routes/login"));

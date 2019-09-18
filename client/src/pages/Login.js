@@ -41,7 +41,7 @@ class Login extends Component {
           LastName: lastName,
           Phone: phone,
           Email: email
-        } = res.data;
+        } = res.data.user;
         const user = {
           firstName,
           lastName,
@@ -49,6 +49,7 @@ class Login extends Component {
           email
         };
         this.props.saveUserToStore(user);
+        console.log(res.data);
         localStorage.setItem("user", JSON.stringify(user));
         this.props.history.push("/");
       })

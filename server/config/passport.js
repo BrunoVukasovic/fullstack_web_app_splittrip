@@ -26,6 +26,7 @@ module.exports = function(passport) {
     })
   );
 
+  /*
   passport.serializeUser((user, done) => {
     done(null, user.Id);
   });
@@ -34,5 +35,5 @@ module.exports = function(passport) {
     User.findByPk(Id).then(user => {
       done(null, user);
     });
-  });
+  }); */
 };
