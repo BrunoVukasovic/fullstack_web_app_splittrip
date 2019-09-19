@@ -5,18 +5,16 @@ const User = require("../models/User");
 const userController = require("./user");
 
 const bookedTripController = {
-  findAllByUserEmail: (req, res) => {
-    userController
-      .findUserByEmail(req.body.email)
-      .then(user => {
-        BookedTrip.findAll({
-          where: {
-            UserID: user.Id
-          },
-          include: Trip
-        }).then(bookedTrips => {
-          res.send(bookedTrips);
-        });
+  findAllByUser: (req, res) => {
+    const { Id } = req.user;
+    BookedTrip.findAll({
+      where: {
+        UserID: Id
+      },
+      include: Trip
+    })
+      .then(bookedTrips => {
+        res.send(bookedTrips);
       })
       .catch(err => console.log(err));
   },
@@ -43,22 +41,21 @@ const bookedTripController = {
   },
 
   setUserIdToNull: (req, res) => {
-    userController.findUserByEmail(req.body.email).then(user => {
-      BookedTrip.findAll({
-        where: {
-          UserID: user.Id
-        }
-      })
-        .then(bookedTrips => {
-          bookedTrips.forEach(bookedTrip => {
-            bookedTrip.update({
-              UserID: null
-            });
+    const { Id } = req.user;
+    BookedTrip.findAll({
+      where: {
+        UserID: Id
+      }
+    })
+      .then(bookedTrips => {
+        bookedTrips.forEach(bookedTrip => {
+          bookedTrip.update({
+            UserID: null
           });
-          res.send(res.sendStatus(204));
-        })
-        .catch(err => console.log(err));
-    });
+        });
+        res.send(res.sendStatus(204));
+      })
+      .catch(err => console.log(err));
   },
 
   createNew: (req, res) => {
@@ -131,20 +128,19 @@ const bookedTripController = {
   },
 
   findAllReviewed: (req, res) => {
-    userController.findUserByEmail(req.body.email).then(user => {
-      BookedTrip.findAll({
-        where: {
-          UserID: user.Id,
-          Reviewed: true
-        },
-        include: [Review, Trip],
-        attributes: ["Id", "Date"]
+    const { Id } = req.user;
+    BookedTrip.findAll({
+      where: {
+        UserID: Id,
+        Reviewed: true
+      },
+      include: [Review, Trip],
+      attributes: ["Id", "Date"]
+    })
+      .then(bookedTrips => {
+        res.send(bookedTrips);
       })
-        .then(bookedTrips => {
-          res.send(bookedTrips);
-        })
-        .catch(err => console.log(err));
-    });
+      .catch(err => console.log(err));
   }
 };
 

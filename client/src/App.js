@@ -8,7 +8,7 @@ import {
   MyProfile,
   Category
 } from "./pages";
-
+import setAuthToken from "./utils/setAuthToken";
 import { Trip } from "./components";
 import { connect } from "react-redux";
 import { loginAction } from "./actions/loginAction";
@@ -18,6 +18,7 @@ class App extends Component {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       this.props.saveUserToStore(user);
+      setAuthToken(user.token);
     }
   }
   render() {

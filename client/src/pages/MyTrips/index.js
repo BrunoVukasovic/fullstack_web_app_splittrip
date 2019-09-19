@@ -23,8 +23,7 @@ export default class MyTrips extends Component {
   componentDidMount = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-      const { email } = user;
-      axios.post("/api/bookedTrips/all", { email }).then(res => {
+      axios.get("/api/bookedTrips/all").then(res => {
         const bookedTrips = res.data;
         const {
           upcomingTrips,

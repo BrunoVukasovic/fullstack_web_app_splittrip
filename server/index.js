@@ -1,8 +1,11 @@
+const auth = require("./middleware/authorization");
 const express = require("express");
+const initializePassport = require("./config/passport");
 const passport = require("passport");
+
 const session = require("express-session");
 const sequelize = require("./database/index");
-const initializePassport = require("./config/passport");
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
@@ -37,9 +40,9 @@ app.get("/", (req, res) => {
 app.use("/api/trips", require("./routes/trips"));
 app.use("/api/register", require("./routes/register"));
 app.use("/api/login", require("./routes/login"));
-app.use("/api/bookedTrips", require("./routes/bookedTrips"));
 app.use("/api/reviews", require("./routes/reviews"));
-app.use("/api/users", require("./routes/users"));
+app.use("/api/bookedTrips", auth, require("./routes/bookedTrips"));
+app.use("/api/users", auth, require("./routes/users"));
 
 app.listen(PORT, () => {
   console.log(`Server listening on the port ${PORT}...`);

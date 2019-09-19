@@ -7,6 +7,7 @@ import styles from "../styles/form.module.css";
 import { Container, Layout } from "../components";
 import { loginAction } from "../actions/loginAction";
 import { logoutAction } from "../actions/logoutAction";
+import setAuthToken from "../utils/setAuthToken";
 
 class Login extends Component {
   constructor(props) {
@@ -42,15 +43,18 @@ class Login extends Component {
           Phone: phone,
           Email: email
         } = res.data.user;
+        const { token } = res.data;
         const user = {
           firstName,
           lastName,
           phone,
-          email
+          email,
+          token
         };
         this.props.saveUserToStore(user);
         console.log(res.data);
         localStorage.setItem("user", JSON.stringify(user));
+        setAuthToken(user.token);
         this.props.history.push("/");
       })
       .catch(error => {

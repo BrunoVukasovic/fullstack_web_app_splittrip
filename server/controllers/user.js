@@ -2,13 +2,14 @@ const User = require("../models/User");
 
 const userController = {
   deleteUserByEmail: (req, res) => {
-    const { email } = req.body;
+    const { Id } = req.user;
     User.destroy({
       where: {
-        Email: email
+        Id
       }
     });
   },
+
   findUserByEmail: email => {
     return User.findOne({
       where: { Email: email }

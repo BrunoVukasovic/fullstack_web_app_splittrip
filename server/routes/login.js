@@ -12,7 +12,7 @@ router.post(
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     const { user } = req;
-    const token = jwt.sign(user.toJSON(), "your_jwt_secret");
+    const token = jwt.sign(user.toJSON(), process.env.SECRET);
     res.send({ user, token });
   }
 );

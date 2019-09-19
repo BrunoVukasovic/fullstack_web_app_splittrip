@@ -16,9 +16,7 @@ class MyProfile extends Component {
   };
 
   componentDidMount = () => {
-    let user = JSON.parse(localStorage.getItem("user"));
-    const { email } = user;
-    axios.post("api/bookedTrips/reviewed", { email }).then(res => {
+    axios.get("api/bookedTrips/reviewed").then(res => {
       const reviewedBookings = res.data;
       reviewedBookings.forEach(reviewedBooking => {
         const {
@@ -27,7 +25,6 @@ class MyProfile extends Component {
           Trip: trip,
           Review: review
         } = reviewedBooking;
-        console.log(reviewedBooking);
         const { Heading: tripName, Slug: slug } = trip;
         const { Id: reviewID } = review;
         const reviewTemplate = {
@@ -56,11 +53,8 @@ class MyProfile extends Component {
   };
 
   handleDeleteProfile = () => {
-    let user = JSON.parse(localStorage.getItem("user"));
-    const { email } = user;
-
-    axios.post("/api/bookedTrips/userIdNull", { email }).then(res => {
-      axios.post("api/users/delete", { email }).then(res => {
+    axios.get("/api/bookedTrips/userIdNull").then(res => {
+      axios.get("api/users/delete").then(res => {
         console.log(res.data);
       });
       this.props.removeUserFromStore();
