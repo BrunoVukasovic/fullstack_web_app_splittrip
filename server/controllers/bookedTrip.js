@@ -2,7 +2,6 @@ const BookedTrip = require("../models/BookedTrip");
 const Review = require("../models/Review");
 const Trip = require("../models/Trip");
 const User = require("../models/User");
-const userController = require("./user");
 
 const bookedTripController = {
   findAllByUser: (req, res) => {
@@ -59,30 +58,20 @@ const bookedTripController = {
   },
 
   createNew: (req, res) => {
-    const {
-      email,
-      tripID,
-      date,
-      numberOfPeople,
-      message
-    } = req.body.bookedTrip;
-    userController
-      .findUserByEmail(email)
-      .then(user => {
-        BookedTrip.create({
-          UserID: user.Id,
-          TripID: tripID,
-          Date: date,
-          NumberOfPeople: numberOfPeople,
-          Message: message,
-          Canceled: false,
-          Past: false,
-          Reviewed: false
-        })
-          .then(res.status(201).send("Trip booked!"))
-          .catch(error => console.log(error));
-      })
-      .catch(err => console.log(err));
+    const { tripID, date, numberOfPeople, message } = req.body.bookedTrip;
+    const { Id } = req.user;
+    BookedTrip.create({
+      UserID: Id,
+      TripID: tripID,
+      Date: date,
+      NumberOfPeople: numberOfPeople,
+      Message: message,
+      Canceled: false,
+      Past: false,
+      Reviewed: false
+    })
+      .then(res.status(201).send("Trip booked!"))
+      .catch(error => console.log(error));
   },
 
   getUserAndDate: (req, res) => {

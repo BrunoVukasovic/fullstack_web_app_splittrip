@@ -8,6 +8,7 @@ import {
   ButtonContainer
 } from "../../components";
 import { logoutAction } from "../../actions/logoutAction";
+import setAuthToken from "../../utils/setAuthToken";
 
 class MyProfile extends Component {
   state = {
@@ -16,6 +17,8 @@ class MyProfile extends Component {
   };
 
   componentDidMount = () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    setAuthToken(user.token);
     axios.get("api/bookedTrips/reviewed").then(res => {
       const reviewedBookings = res.data;
       reviewedBookings.forEach(reviewedBooking => {

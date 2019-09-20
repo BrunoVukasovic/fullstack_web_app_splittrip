@@ -7,6 +7,7 @@ import CanceledTrips from "./CanceledTrips";
 import { Spinner, LoginRedirect, Container } from "../../components";
 import { Layout } from "../../components";
 import cn from "classnames";
+import setAuthToken from "../../utils/setAuthToken";
 
 export default class MyTrips extends Component {
   state = {
@@ -22,6 +23,7 @@ export default class MyTrips extends Component {
 
   componentDidMount = () => {
     let user = JSON.parse(localStorage.getItem("user"));
+    setAuthToken(user.token);
     if (user) {
       axios.get("/api/bookedTrips/all").then(res => {
         const bookedTrips = res.data;

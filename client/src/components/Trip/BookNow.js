@@ -10,7 +10,6 @@ class BookNow extends Component {
     firstName: "",
     lastName: "",
     phone: "",
-    email: "",
     date: "",
     numberOfPeople: "",
     message: "",
@@ -20,8 +19,8 @@ class BookNow extends Component {
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-      const { firstName, lastName, phone, email } = user;
-      this.setState({ firstName, lastName, phone, email });
+      const { firstName, lastName, phone } = user;
+      this.setState({ firstName, lastName, phone });
     }
   }
 
@@ -49,11 +48,9 @@ class BookNow extends Component {
   };
 
   handleBookNowSubmit = () => {
-    const { email } = this.state;
     const { date, numberOfPeople, message } = this.state;
     const { tripID } = this.props;
     const bookedTrip = {
-      email,
       tripID,
       date,
       numberOfPeople,
@@ -68,7 +65,7 @@ class BookNow extends Component {
   };
 
   render() {
-    const { firstName, lastName, phone, errorMessage, email } = this.state;
+    const { firstName, lastName, phone, errorMessage } = this.state;
     const { heading, handleClose } = this.props;
 
     return (
@@ -76,7 +73,7 @@ class BookNow extends Component {
         <span onClick={handleClose} className={styles.Close}>
           &times;
         </span>
-        {email ? (
+        {firstName ? (
           <Container>
             <div>
               <h2>Book now!</h2>

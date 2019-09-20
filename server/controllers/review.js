@@ -42,11 +42,9 @@ const reviewController = {
           TripID: tripID,
           RatingID: rating,
           CommentID: comment.Id
-        })
-          .then(res.status(201).send("Review created"))
-          .catch(error => console.log(error));
+        });
       })
-      .then(res.status(201).send("Comment created"))
+      .then(res.status(201).send("Review created"))
       .catch(error => console.log(error));
   }
 };

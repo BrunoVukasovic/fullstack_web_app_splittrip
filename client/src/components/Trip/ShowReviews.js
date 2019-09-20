@@ -15,7 +15,6 @@ export default class ShowReviews extends Component {
 
     axios.post("api/reviews/trip", { tripID }).then(res => {
       const reviews = res.data;
-      console.log(res.data);
       reviews.forEach(review => {
         const {
           BookedTripID: bookedTripID,

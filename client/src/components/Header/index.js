@@ -33,7 +33,6 @@ import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 class Header extends Component {
   onLogoutClick = () => {
     axios.get("/api/login/logout").then(res => {
-      console.log(res);
       this.props.removeUserFromStore();
       localStorage.clear();
     });
